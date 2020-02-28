@@ -160,7 +160,7 @@
                 @else
                     <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
                 @endif
-                <a href="#">購物車</a>
+                <a data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample">購物車</a>
                 <a href="{{asset('/QA')}}">Q&A</a>
                 <a href="{{asset('/Member')}}">會員中心</a>
             </div>
@@ -168,6 +168,17 @@
                 <input type="search" name="" placeholder="輸入關鍵字">
                 <button><i class="fas fa-search"></i></button>
             </form>
+        </div>
+
+        <div class=" container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="collapse" id="collapse">
+                    <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="carouselExampleFade" class="carousel slide carousel-fade container" data-ride="carousel">
@@ -193,9 +204,9 @@
         </div>
 
         <div class="nav-categroy container">
-            <a href="{{asset('/Search/Woman')}}">女裝</a>
-            <a href="{{asset('/Search/Man')}}">男裝</a>
-            <a href="{{asset('/Search/Kid')}}">兒童</a>
+            <a href="{{asset('/Women/Cloth')}}">女裝</a>
+            <a href="{{asset('/Men/Cloth')}}">男裝</a>
+            <a href="{{asset('/Kids/Cloth')}}">兒童</a>
             <a href="#">新品</a>
             <a href="#">特價</a>
         </div>

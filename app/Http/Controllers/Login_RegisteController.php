@@ -49,9 +49,10 @@ class Login_RegisteController extends Controller
 
         $user=User::where('email',$email)->first();
 
+        //找不到狀態情況
         if($user==null)
         {
-            return redirect()->back()->withErrors(['error'=>'帳號錯誤!']);
+            return redirect()->back()->withErrors(['error'=>'帳號錯誤或是未註冊!']);
         }
 
         //驗證密碼

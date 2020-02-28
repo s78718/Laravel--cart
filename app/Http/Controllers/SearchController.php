@@ -4,33 +4,33 @@ namespace App\Http\Controllers;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
-use App\Models\Man_clothes;
-use App\Models\Woman_clothes;
-use App\Models\Kid_clothes;
+use App\Models\Categroy; //Model
 use Session;
 
 class SearchController extends Controller
 {
-    //女生
-    public function SearchWoman()
+    //女生Cloth
+    public function WomenCloth()
     {
-        $womanclothes=Woman_clothes::paginate(15);
-        //dd($womanclothes);
-        return view('woman', compact(['womanclothes']));
+        $womenclothes=Categroy::where('sex','women')->get();
+        //dd($womenclothes);
+        return view('women', compact(['womenclothes']));
     }
-    //男生
-    public function SearchMan()
+
+    //男生Cloth
+    public function MenCloth()
     {
-        $manclothes=Man_clothes::paginate(15);
-        //dd($manclothes);
-        return view('man', compact(['manclothes']));
+        $menclothes=Categroy::where('sex','men')->get();
+        //dd($menclothes);
+        return view('men', compact(['menclothes']));
     }
-    //兒童
-    public function SearchKid()
+
+    //兒童Cloth
+    public function KidsCloth()
     {
-        $kidclothes=Kid_clothes::paginate(15);
-        //dd($kidclothes);
-        return view('kid', compact(['kidclothes']));
+        $kidsclothes=Categroy::where('sex','kids')->get();
+        //dd($kidsclothes);
+        return view('kids', compact(['kidsclothes']));
     }
 
 }

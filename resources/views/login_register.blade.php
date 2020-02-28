@@ -23,6 +23,7 @@
                 margin: 0;
                 font-family: 'Noto Sans TC' ;
                 list-style:none;
+
             }
             .nav-categroy a{
                 text-decoration: none;
@@ -142,15 +143,30 @@
                 border: 6px double #eee;
             }
             #login-form{
-                box-sizing: border-box;
-                margin: 15px;
-                padding: 60px;
+                margin-bottom: 10px;
+                padding: 30px;
                 border: 8px double #ccc;
+            }
+            #third-login{
+                margin-bottom: 10px;
+                padding: 30px;
+                border: 8px double #ccc;
+            }
+            #third-login a{
+                text-decoration: none;
+                padding-right: 40px;
+            }
+
+            #third-login img{
+
+                width:40px;
+                height: 40px;
             }
             #login-form button{
                 background-color: #ccc;
             }
             #login-form a{
+                text-decoration: none;
                 color: #444;
                 padding-right: 10px;
             }
@@ -170,55 +186,83 @@
                 @else
                     <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
                 @endif
-                <a href="#">購物車</a>
+                <a data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample">購物車</a>
                 <a href="{{asset('/QA')}}">Q&A</a>
                 <a href="{{asset('/Member')}}">會員中心</a>
             </div>
             <form class="nav-search">
                 <input type="search" name="" placeholder="輸入關鍵字">
-                <button><i class="fas fa-search"></i></button>
+                <button>
+                    <i class="fas fa-search"></i>
+                </button>
             </form>
+        </div>
+        <div class=" container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="collapse" id="collapse">
+                    <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     <body>
         <div class="container">
-            <form id="login-form" method="POST" action="/Login_Register/Validate">
-                @csrf
-                <h3 class="pb-3">登入會員</h3>
+            <div class="row">
+                <div id="third-login" class="col-md-12 col-12">
+                    <h4 class="pb-2">快速登入/註冊</h4>
+                    <hr>
+                    <a href="#">
+                        <img  src="/png/fb_icon.png">
+                    </a>
+                    <a href="#">
+                        <img  src="/png/google_icon.png">
+                    </a>
+                    <a href="#">
+                        <img  src="/png/line_icon.png">
+                    </a>
+                </div>
+                <div id="login-form" class="col-md-12 col-12">
+                    <form  method="POST" action="/Login_Register/Validate">
+                        @csrf
+                        <h4 class="pb-2">登入會員</h4>
+                        <hr>
+                        <div class="form-group">
+                        <label for="InputEmail1">Email</label>
+                        <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" required>
+                                @if ($errors->first('email'))
+                                    <span class="error" role="alert">
+                                        <strong class="text-danger bg-warning">{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                        </div>
+                        <div class="form-group">
+                        <label for="InputPassword1">Password</label>
+                        <input type="password" name="password" class="form-control" id="InputPassword1" required>
+                                @if ($errors->first('password'))
+                                    <span class="error" role="alert">
+                                        <strong class="text-danger bg-warning">{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                        </div>
 
-                <div class="form-group">
-                  <label for="InputEmail1">Email</label>
-                  <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" required>
-                        @if ($errors->first('email'))
+                        <button type="submit" class="btn">登入</button>
+                        <span class="pl-5">
+                            <a  href="#">忘記密碼</span>
+                            <a  href="/Register">本站註冊</a>
+                        </span>
+                        @if ($errors->first('error'))
                             <span class="error" role="alert">
-                                <strong class="text-danger bg-warning">{{ $errors->first('email') }}</strong>
+                                <strong class="text-danger bg-warning">{{$errors->first('error')}}</strong>
                             </span>
                         @endif
+
+                    </form>
                 </div>
-                <div class="form-group">
-                  <label for="InputPassword1">Password</label>
-                  <input type="password" name="password" class="form-control" id="InputPassword1" required>
-                        @if ($errors->first('password'))
-                            <span class="error" role="alert">
-                                <strong class="text-danger bg-warning">{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
-                </div>
-
-                <button type="submit" class="btn">登入</button>
-                @if ($errors->first('error'))
-                    <span class="error" role="alert">
-                        <strong class="text-danger bg-warning">{{$errors->first('error')}}</strong>
-                    </span>
-                @endif
-                <p class="mt-3">
-                    <a  href="#">忘記密碼</a>
-                    <a  href="/Register">註冊會員</a>
-                </p>
-
-            </form>
-
+            </div>
         </div>
     </body>
 
