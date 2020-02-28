@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('mik');
 });
 
+Route::get('/Register', 'Login_RegisteController@Register');
+Route::post('/Register/Validate', 'Login_RegisteController@Register_Validate');
 Route::post('/Login_Register/Validate', 'Login_RegisteController@Login_Validate');
 Route::get('/Logout', 'Login_RegisteController@Logout');
 Route::get('/Login_Register', 'Login_RegisteController@Login_Register');

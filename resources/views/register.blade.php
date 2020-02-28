@@ -183,13 +183,40 @@
 
     <body>
         <div class="container">
-            <form id="login-form" method="POST" action="/Login_Register/Validate">
+            <form id="login-form" method="POST" action="/Register/Validate">
                 @csrf
-                <h3 class="pb-3">登入會員</h3>
+                <h3 class="pb-3">註冊會員</h3>
 
                 <div class="form-group">
-                  <label for="InputEmail1">Email</label>
-                  <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" required>
+                    <label for="InputName">Name*</label>
+                    <input type="text" name="name" class="form-control" id="InputName" aria-describedby="emailHelp" required>
+                          @if ($errors->first('name'))
+                              <span class="error" role="alert">
+                                  <strong class="text-danger bg-warning">{{ $errors->first('name') }}</strong>
+                              </span>
+                          @endif
+                </div>
+                <div class="form-group">
+                    <label for="InputPhone">Phone*</label>
+                    <input type="text" name="phone" class="form-control" id="InputPhone" aria-describedby="emailHelp" required>
+                          @if ($errors->first('phone'))
+                              <span class="error" role="alert">
+                                  <strong class="text-danger bg-warning">{{ $errors->first('phone') }}</strong>
+                              </span>
+                          @endif
+                </div>
+                <div class="form-group">
+                    <label for="InputAddess">Address*</label>
+                    <input type="text" name="address" class="form-control" id="InputAddress" aria-describedby="emailHelp" required>
+                          @if ($errors->first('address'))
+                              <span class="error" role="alert">
+                                  <strong class="text-danger bg-warning">{{ $errors->first('address') }}</strong>
+                              </span>
+                          @endif
+                </div>
+                <div class="form-group">
+                  <label for="InputEmail">Email*</label>
+                  <input type="email" name="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" required>
                         @if ($errors->first('email'))
                             <span class="error" role="alert">
                                 <strong class="text-danger bg-warning">{{ $errors->first('email') }}</strong>
@@ -197,27 +224,27 @@
                         @endif
                 </div>
                 <div class="form-group">
-                  <label for="InputPassword1">Password</label>
+                  <label for="InputPassword1">Password*</label>
                   <input type="password" name="password" class="form-control" id="InputPassword1" required>
-                        @if ($errors->first('password'))
-                            <span class="error" role="alert">
-                                <strong class="text-danger bg-warning">{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
                 </div>
-
-                <button type="submit" class="btn">登入</button>
+                <div class="form-group">
+                    <label for="InputPassword2">ComfirmPassword*</label>
+                    <input type="password" name="password_confirmation" class="form-control" id="InputPassword2" required>
+                          @if ($errors->first('password'))
+                              <span class="error" role="alert">
+                                  <strong class="text-danger bg-warning">{{ $errors->first('password') }}</strong>
+                              </span>
+                          @endif
+                  </div>
+                <button type="submit" class="btn">註冊</button>
                 @if ($errors->first('error'))
-                    <span class="error" role="alert">
-                        <strong class="text-danger bg-warning">{{$errors->first('error')}}</strong>
-                    </span>
+                <span class="error" role="alert">
+                    <strong class="text-danger bg-warning">{{$errors->first('error')}}</strong>
+                </span>
                 @endif
-                <p class="mt-3">
-                    <a  href="#">忘記密碼</a>
-                    <a  href="/Register">註冊會員</a>
-                </p>
 
             </form>
+
 
         </div>
     </body>
