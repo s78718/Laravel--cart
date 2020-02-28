@@ -12,7 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('net');
+    return view('mik');
 });
 
+Route::post('/Login_Register/Validate', 'Login_RegisteController@Login_Validate');
+Route::get('/Logout', 'Login_RegisteController@Logout');
 Route::get('/Login_Register', 'Login_RegisteController@Login_Register');
+Route::get('/Search/Woman', 'SearchController@SearchWoman');
+Route::get('/Search/Man', 'SearchController@SearchMan');
+Route::get('/Search/Kid', 'SearchController@SearchKid');

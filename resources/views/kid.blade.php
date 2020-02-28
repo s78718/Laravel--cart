@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>net</title>
+        <title>mik</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
@@ -83,9 +83,6 @@
                 padding: 10px;
                border: 5px double #ccc;
             }
-            #article{
-                display: none;
-            }
             #menu
             {
                 line-height: 2em;
@@ -141,22 +138,25 @@
                 padding: 10px;
                 border: 6px double #eee;
             }
-
         </style>
     </head>
 
     <header>
         <div class="nav container">
             <div class="logo">
-                <a href="#">
+                <a href="{{asset('/')}}">
                     <img src="/mik.png">
                 </a>
             </div>
             <div class="nav-top">
-                <a href="#">登入/註冊</a>
+                @if(!session()->has('name'))
+                    <a href="{{asset('/Login_Register')}}">登入/註冊</a>
+                @else
+                    <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
+                @endif
                 <a href="#">購物車</a>
-                <a href="#">Q&A</a>
-                <a href="#">會員中心</a>
+                <a href="{{asset('/QA')}}">Q&A</a>
+                <a href="{{asset('/Member')}}">會員中心</a>
             </div>
             <form class="nav-search">
                 <input type="search" name="" placeholder="輸入關鍵字">
@@ -164,43 +164,23 @@
             </form>
         </div>
 
-        <div id="carouselExampleFade" class="carousel slide carousel-fade container" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://picsum.photos/900/320?random=1" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://picsum.photos/900/320?random=2" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://picsum.photos/900/320?random=3" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-
         <div class="nav-categroy container">
-            <a href="#">女裝</a>
-            <a href="#">男裝</a>
-            <a href="#">兒童</a>
+            <a href="{{asset('/Search/Woman')}}">女裝</a>
+            <a href="{{asset('/Search/Man')}}">男裝</a>
+            <a href="{{asset('/Search/Kid')}}">兒童</a>
             <a href="#">新品</a>
             <a href="#">特價</a>
         </div>
     </header>
 
     <body>
+
         <div id="article" class="container">
             <div class="row">
+                <!--選單區-->
                 <div id="menu" class="col-md-2 col-3">
                     <ul class="aside">
-                        <li><a href="#">上衣類</a>
+                        <li><a href="{{asset('/Search/Kid')}}">上衣類</a>
                             <ul class="aside-sub">
                                 <li><a href="#">短T</a></li>
                                 <li><a href="#">長T</a></li>
@@ -240,41 +220,32 @@
                         </li>
                     </ul>
                 </div>
+                <!--商品區-->
                 <div id="main" class="col-md-10 col-9">
                     <div class="row">
                         <div id="main-img" class=" col-12">
                             <img src="https://picsum.photos/800/250?random=3">
                         </div>
-                        @for($i=0;$i<11;$i++)
-                        <div class="col-md-4 col-12">
-                            <a href="#">
-                                <div class="card mr-1 mb-3 p-2 text-center">
-                                    <img src="https://picsum.photos/200/200?random=8" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">棉質V領針織衫-男</p>
-                                        <p class="card-text">NT$249</p>
+                        @if(isset($kidclothes))
+                            @foreach ($kidclothes as $kidcloth)
+                            <div class="col-md-4 col-12">
+                                <a href="#">
+                                    <div class="card mr-1 mb-3 p-2 text-center">
+                                        <img src="https://picsum.photos/200/200?random=8" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-text">{{$kidcloth->product}}</p>
+                                            <p class="card-text">NT${{$kidcloth->price}}</p>
+                                        </div>
                                     </div>
-                              </div>
-                            </a>
-                        </div>
-                        @endfor
+                                </a>
+                            </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
+            {{ $kidclothes->links() }}
         </div>
-
-
-        <script>
-             $('.nav-categroy').click(function() {
-                $("#carouselExampleFade").hide();
-                $("#article").show();
-
-            });
-            $('.logo').click(function() {
-                $("#carouselExampleFade").show();
-                $("#article").hide();
-            });
-        </script>
     </body>
 
     <footer>
