@@ -125,6 +125,7 @@
                 color:#444;
                 border: 5px double #ccc;
                 height: 100%;
+
             }
             #main .card:hover{
                 transform: scale(1.05);
@@ -183,6 +184,7 @@
                 </div>
             </div>
         </div>
+
         <div class="nav-categroy container">
             <a href="{{asset('/Women')}}">女裝</a>
             <a href="{{asset('/Men')}}">男裝</a>
@@ -190,50 +192,22 @@
             <a href="{{asset('/New')}}">新品</a>
             <a href="{{asset('/Sale')}}">特價</a>
         </div>
+
     </header>
 
     <body>
-        <!--選單區-->
         <div id="article" class="container">
             <div class="row">
+                <!--選單區-->
                 <div id="menu" class="col-md-2 col-3">
                     <ul class="aside">
-                        <li><a href="{{asset('/Women/Cloth')}}">上衣類</a>
+                        <li><a href="{{asset('/New')}}">新品</a>
                             <ul class="aside-sub">
-                                <li><a href="#">短T</a></li>
-                                <li><a href="#">長T</a></li>
-                                <li><a href="#">襯衫</a></li>
-                                <li><a href="#">商務</a></li>
-                                <li><a href="#">運動</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{asset('/Women/Pant')}}">褲子類</a>
-                            <ul class="aside-sub">
-                                <li><a href="#">短褲</a></li>
-                                <li><a href="#">長褲</a></li>
-                                <li><a href="#">牛仔褲</a></li>
-                                <li><a href="#">七/九分褲</a></li>
-                                <li><a href="#">運動褲</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{asset('/Women/Coat')}}">外套類</a>
-                            <ul class="aside-sub">
-                                <li><a href="#">羽絨</a></li>
-                                <li><a href="#">休閒</a></li>
-                                <li><a href="#">防水</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{asset('/Women/Underwear')}}">家居類</a>
-                            <ul class="aside-sub">
-                                <li><a href="#">睡衣</a></li>
-                                <li><a href="#">內衣/內褲</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{asset('/Women/Other')}}">配件類</a>
-                            <ul class="aside-sub">
-                                <li><a href="#">皮帶</a></li>
-                                <li><a href="#">襪子</a></li>
-                                <li><a href="#">鞋子</a></li>
+                                <li><a href="#">男生</a></li>
+                                <li><a href="#">女生</a></li>
+                                <li><a href="#">兒童</a></li>
+                                <li><a href="#">家居</a></li>
+                                <li><a href="#">配件</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -244,20 +218,20 @@
                         <div id="main-img" class=" col-12">
                             <img src="https://picsum.photos/800/250?random=3">
                         </div>
-                        @if(isset($women))
-                            @foreach ($women as $woman)
-                            <div id={{ $woman->id }}  class="col-md-4 col-12  mb-4">
+                        @if(isset($news))
+                            @foreach ($news as $new)
+                            <div id={{ $new->id }}  class="col-md-4 col-12 mb-4">
                                 <div class="card p-1 text-center">
                                     <a href="#">
                                         <img src="https://picsum.photos/200/200?random=8" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                            <p class="card-text">{{$woman->product}}</p>
-                                            @if(is_null($woman->saleprice))
-                                                <p class="nosale-price card-text">NT${{$woman->price}}</p>
+                                            <p >{{$new->product}}</p>
+                                            @if(is_null($new->saleprice))
+                                                <p class="nosale-price card-text">NT${{$new->price}}</p>
                                             @else
                                                 <p class="card-text">
-                                                    <span class="ori-price">原價{{$woman->price}}</span>
-                                                    <span class="sale-price text-danger">活動價NT${{$woman->saleprice}}</span>
+                                                    <span class="ori-price">原價{{$new->price}}</span>
+                                                    <span class="sale-price text-danger">活動價NT${{$new->saleprice}}</span>
                                                 </p>
                                             @endif
                                         </div>

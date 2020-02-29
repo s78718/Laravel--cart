@@ -17,6 +17,7 @@ class Login_RegisteController extends Controller
         return view('login_register');
     }
 
+    //註冊畫面
     public function Register()
     {
         return view('register');

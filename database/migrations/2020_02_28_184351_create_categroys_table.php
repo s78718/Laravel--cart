@@ -22,8 +22,8 @@ class CreateCategroysTable extends Migration
             $table->string('size');
             $table->string('color');
             $table->integer('inventory');//存貨
-            $table->integer('saleprice');//特價價錢
-            $table->string('salecode');//特價碼
+            $table->integer('saleprice')->nullable();//特價價錢
+            $table->string('salecode')->nullable();//特價碼
             $table->string('status');//狀態
             $table->timestamps();
         });

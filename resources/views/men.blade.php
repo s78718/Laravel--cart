@@ -120,15 +120,26 @@
                 border: 5px double #ccc;
             }
             #main .card{
-
                 background-color: #fff;
                 transition: 0.8s;
                 color:#444;
                 border: 5px double #ccc;
-            }
+                height: 100%;
 
+            }
             #main .card:hover{
                 transform: scale(1.05);
+            }
+            #main .card a{
+                color: #444;
+                text-decoration: none;
+            }
+            #main .card .ori-price{
+                font-size: 12px;
+                text-decoration:line-through;
+            }
+            #main .card .sale-price {
+                padding-left: 15px;
             }
             #footer
             {
@@ -175,11 +186,11 @@
         </div>
 
         <div class="nav-categroy container">
-            <a href="{{asset('/Women/Cloth')}}">女裝</a>
-            <a href="{{asset('/Men/Cloth')}}">男裝</a>
-            <a href="{{asset('/Kids/Cloth')}}">兒童</a>
-            <a href="#">新品</a>
-            <a href="#">特價</a>
+            <a href="{{asset('/Women')}}">女裝</a>
+            <a href="{{asset('/Men')}}">男裝</a>
+            <a href="{{asset('/Kids')}}">兒童</a>
+            <a href="{{asset('/New')}}">新品</a>
+            <a href="{{asset('/Sale')}}">特價</a>
         </div>
     </header>
 
@@ -190,7 +201,7 @@
                 <!--選單區-->
                 <div id="menu" class="col-md-2 col-3">
                     <ul class="aside">
-                        <li><a href="{{asset('/Search/Man')}}">上衣類</a>
+                        <li><a href="{{asset('/Men/Cloth')}}">上衣類</a>
                             <ul class="aside-sub">
                                 <li><a href="#">短T</a></li>
                                 <li><a href="#">長T</a></li>
@@ -199,7 +210,7 @@
                                 <li><a href="#">運動</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">褲子類</a>
+                        <li><a href="{{asset('/Men/Pant')}}">褲子類</a>
                             <ul class="aside-sub">
                                 <li><a href="#">短褲</a></li>
                                 <li><a href="#">長褲</a></li>
@@ -208,20 +219,20 @@
                                 <li><a href="#">運動褲</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">外套類</a>
+                        <li><a href="{{asset('/Men/Coat')}}">外套類</a>
                             <ul class="aside-sub">
                                 <li><a href="#">羽絨</a></li>
                                 <li><a href="#">休閒</a></li>
                                 <li><a href="#">防水</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">家居類</a>
+                        <li><a href="{{asset('/Men/Underwear')}}">家居類</a>
                             <ul class="aside-sub">
                                 <li><a href="#">睡衣</a></li>
                                 <li><a href="#">內衣/內褲</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">配件類</a>
+                        <li><a href="{{asset('/Men/Other')}}">配件類</a>
                             <ul class="aside-sub">
                                 <li><a href="#">皮帶</a></li>
                                 <li><a href="#">襪子</a></li>
@@ -236,18 +247,25 @@
                         <div id="main-img" class=" col-12">
                             <img src="https://picsum.photos/800/250?random=3">
                         </div>
-                        @if(isset($menclothes))
-                            @foreach ($menclothes as $mencloth)
-                            <div class="col-md-4 col-12">
-                                <a href="#">
-                                    <div class="card mr-1 mb-3 p-2 text-center">
+                        @if(isset($men))
+                            @foreach ($men as $man)
+                            <div id={{ $man->id }}  class="col-md-4 col-12 mb-4">
+                                <div class="card p-1 text-center">
+                                    <a href="#">
                                         <img src="https://picsum.photos/200/200?random=8" class="card-img-top" alt="...">
                                         <div class="card-body">
-                                            <p class="card-text">{{$mencloth->product}}</p>
-                                            <p class="card-text">NT${{$mencloth->price}}</p>
+                                            <p class="card-text">{{$man->product}}</p>
+                                            @if(is_null($man->saleprice))
+                                                <p class="nosale-price card-text">NT${{$man->price}}</p>
+                                            @else
+                                                <p class="card-text">
+                                                    <span class="ori-price">原價{{$man->price}}</span>
+                                                    <span class="sale-price text-danger">活動價NT${{$man->saleprice}}</span>
+                                                </p>
+                                            @endif
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                             @endforeach
                         @endif

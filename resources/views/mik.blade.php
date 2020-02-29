@@ -204,11 +204,11 @@
         </div>
 
         <div class="nav-categroy container">
-            <a href="{{asset('/Women/Cloth')}}">女裝</a>
-            <a href="{{asset('/Men/Cloth')}}">男裝</a>
-            <a href="{{asset('/Kids/Cloth')}}">兒童</a>
-            <a href="#">新品</a>
-            <a href="#">特價</a>
+            <a href="{{asset('/Women')}}">女裝</a>
+            <a href="{{asset('/Men')}}">男裝</a>
+            <a href="{{asset('/Kids')}}">兒童</a>
+            <a href="{{asset('/New')}}">新品</a>
+            <a href="{{asset('/Sale')}}">特價</a>
         </div>
     </header>
 
