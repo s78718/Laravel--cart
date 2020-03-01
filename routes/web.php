@@ -11,7 +11,14 @@
 |
 */
 
+//cart
 
+Route::get('/Cart', 'CartController@cart');
+Route::get('/Remove-item/{id}', 'CartController@removeItem');
+Route::get('/Add-to-cart/{id}', 'CartController@getAddToCart');
+Route::get('/Clear-cart', 'vController@clearCart');
+Route::get('/Increase-one-item/{id}', 'CartController@increaseByOne');
+Route::get('/Decrease-one-item/{id}', 'CartController@decreaseByOne');
 
 Route::get('/', function () {
     return view('mik');
@@ -30,14 +37,7 @@ Route::post('/Login_Register/Validate', 'Login_RegisteController@Login_Validate'
 Route::get('/Logout', 'Login_RegisteController@Logout');
 
 
-//cart
 
-Route::get('/cart', 'CartController@cart');
-Route::get('/remove-item/{id}', 'CartController@removeItem');
-Route::get('/add-to-cart/{id}', 'CartController@getAddToCart');
-Route::get('/clear-cart', 'vController@clearCart');
-Route::get('/increase-one-item/{id}', 'CartController@increaseByOne');
-Route::get('/decrease-one-item/{id}', 'CartController@decreaseByOne');
 
 
 //detail

@@ -7,7 +7,7 @@ use App\Models\Product; //Model
 
 class ajaxController extends Controller
 {
-    //
+    //存量
     public function inventory(Request $request)
     {
 
@@ -19,8 +19,15 @@ class ajaxController extends Controller
                             ->where('product','=',$detail[0]->product)
                             ->where('color','=',$request->color )
                             ->get();
-        //dd($inventory[0]->inventory);
-        return $inventory[0]->inventory;
+
+        $inventoryBack=0;
+        if(!$inventory->count()==0)
+        {
+            $inventoryBack=$inventory[0]->inventory;
+        }
+
+        //dd($inventoryBack);
+        return $inventoryBack;
 
     }
 }

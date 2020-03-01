@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Kid_Cloth;
 use App\Models\Man_Cloth;
 use App\Models\Woman_Cloth;
+use App\Models\Cart;
 use Session;
 
 class CartController extends Controller

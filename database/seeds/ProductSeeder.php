@@ -83,7 +83,7 @@ class ProductSeeder extends Seeder
             'sex' => 'kids',
             'size' => 'M',
             'color' => '白',
-            'inventory' => '333',
+            'inventory' => '20',
             'created_at' => Carbon::now(),
         ]);
         DB::table('products')->insert([
@@ -92,7 +92,7 @@ class ProductSeeder extends Seeder
             'sex' => 'men',
             'size' => 'L',
             'color' => '白',
-            'inventory' => '222',
+            'inventory' => '0',
             'created_at' => Carbon::now(),
         ]);
     }

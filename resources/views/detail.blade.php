@@ -240,7 +240,7 @@
                             <p  class="inventory pt-1 ">庫存:</p>
                         </div>
                         <hr>
-                        享有7天鑑賞期,退貨須包裝完整.貼身衣物不接受退貨!
+                        ※享有7天鑑賞期,退貨須包裝完整.貼身衣物不接受退貨!
                     </div>
                 </div>
                 <hr>
@@ -253,29 +253,26 @@
 
         <script type="text/javascript">
             //更換顏色照片
-            var rendom=0;
+            var random=0;
             var color;
             var size;
 
             $(document).ready(function(){
                 //放大鏡
                 $("#img").blowup({
-                    "scale": 1.5,
+                    "scale": 1.8,
+                    "width": 350,
+                    "height":350,
                 });
             });
 
             $('.color').click(function(){
-                //初始化
                 $('.inventory').html('庫存:');
-                $('#qty').attr('disabled', 'true');
-                $('#add-cart').attr('disabled', 'true');
-                $('#add-cart').html('缺貨中');
-
 
                 $('.color').css({"background-color": "#ccc"});
                 //模擬換顏色
-                $('#img').attr('src','https://picsum.photos/600/600?random='+rendom);
-                rendom+=1;
+                $('#img').attr('src','https://picsum.photos/600/600?random='+random);
+                random+=1;
                 //放大鏡
                 $("#img").blowup({
                     "scale": 1.5,
@@ -286,7 +283,6 @@
                 //須選顏色與尺寸
                 if(size!=null && color!=null)
                 {
-
                     $.ajax({
                         type:'POST',
                         url:'inventory',
@@ -295,13 +291,18 @@
                             'size':size,
                             'id': {{ $detail[0]->id }},
                         },
+                        async: 'false',
                         success: function(data){
                             $('.inventory').html('庫存:'+data);
-                            if(data[0]!=null)
-                            {
-                                $('#qty').prop('disabled', false);
-                                $('#add-cart').prop('disabled', false);
+                            if(data!=0){
+                                $('#qty').attr('disabled', false);
+                                $('#add-cart').attr('disabled', false);
                                 $('#add-cart').html("加入購物車");
+                            }
+                            else{
+                                $('#qty').attr('disabled', 'true');
+                                $('#add-cart').attr('disabled', 'true');
+                                $('#add-cart').html('缺貨中');
                             }
                         }
                     });
@@ -309,11 +310,7 @@
             });
 
             $('.size').click(function(){
-                //初始化
                 $('.inventory').html('庫存:');
-                $('#qty').attr('disabled', 'true');
-                $('#add-cart').attr('disabled', 'true');
-                $('#add-cart').html('缺貨中');
 
                 $('.size').css({"background-color": "#ccc"});
                 //選擇尺寸
@@ -331,15 +328,19 @@
                                 '_token': '{{ csrf_token() }}',
                                 'id': {{ $detail[0]->id }},
                         },
+                        async: 'false',
                         success: function(data){
                             $('.inventory').html('庫存:'+data);
 
-                            if(data[0]!=null)
-                            {
+                            if(data!=0){
                                 $('#qty').attr('disabled', false);
                                 $('#add-cart').attr('disabled', false);
                                 $('#add-cart').html("加入購物車");
-
+                            }
+                            else{
+                                $('#qty').attr('disabled', 'true');
+                                $('#add-cart').attr('disabled', 'true');
+                                $('#add-cart').html('缺貨中');
                             }
                         }
                     });
@@ -349,9 +350,14 @@
 
             //加到購物車
             $('.add-cart').click(function(){
-                if(size!=null && color!=null)
-                {
+                if(size!=null && color!=null){
                     alert('商品已經加入購物車');
+                }
+                else if(size==null){
+                    alert('請選擇尺寸');
+                }
+                else{
+                    alert('請選擇顏色');
                 }
             });
         </script>
