@@ -14,12 +14,12 @@ class ajaxController extends Controller
         $detail=Categroy::Where('id','=',$request->id)->get();
 
         //庫存
-        $inventory=Product::where('color','=',$request->color )
+        $inventory=Product::select('inventory')
                             ->where('size','=',$request->size)
                             ->where('product','=',$detail[0]->product)
-                            ->select('inventory')
+                            ->where('color','=',$request->color )
                             ->get();
-                            //dd($inventory);
+        //dd($inventory[0]->inventory);
         return $inventory[0]->inventory;
 
     }

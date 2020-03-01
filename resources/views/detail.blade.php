@@ -236,7 +236,7 @@
                                 <option value="5">5</option>
                             </select>
                             <!--傳回id-->
-                            <a  class="btn add-cart">加入購物車</a>
+                            <button  id="add-cart" class="btn add-cart">加入購物車</button>
                             <p  class="inventory pt-1 ">庫存:</p>
                         </div>
                         <hr>
@@ -253,9 +253,9 @@
 
         <script type="text/javascript">
             //更換顏色照片
-            var $rendom=0;
-            var $color=null;
-            var $size=null;
+            var rendom=0;
+            var color;
+            var size;
 
             $(document).ready(function(){
                 //放大鏡
@@ -264,64 +264,92 @@
                 });
             });
 
-            $('.color').click(function(e){
+            $('.color').click(function(){
+                //初始化
+                $('.inventory').html('庫存:');
+                $('#qty').attr('disabled', 'true');
+                $('#add-cart').attr('disabled', 'true');
+                $('#add-cart').html('缺貨中');
+
+
                 $('.color').css({"background-color": "#ccc"});
                 //模擬換顏色
-                $('#img').attr('src','https://picsum.photos/600/600?random='+$rendom);
-                $rendom+=1;
+                $('#img').attr('src','https://picsum.photos/600/600?random='+rendom);
+                rendom+=1;
                 //放大鏡
                 $("#img").blowup({
                     "scale": 1.5,
                 });
                 //選擇顏色
-                $color=$('.color').val();
+                color=$(this).val();
                 $(this).css({"background-color": "#0d0"});
                 //須選顏色與尺寸
-                if($size!=null && $color!=null)
+                if(size!=null && color!=null)
                 {
-                    e.preventDefault();
+
                     $.ajax({
                         type:'POST',
                         url:'inventory',
                         data:{'_token': '{{ csrf_token() }}',
-                            'color':$color,
-                            'size':$size,
+                            'color':color,
+                            'size':size,
                             'id': {{ $detail[0]->id }},
                         },
                         success: function(data){
-                            $('.inventory').html('<p>庫存:'+data+'</p>');
+                            $('.inventory').html('庫存:'+data);
+                            if(data[0]!=null)
+                            {
+                                $('#qty').prop('disabled', false);
+                                $('#add-cart').prop('disabled', false);
+                                $('#add-cart').html("加入購物車");
+                            }
                         }
                     });
                 }
             });
 
-            $('.size').click(function(e){
+            $('.size').click(function(){
+                //初始化
+                $('.inventory').html('庫存:');
+                $('#qty').attr('disabled', 'true');
+                $('#add-cart').attr('disabled', 'true');
+                $('#add-cart').html('缺貨中');
+
                 $('.size').css({"background-color": "#ccc"});
                 //選擇尺寸
-                $size=$('.size').val();
+                size=$(this).val();
                 $(this).css({"background-color": "#0d0",});
                 //須選顏色與尺寸
-                if($size!=null && $color!=null)
+                if(size!=null && color!=null)
                 {
-                    e.preventDefault();
+
                     $.ajax({
                         type:'POST',
                         url:'inventory',
-                        data:{  'color':$color,
-                                'size':$size,
+                        data:{  'color':color,
+                                'size':size,
                                 '_token': '{{ csrf_token() }}',
                                 'id': {{ $detail[0]->id }},
                         },
                         success: function(data){
-                            $('.inventory').html('<p>庫存:'+data+'</p>');
+                            $('.inventory').html('庫存:'+data);
+
+                            if(data[0]!=null)
+                            {
+                                $('#qty').attr('disabled', false);
+                                $('#add-cart').attr('disabled', false);
+                                $('#add-cart').html("加入購物車");
+
+                            }
                         }
                     });
+
                 }
             });
 
             //加到購物車
             $('.add-cart').click(function(){
-                if($size!=null && $color!=null)
+                if(size!=null && color!=null)
                 {
                     alert('商品已經加入購物車');
                 }
