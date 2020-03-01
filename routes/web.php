@@ -11,16 +11,42 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('mik');
 });
 
+//ajax
+Route::post('Detail/inventory','ajaxController@inventory');
+
+
 //login,register
+
 Route::get('/Register', 'Login_RegisteController@Register');
 Route::get('/Login_Register', 'Login_RegisteController@Login_Register');
 Route::post('/Register/Validate', 'Login_RegisteController@Register_Validate');
 Route::post('/Login_Register/Validate', 'Login_RegisteController@Login_Validate');
 Route::get('/Logout', 'Login_RegisteController@Logout');
+
+
+//cart
+
+Route::get('/cart', 'CartController@cart');
+Route::get('/remove-item/{id}', 'CartController@removeItem');
+Route::get('/add-to-cart/{id}', 'CartController@getAddToCart');
+Route::get('/clear-cart', 'vController@clearCart');
+Route::get('/increase-one-item/{id}', 'CartController@increaseByOne');
+Route::get('/decrease-one-item/{id}', 'CartController@decreaseByOne');
+
+
+//detail
+
+Route::group(['prefix' => 'Detail'], function () {
+
+    Route::get('/{id}', 'DetailController@Detail');
+
+});
 
 
 //product
@@ -67,12 +93,3 @@ Route::group(['prefix' => 'Sale'], function () {
     Route::get('/', 'SaleSearchController@Sale');
 });
 
-
-//cart
-
-Route::get('/cart', 'CartController@cart');
-Route::get('/remove-item/{id}', 'CartController@removeItem');
-Route::get('/add-to-cart/{id}', 'CartController@getAddToCart');
-Route::get('/clear-cart', 'vController@clearCart');
-Route::get('/increase-one-item/{id}', 'CartController@increaseByOne');
-Route::get('/decrease-one-item/{id}', 'CartController@decreaseByOne');

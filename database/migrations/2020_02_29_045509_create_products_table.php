@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategroysTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateCategroysTable extends Migration
      */
     public function up()
     {
-        Schema::create('categroys', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('sex');
             $table->string('categroy');
             $table->string('product');
-            $table->integer('price');
-            $table->integer('saleprice')->nullable();//特價價錢
-            $table->string('salecode')->nullable();//特價碼
-            $table->string('status');//是否上架
+            $table->string('size');//尺寸
+            $table->string('color');//顏色
+            $table->integer('inventory');//存貨
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateCategroysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categroys');
+        Schema::dropIfExists('products');
     }
 }

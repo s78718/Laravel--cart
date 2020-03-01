@@ -14,10 +14,10 @@ class CartController extends Controller
     {
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        /*return view('cart',[
+        return view('cart',[
             'books'=> $cart->items,
             'totalPrice'=> $cart->totalPrice,
-            'totalQty'=>$cart->totalQty]);*/
+            'totalQty'=>$cart->totalQty]);
     }
 
     //添加

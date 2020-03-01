@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
-class CategroySeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,87 +13,86 @@ class CategroySeeder extends Seeder
     public function run()
     {
 
-        DB::table('categroys')->insert([
+        DB::table('products')->insert([
             'categroy' => 'cloth',
             'product' => 'billboard印花T恤-02-兒童',
             'sex' => 'kids',
-            'price' => '345',
-            'saleprice' => '299',
-            'salecode' =>'03899',
-            'status'=>'on',
+            'size' => 'S',
+            'color' => '白',
+            'inventory' => '1255',
             'created_at' => Carbon::now(),
         ]);
-        DB::table('categroys')->insert([
+        DB::table('products')->insert([
             'categroy' => 'cloth',
-            'product' => 'Polar Bear Benjamin印花T恤-男',
-            'sex' => 'men',
-            'price' => '205',
-            'saleprice' => '168',
-            'salecode' =>'01168',
-            'status'=>'on',
+            'product' => 'billboard印花T恤-02-兒童',
+            'sex' => 'kids',
+            'size' => 'S',
+            'color' => '白',
+            'inventory' => '15',
             'created_at' => Carbon::now(),
         ]);
-        DB::table('categroys')->insert([
+        DB::table('products')->insert([
             'categroy' => 'cloth',
             'product' => 'Keith Haring印花T恤-03-女',
             'sex' => 'women',
-            'price' => '45',
-            'status'=>'on',
+            'size' => 'M',
+            'color' => '白',
+            'inventory' => '125',
             'created_at' => Carbon::now(),
         ]);
-        DB::table('categroys')->insert([
+        DB::table('products')->insert([
             'categroy' => 'pant',
             'product' => 'billboard印花褲子-02-男',
             'sex' => 'men',
-            'price' => '245',
-            'status'=>'on',
+            'size' => '30',
+            'color' => '白',
+            'inventory' => '122',
             'created_at' => Carbon::now(),
         ]);
-        DB::table('categroys')->insert([
+        DB::table('products')->insert([
             'categroy' => 'pant',
             'product' => 'Polar Bear Benjamin印花褲子-女',
             'sex' => 'women',
-            'price' => '205',
-            'saleprice' => '168',
-            'salecode' =>'01168',
-            'status'=>'on',
+            'size' => '32',
+            'color' => '白',
+            'inventory' => '195',
             'created_at' => Carbon::now(),
         ]);
-        DB::table('categroys')->insert([
+        DB::table('products')->insert([
             'categroy' => 'pant',
             'product' => 'Keith Haring印花褲子-03-兒童',
             'sex' => 'kids',
-            'price' => '245',
-            'status'=>'on',
+            'size' => '38',
+            'color' => '白',
+            'inventory' => '155',
             'created_at' => Carbon::now(),
         ]);
 
-        DB::table('categroys')->insert([
+        DB::table('products')->insert([
             'categroy' => 'pant',
             'product' => 'billboard印花外套-02-女',
             'sex' => 'women',
-            'price' => '245',
-            'status'=>'on',
+            'size' => '26',
+            'color' => '白',
+            'inventory' => '444',
             'created_at' => Carbon::now(),
         ]);
-        DB::table('categroys')->insert([
+        DB::table('products')->insert([
             'categroy' => 'coat',
             'product' => 'Polar Bear Benjamin印花外套-兒童',
             'sex' => 'kids',
-            'price' => '605',
-            'saleprice' => '299',
-            'salecode' =>'01399',
-            'status'=>'on',
+            'size' => 'M',
+            'color' => '白',
+            'inventory' => '333',
             'created_at' => Carbon::now(),
         ]);
-        DB::table('categroys')->insert([
+        DB::table('products')->insert([
             'categroy' => 'coat',
             'product' => 'Keith Haring印花外套-03-男',
             'sex' => 'men',
-            'price' => '545',
-            'saleprice' => '299',
-            'salecode' =>'01399',
-            'status'=>'on',
+            'size' => 'L',
+            'color' => '白',
+            'inventory' => '222',
             'created_at' => Carbon::now(),
         ]);
     }

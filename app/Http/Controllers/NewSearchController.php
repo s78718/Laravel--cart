@@ -14,7 +14,8 @@ class NewSearchController extends Controller
     //新上架
     public function New()
     {
-        $news=Categroy::Where('created_at','>=',Carbon::today())->get();
+        $news=Categroy::Where('created_at','>=',Carbon::today())
+                        ->Where('status','=' ,'on')->get();
         return view('new', compact(['news']));
     }
 }

@@ -12,7 +12,8 @@ class SaleSearchController extends Controller
     //特價
     public function Sale()
     {
-        $sales=Categroy::Where('saleprice','!=',null)->get();
+        $sales=Categroy::Where('saleprice','!=',null)
+                            ->Where('status','=' ,'on')->get();
         return view('sale', compact(['sales']));
     }
 }

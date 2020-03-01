@@ -13,7 +13,8 @@ class MenSearchController extends Controller
     //男生
     public function Men()
     {
-        $men=Categroy::where('sex','men')->get();
+        $men=Categroy::where('sex','men')
+                        ->Where('status','=' ,'on')->get();
         return view('men', compact(['men']));
     }
 
@@ -21,7 +22,8 @@ class MenSearchController extends Controller
     public function MenCloth()
     {
         $men=Categroy::where('sex','men')
-                        ->Where('categroy', 'cloth')->get();
+                        ->Where('categroy', 'cloth')
+                        ->Where('status','=' ,'on')->get()->get();
         //dd($menclothes);
         return view('men', compact(['men']));
     }
@@ -30,7 +32,8 @@ class MenSearchController extends Controller
     public function MenPant()
     {
         $men=Categroy::where('sex','men')
-                        ->Where('categroy', 'pant')->get();
+                        ->Where('categroy', 'pant')
+                        ->Where('status','=' ,'on')->get();
 
         //dd($womenclothes);
         return view('men', compact(['men']));
@@ -40,7 +43,8 @@ class MenSearchController extends Controller
     public function MenCoat()
     {
         $men=Categroy::where('sex','men')
-                        ->Where('categroy', 'coat')->get();
+                        ->Where('categroy', 'coat')
+                        ->Where('status','=' ,'on')->get();
         //dd($womenclothes);
         return view('men', compact(['men']));
     }

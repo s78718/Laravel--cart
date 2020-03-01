@@ -113,10 +113,10 @@
                 margin-bottom: 50px;
                 padding: 10px;
                 width: 100%;
-                border-top-left-radius: 50%;
-                border-top-right-radius: 50%;
-                border-bottom-right-radius: 20%;
-                border-bottom-left-radius: 20%;
+                border-top-left-radius: 90%;
+                border-top-right-radius: 90%;
+                border-bottom-right-radius: 10%;
+                border-bottom-left-radius: 10%;
                 border: 5px double #ccc;
             }
             #main .card{
@@ -188,7 +188,7 @@
             <a href="{{asset('/Men')}}">男裝</a>
             <a href="{{asset('/Kids')}}">兒童</a>
             <a href="{{asset('/New')}}">新品</a>
-            <a href="{{asset('/Sale')}}">特價</a>
+            <a href="{{asset('/Sale')}}">活動</a>
         </div>
     </header>
 
@@ -246,9 +246,9 @@
                         </div>
                         @if(isset($women))
                             @foreach ($women as $woman)
-                            <div id={{ $woman->id }}  class="col-md-4 col-12  mb-4">
+                            <div class="col-md-4 col-12  mb-4">
                                 <div class="card p-1 text-center">
-                                    <a href="#">
+                                    <a href="/Detail/{{ $woman->id }}"  target="_parent">
                                         <img src="https://picsum.photos/200/200?random=8" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <p class="card-text">{{$woman->product}}</p>
@@ -274,7 +274,7 @@
 
     <footer>
         <div id="footer" class="container">
-            <p class="">&copy; miimo工作室</p>
+            <p class="">&copy; mik</p>
         </div>
     </footer>
 </html>

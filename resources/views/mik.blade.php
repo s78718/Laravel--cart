@@ -208,13 +208,13 @@
             <a href="{{asset('/Men')}}">男裝</a>
             <a href="{{asset('/Kids')}}">兒童</a>
             <a href="{{asset('/New')}}">新品</a>
-            <a href="{{asset('/Sale')}}">特價</a>
+            <a href="{{asset('/Sale')}}">活動</a>
         </div>
     </header>
 
     <footer>
         <div id="footer" class="container">
-            <p class="">&copy; miimo工作室</p>
+            <p class="">&copy; mik</p>
         </div>
     </footer>
 </html>

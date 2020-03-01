@@ -12,22 +12,27 @@ class WomenSearchController extends Controller
     //女生
     public function Women()
     {
-        $women=Categroy::where('sex','women')->get();
+        $women=Categroy::where('sex','women')
+                            ->Where('status','=' ,'on')->get();
         return view('women', compact(['women']));
     }
+
     //女生Cloth
     public function WomenCloth()
     {
         $women=Categroy::where('sex','women')
-                        ->Where('categroy', 'cloth')->get();
+                        ->Where('categroy', 'cloth')
+                        ->Where('status','=' ,'on')->get();
         //dd($womenclothes);
         return view('women', compact(['women']));
     }
+
     //女生pant
     public function WomenPant()
     {
         $women=Categroy::where('sex','women')
-                    ->Where('categroy', 'pant')->get();
+                    ->Where('categroy', 'pant')
+                    ->Where('status','=' ,'on')->get();
         //dd($womenclothes);
         return view('women', compact(['women']));
     }
@@ -36,7 +41,8 @@ class WomenSearchController extends Controller
     public function WomenCoat()
     {
         $women=Categroy::where('sex','women')
-                    ->Where('categroy', 'coat')->get();
+                    ->Where('categroy', 'coat')
+                    ->Where('status','=' ,'on')->get();
         //dd($womenclothes);
         return view('women', compact(['women']));
     }

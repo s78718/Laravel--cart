@@ -268,7 +268,7 @@
 
     <footer>
         <div id="footer" class="container">
-            <p class="">&copy; miimo工作室</p>
+            <p class="">&copy; mik</p>
         </div>
     </footer>
 </html>
