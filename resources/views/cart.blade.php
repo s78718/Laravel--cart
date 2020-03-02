@@ -199,7 +199,7 @@
     <body>
         <div class="container mx-auto py-20 px-10 bg-gray-100 max-w-4xl">
             <div class="flex flex-col flex-wrap -mx-2 ">
-                <h1 class="text-3xl font-medium">購物車 </h1>
+                <h1 class="font-medium mb-5">購物車 </h1>
                 @if(session()->has('cart'))
                 <table class="border-collaspe border-collapse table-auto ">
                     <thead>
@@ -208,6 +208,7 @@
                         <th class="px-4 py-2">數量</th>
                         <th class="px-4 py-2">增減</th>
                     </thead>
+
                     <tbody class="text-center">
                         @foreach ($books as $book)
                         <tr>
@@ -234,10 +235,9 @@
                 @endif
                 <p class="mt-4 text-xl font-medium text-right">Total Qty: {{ $totalQty}}</p>
                 <p class="mt-4 text-xl font-medium text-right">Total: NT${{ $totalPrice}}</p>
-                <div class="flex justify-end mt-4">
-                    <a href="/clear-cart" class="mr-4 px-6 py-3 border border bg-white text-orange-600 border-orange-600">Clear
-                        Cart</a>
-                    <a href="/order/new" class="text-white px-6 py-3 bg-orange-600">Buy Now</a>
+                <div class="flex justify-end m-4">
+                    <a href="/clear-cart" class="mr-4">Clear</a>
+                    <a href="/order/new" class="mr-4">Buy Now</a>
                 </div>
             </div>
         </div>

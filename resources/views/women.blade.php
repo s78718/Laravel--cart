@@ -164,7 +164,7 @@
                 @else
                     <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
                 @endif
-                <a data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample">購物車</a>
+                <a href="{{asset('/Cart')}}">購物車</a>
                 <a href="{{asset('/QA')}}">Q&A</a>
                 <a href="{{asset('/Member')}}">會員中心</a>
             </div>
@@ -173,16 +173,7 @@
                 <button><i class="fas fa-search"></i></button>
             </form>
         </div>
-        <div class=" container">
-            <div class="row">
-                <div class="col-12 col-md-12">
-                    <div class="collapse" id="collapse">
-                    <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="nav-categroy container">
             <a href="{{asset('/Women')}}">女裝</a>
             <a href="{{asset('/Men')}}">男裝</a>

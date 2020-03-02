@@ -23,6 +23,12 @@
                 font-family: 'Noto Sans TC' ;
                 list-style:none;
             }
+            <!--關閉超連結-->
+            a.disabled {
+                pointer-events: none;
+                background-color: #eee;
+                color: white;
+            }
             .nav-categroy a{
                 text-decoration: none;
                 color: #444;
@@ -236,7 +242,7 @@
                                 <option value="5">5</option>
                             </select>
                             <!--傳回id-->
-                            <button  id="add-cart" class="btn add-cart">加入購物車</button>
+                            <a  id="add-cart" class="btn add-cart">加入購物車</a>
                             <p  class="inventory pt-1 ">庫存:</p>
                         </div>
                         <hr>
@@ -296,12 +302,12 @@
                             $('.inventory').html('庫存:'+data);
                             if(data!=0){
                                 $('#qty').attr('disabled', false);
-                                $('#add-cart').attr('disabled', false);
+                                $('#add-cart').removeClass('disabled');
                                 $('#add-cart').html("加入購物車");
                             }
                             else{
                                 $('#qty').attr('disabled', 'true');
-                                $('#add-cart').attr('disabled', 'true');
+                                $('#add-cart').addClass('disabled');
                                 $('#add-cart').html('缺貨中');
                             }
                         }
@@ -334,12 +340,12 @@
 
                             if(data!=0){
                                 $('#qty').attr('disabled', false);
-                                $('#add-cart').attr('disabled', false);
+                                $('#add-cart').removeClass('disabled');
                                 $('#add-cart').html("加入購物車");
                             }
                             else{
                                 $('#qty').attr('disabled', 'true');
-                                $('#add-cart').attr('disabled', 'true');
+                                $('#add-cart').addClass('disabled');
                                 $('#add-cart').html('缺貨中');
                             }
                         }
@@ -349,7 +355,7 @@
             });
 
             //加到購物車
-            $('.add-cart').click(function(){
+            $('#add-cart').click(function(){
                 if(size!=null && color!=null){
                     alert('商品已經加入購物車');
                 }
