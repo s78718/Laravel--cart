@@ -170,7 +170,7 @@
                 @else
                     <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
                 @endif
-                <a data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample">購物車</a>
+                <a href="{{asset('/Cart')}}">購物車<span class="badge badge-secondary"></span></a>
                 <a href="{{asset('/QA')}}">Q&A</a>
                 <a href="{{asset('/Member')}}">會員中心</a>
             </div>
@@ -178,16 +178,6 @@
                 <input type="search" name="" placeholder="輸入關鍵字">
                 <button><i class="fas fa-search"></i></button>
             </form>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-12">
-                    <div class="collapse" id="collapse">
-                    <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="nav-categroy container">
@@ -209,28 +199,34 @@
                     </div>
                     <div class="col-xl-6 col-12">
                         <h5 class="text-left p-2"> {{ $detail[0]->product}} </h5>
-                        @if(is_null($detail[0]->saleprice))
-                            <h3 class="text-right"> NT${{ $detail[0]->price}} </h3>
+
+                        @if(is_null($price[0]->saleprice))
+                            <h3 class="text-right"> NT${{ $price[0]->price}} </h3>
                         @else
-                            <p id="detail-ori-price" class="text-right"> 原價{{ $detail[0]->price }} </p>
-                            <h3 id="detail-sale-price" class="text-right text-danger">活動價NT$ {{ $detail[0]->saleprice }} </h3>
+                            <p id="detail-ori-price" class="text-right"> 原價{{ $price[0]->price }} </p>
+                            <h3 id="detail-sale-price" class="text-right text-danger">活動價NT$ {{ $price[0]->saleprice }} </h3>
                         @endif
+
                         <hr>
                         <div class="container m-2">
                             <p>顏色</p>
+
                             @if(isset($color))
                                 @foreach ($color as $c)
                                     <button  class="btn color" value="{{ $c->color}}">{{ $c->color }}</button>
                                 @endforeach
                             @endif
+
                         </div>
                         <div class="container m-2">
                             <p class="pt-1">尺寸</p>
+
                             @if(isset($size))
                                 @foreach ($size as $s)
                                     <button  class="btn size" value="{{ $s->size }}">{{ $s->size }}</button>
                                 @endforeach
                             @endif
+
                         </div>
                         <div class="container m-2">
                             <p class="pt-1">數量</p>
@@ -242,7 +238,7 @@
                                 <option value="5">5</option>
                             </select>
                             <!--傳回id-->
-                            <a  id="add-cart" class="btn add-cart">加入購物車</a>
+                            <a  id="add-cart" class="btn add-cart" href="/Add-to-cart/{{$detail[0]->id}}">加入購物車</a>
                             <p  class="inventory pt-1 ">庫存:</p>
                         </div>
                         <hr>
@@ -264,6 +260,10 @@
             var size;
 
             $(document).ready(function(){
+                //初始化加入購物車連結
+                $('#qty').attr('disabled', 'true');
+                $('#add-cart').addClass('disabled');
+                $('#add-cart').html("請先選擇尺寸及顏色");
                 //放大鏡
                 $("#img").blowup({
                     "scale": 1.8,
@@ -291,11 +291,11 @@
                 {
                     $.ajax({
                         type:'POST',
-                        url:'inventory',
+                        url:'Inventory',
                         data:{'_token': '{{ csrf_token() }}',
                             'color':color,
                             'size':size,
-                            'id': {{ $detail[0]->id }},
+                            'lotid': {{ $detail[0]->lotid }},
                         },
                         async: 'false',
                         success: function(data){
@@ -328,11 +328,11 @@
 
                     $.ajax({
                         type:'POST',
-                        url:'inventory',
+                        url:'Inventory',
                         data:{  'color':color,
                                 'size':size,
                                 '_token': '{{ csrf_token() }}',
-                                'id': {{ $detail[0]->id }},
+                                'lotid': {{ $detail[0]->lotid }},
                         },
                         async: 'false',
                         success: function(data){
@@ -350,7 +350,6 @@
                             }
                         }
                     });
-
                 }
             });
 

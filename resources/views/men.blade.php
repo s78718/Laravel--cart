@@ -165,7 +165,7 @@
                 @else
                     <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
                 @endif
-                <a href="{{asset('/Cart')}}">購物車</a>
+                <a href="{{asset('/Cart')}}">購物車<span class="badge badge-secondary"></span></a>
                 <a href="{{asset('/QA')}}">Q&A</a>
                 <a href="{{asset('/Member')}}">會員中心</a>
             </div>
@@ -242,7 +242,7 @@
                             @foreach ($men as $man)
                             <div id={{ $man->id }}  class="col-md-4 col-12 mb-4">
                                 <div class="card p-1 text-center">
-                                    <a href="/Detail/{{ $man->id }}"  target="_parent">
+                                    <a href="/Detail/{{ $man->lotid }}"  target="_blank">
                                         <img src="https://picsum.photos/200/200?random=8" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <p class="card-text">{{$man->product}}</p>

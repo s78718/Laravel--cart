@@ -15,12 +15,14 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('lotid');//顏色品名編號 不重複
             $table->string('sex');
             $table->string('categroy');
             $table->string('product');
             $table->string('size');//尺寸
             $table->string('color');//顏色
             $table->integer('inventory');//存貨
+            $table->string('status');//是否上架
             $table->timestamps();
         });
     }

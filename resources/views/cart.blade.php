@@ -150,6 +150,18 @@
                 padding: 10px;
                 border: 6px double #eee;
             }
+            .cart{
+                border: 5px double #ccc;
+                padding: 40px;
+                margin-bottom: 10px;
+            }
+            .clear-cart,.buy{
+                background-color: #ccc;
+            }
+            table {
+                margin: auto;
+                width: 100% !important;
+            }
         </style>
     </head>
 
@@ -166,7 +178,7 @@
                 @else
                     <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
                 @endif
-                <a data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample">購物車</a>
+                <a href="{{asset('/Cart')}}">購物車<span class="badge badge-secondary"></span></a>
                 <a href="{{asset('/QA')}}">Q&A</a>
                 <a href="{{asset('/Member')}}">會員中心</a>
             </div>
@@ -175,16 +187,7 @@
                 <button><i class="fas fa-search"></i></button>
             </form>
         </div>
-        <div class=" container">
-            <div class="row">
-                <div class="col-12 col-md-12">
-                    <div class="collapse" id="collapse">
-                    <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
         <div class="nav-categroy container">
             <a href="{{asset('/Women')}}">女裝</a>
@@ -197,47 +200,55 @@
     </header>
 
     <body>
-        <div class="container mx-auto py-20 px-10 bg-gray-100 max-w-4xl">
-            <div class="flex flex-col flex-wrap -mx-2 ">
-                <h1 class="font-medium mb-5">購物車 </h1>
+        <div class="container cart">
+            <div class="">
+                <h3 class="m-3">購物車 </h3>
+                <!--判斷有沒有購物車-->
                 @if(session()->has('cart'))
-                <table class="border-collaspe border-collapse table-auto ">
-                    <thead>
-                        <th class="px-4 py-2">品名</th></th>
-                        <th class="px-4 py-2">單價</th>
-                        <th class="px-4 py-2">數量</th>
-                        <th class="px-4 py-2">增減</th>
-                    </thead>
+                    <table class="border-collaspe ">
+                        <thead>
+                            <th class="px-1 py-2">編號</th>
+                            <th class="px-1 py-2">品名</th>
+                            <th class="px-1 py-2">顏色</th>
+                            <th class="px-1 py-2">尺寸</th>
+                            <th class="px-1 py-2">單價</th>
+                            <th class="px-1 py-2">數量</th>
+                            <th class="px-1 py-2">增減</th>
+                            <th class="px-1 py-2">刪除</th>
+                        </thead>
 
-                    <tbody class="text-center">
-                        @foreach ($books as $book)
-                        <tr>
-                            <td class="border px-4 py-2">{{$book['item']['title']}}</td>
-                            <td class="border px-4 py-2">{{$book['item']['price']}}</td>
-                            <!-- Remove Items / Increase +1 / Decrease By 1 -->
-                            <td class="border px-4 py-2">{{$book['qty']}}</td>
-                            <td class="border px-4 py-2">
-                                <a class="py-1 px-2 bg-teal-400 text-white"
-                                    href="/increase-one-item/{{$book['item']['id']}}">+</a>|
-                                    <a class="py-1 px-2 bg-teal-400 text-white"
-                                    href="/increase-two-item/{{$book['item']['id']}}">++</a>|
-                                <a class="py-1 px-2 bg-red-300 text-white"
-                                    href="/decrease-one-item/{{$book['item']['id']}}">-</a>|
-                                <a class="py-1 px-2 bg-red-700 text-white uppercase"
-                                    href="/remove-item/{{$book['item']['id']}}">Remove</a>
-                                </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        <tbody class="text-center">
+                            @foreach ($Carts as $c)
+                                <tr>
+                                    <td class="border px-1 py-2">{{$c['item']['id']}}</td>
+                                    <td class="border px-1 py-2">{{$c['item']['product']}}</td>
+                                    <td class="border px-1 py-2">{{$c['item']['price']}}</td>
+                                    <!-- Remove Items / Increase +1 / Decrease By 1 -->
+                                    <td class="border px-1 py-2">{{$c['qty']}}</td>
+                                    <td class="border px-1 py-2">
+                                        <a class="py-1 px-1"
+                                            href="/Increase-one-item/{{$c['item']['id']}}"><i class="fas fa-plus-square"></i></a>
+                                        <a class="py-1 px-1"
+                                            href="/Decrease-one-item/{{$c['item']['id']}}"><i class="fas fa-minus-square"></i></a>
+                                    </td>
+                                    <td class="border px-1 py-2">
+                                        <a class="py-1 px-1"
+                                            href="/Remove-item/{{$c['item']['id']}}"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 @else
-                <p>Cart is Empty</p>
+                    <p class="text-center">Cart is Empty</p>
                 @endif
-                <p class="mt-4 text-xl font-medium text-right">Total Qty: {{ $totalQty}}</p>
-                <p class="mt-4 text-xl font-medium text-right">Total: NT${{ $totalPrice}}</p>
-                <div class="flex justify-end m-4">
-                    <a href="/clear-cart" class="mr-4">Clear</a>
-                    <a href="/order/new" class="mr-4">Buy Now</a>
+
+                <div class="continer text-right">
+                    <p class="mt-4">Total Qty: {{ $totalQty}}</p>
+                    <p class="mt-4">Total: NT$ {{ $totalPrice}}</p>
+                    <hr>
+                    <a href="/Clear-cart" class="mr-3 btn clear-cart">清空</a>
+                    <a href="/Order/new" class="btn buy">購買</a>
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 //ajax
-Route::post('Detail/inventory','ajaxController@inventory');
+Route::post('Detail/Inventory','AjaxController@Inventory');
 
 
 //login,register

@@ -6,7 +6,7 @@ use App\Models\Kid_Cloth;
 use App\Models\Man_Cloth;
 use App\Models\Woman_Cloth;
 use App\Models\Cart;
-use App\Models\Categroy; //Model 找id
+use App\Models\price; //Model
 use App\Models\Product; //Model 產品資訊
 use Session;
 
@@ -23,19 +23,30 @@ class CartController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         return view('cart',[
-            'books'=> $cart->items,
-            'totalPrice'=> $cart->totalPrice,
-            'totalQty'=>$cart->totalQty]);
+                            'Carts'=> $cart->items,
+                            'totalPrice'=> $cart->totalPrice,
+                            'totalQty'=>$cart->totalQty]);
     }
 
     //添加到購物車
     public function getAddToCart(Request $request, $id)
     {
+        //查id
         $categroy = Categroy::find($id);
+        //查color size
+        $product=Product::where('product','=',$categroy->product)->select('color','size')->get();
+
+        //載入舊購物車資料
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
+
         $cart = new Cart($oldCart);
-        $cart->add($categroy, $categroy->id);
+
+        //加入必需的元素呼叫cart model
+        $cart->add($categroy, $categroy->id, $product);
+
+        //資料帶在session裡
         Session::put('cart', $cart);
+
         return redirect()->back();
     }
 

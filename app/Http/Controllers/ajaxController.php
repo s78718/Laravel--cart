@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\Categroy; //Model
+use App\Models\Price; //Model
 use App\Models\Product; //Model
 
-class ajaxController extends Controller
+class AjaxController extends Controller
 {
     //存量
-    public function inventory(Request $request)
+    public function Inventory(Request $request)
     {
-
-        $detail=Categroy::Where('id','=',$request->id)->get();
-
+        //dd($request);
         //庫存
         $inventory=Product::select('inventory')
+                            ->where('lotid','=',$request->lotid)
                             ->where('size','=',$request->size)
-                            ->where('product','=',$detail[0]->product)
                             ->where('color','=',$request->color )
                             ->get();
 
+                            //dd($inventory);
+        //先做數量判別
         $inventoryBack=0;
         if(!$inventory->count()==0)
         {
