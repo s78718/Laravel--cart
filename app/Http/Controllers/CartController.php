@@ -18,10 +18,13 @@ class CartController extends Controller
     }
 
     //購物車首頁
-    public function cart()
+    public function cart(Request $request)
     {
+        //刪除指令
+        //$request->session()->flush();
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
+        //dd($cart);
         return view('cart',[
                             'Carts'=> $cart->items,
                             'totalPrice'=> $cart->totalPrice,
@@ -29,20 +32,19 @@ class CartController extends Controller
     }
 
     //添加到購物車
-    public function getAddToCart(Request $request, $id)
+    public function getAddToCart(Request $request, $lotid)
     {
         //查id
-        $categroy = Categroy::find($id);
-        //查color size
-        $product=Product::where('product','=',$categroy->product)->select('color','size')->get();
+        $product = Product::join('prices','prices.lotid','=','products.lotid')->where('products.lotid',$lotid)->get();
 
+        //dd($product);
         //載入舊購物車資料
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
 
         $cart = new Cart($oldCart);
 
         //加入必需的元素呼叫cart model
-        $cart->add($categroy, $categroy->id, $product);
+        $cart->add($product, $lotid);
 
         //資料帶在session裡
         Session::put('cart', $cart);

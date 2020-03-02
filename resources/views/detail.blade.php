@@ -170,7 +170,7 @@
                 @else
                     <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
                 @endif
-                <a href="{{asset('/Cart')}}">購物車<span class="badge badge-secondary"></span></a>
+                <a href="{{asset('/Cart')}}">購物車<span class="badge badge-secondary">{{session()->get('cart')->totalQty}}</span></a>
                 <a href="{{asset('/QA')}}">Q&A</a>
                 <a href="{{asset('/Member')}}">會員中心</a>
             </div>
@@ -237,8 +237,8 @@
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-                            <!--傳回id-->
-                            <a  id="add-cart" class="btn add-cart" href="/Add-to-cart/{{$detail[0]->id}}">加入購物車</a>
+                            <!--傳回lotid-->
+                            <a  id="add-cart" class="btn add-cart" href="/Add-to-cart/{{$detail[0]->lotid}}">加入購物車</a>
                             <p  class="inventory pt-1 ">庫存:</p>
                         </div>
                         <hr>

@@ -178,7 +178,7 @@
                 @else
                     <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
                 @endif
-                <a href="{{asset('/Cart')}}">購物車<span class="badge badge-secondary"></span></a>
+                <a href="{{asset('/Cart')}}">購物車<span class="badge badge-secondary">{{session()->get('cart')->totalQty}}</span></a>
                 <a href="{{asset('/QA')}}">Q&A</a>
                 <a href="{{asset('/Member')}}">會員中心</a>
             </div>
@@ -220,20 +220,23 @@
                         <tbody class="text-center">
                             @foreach ($Carts as $c)
                                 <tr>
-                                    <td class="border px-1 py-2">{{$c['item']['id']}}</td>
-                                    <td class="border px-1 py-2">{{$c['item']['product']}}</td>
-                                    <td class="border px-1 py-2">{{$c['item']['price']}}</td>
+
+                                    <td class="border px-1 py-2">{{ $c['item'][0]['lotid'] }}</td>
+                                    <td class="border px-1 py-2">{{ $c['item'][0]['product'] }}</td>
+                                    <td class="border px-1 py-2">{{ $c['item'][0]['color'] }}</td>
+                                    <td class="border px-1 py-2">{{ $c['item'][0]['size'] }}</td>
+                                    <td class="border px-1 py-2">{{$c['item'][0]['price']}}</td>
                                     <!-- Remove Items / Increase +1 / Decrease By 1 -->
                                     <td class="border px-1 py-2">{{$c['qty']}}</td>
                                     <td class="border px-1 py-2">
                                         <a class="py-1 px-1"
-                                            href="/Increase-one-item/{{$c['item']['id']}}"><i class="fas fa-plus-square"></i></a>
+                                            href="/Increase-one-item/{{ $c['item'][0]['lotid'] }}"><i class="fas fa-plus-square"></i></a>
                                         <a class="py-1 px-1"
-                                            href="/Decrease-one-item/{{$c['item']['id']}}"><i class="fas fa-minus-square"></i></a>
+                                            href="/Decrease-one-item/{{ $c['item'][0]['lotid'] }}"><i class="fas fa-minus-square"></i></a>
                                     </td>
                                     <td class="border px-1 py-2">
                                         <a class="py-1 px-1"
-                                            href="/Remove-item/{{$c['item']['id']}}"><i class="fas fa-trash"></i></a>
+                                            href="/Remove-item/{{ $c['item'][0]['lotid'] }}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -22,18 +22,18 @@ class Cart extends Model
     }
 
     //帶入顏色尺寸id
-    public function add($item, $id, $product)
+    public function add($item, $lotid)
     {
         //因為新增qty先設為0
         // empty state of storedItem (qty(0), price(item.price), item(object))
-        $storedItem = ['qty'=>0, 'price'=>$item->price, 'item'=>$item];
+        $storedItem = ['qty'=>0, 'price'=>$item[0]->price, 'item'=>$item];
 
         // check if cart has items 判別有沒有重複
         if($this->items) {
             // check if cart has existing product
             // if yes let storedItem = Cart Item
-            if (array_key_exists($id, $this->items)) {
-                $storedItem = $this->items[$id];
+            if (array_key_exists($lotid, $this->items)) {
+                $storedItem = $this->items[$lotid];
             }
         }
 
@@ -42,70 +42,70 @@ class Cart extends Model
         $storedItem['qty']++;
 
         // storedItem price = current book [price] * storedItem qty
-        $storedItem['price'] = $item->price * $storedItem['qty'];
+        $storedItem['price'] = $item[0]->price * $storedItem['qty'];
 
         // update current items with storedItem
-        $this->items[$id] = $storedItem;
+        $this->items[$lotid] = $storedItem;
 
         // update total Qty
         $this->totalQty++;
 
         // update total Price
-        $this->totalPrice += $item->price;
+        $this->totalPrice += $item[0]->price;
 
 
     }
 
-    public function increaseByOne($id)
+    public function increaseByOne($lotid)
     {
         // Get item from items based on $id
         // Increase item qty by one
-        $this->items[$id]['qty']++;
+        $this->items[$lotid]['qty']++;
 
         // Update item price
-        $this->items[$id]['price'] += $this->items[$id]['item']['price'];
+        $this->items[$lotid]['price'] += $this->items[$lotid]['item'][0]['price'];
 
         // Update totalqty
         $this->totalQty++;
 
         // update total price
-        $this->totalPrice += $this->items[$id]['item']['price'];
+        $this->totalPrice += $this->items[$lotid]['item'][0]['price'];
     }
 
 
-    public function decreaseByOne($id)
+    public function decreaseByOne($lotid)
     {
         // Get item from items based on $id
         // Increase item qty by one
-        $this->items[$id]['qty']--;
+        $this->items[$lotid]['qty']--;
 
         // Update item price
-        $this->items[$id]['price'] -= $this->items[$id]['item']['price'];
+        $this->items[$lotid]['price'] -= $this->items[$lotid]['item'][0]['price'];
 
         // Update totalqty
         $this->totalQty--;
 
         // update total price
-        $this->totalPrice -= $this->items[$id]['item']['price'];
+        $this->totalPrice -= $this->items[$lotid]['item'][0]['price'];
 
         // unset item if qty < 0
-        if($this->items[$id]['qty'] < 1) {
+        if($this->items[$lotid]['qty'] < 1) {
             unset($this->items[$id]);
         }
     }
 
-    public function removeItem($id)
+    public function removeItem($lotid)
     {
 
         // Get item from items based on $id
         //dd($this->totalPrice);
         // Update totalqty
-        $this->totalQty -= $this->items[$id]['qty'];
+        $this->totalQty -= $this->items[$lotid]['qty'];
 
         // update total price
-        $this->totalPrice = $this->totalPrice-($this->items[$id]['qty']*$this->items[$id]['item']['price']);
+        $this->totalPrice = $this->totalPrice-($this->items[$lotid]['qty']*$this->items[$lotid]['item'][0]['price']);
 
         // unset item消除
-        unset($this->items[$id]);
+        unset($this->items[$lotid]);
     }
 }
