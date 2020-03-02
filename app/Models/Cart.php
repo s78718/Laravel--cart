@@ -90,7 +90,7 @@ class Cart extends Model
 
         // unset item if qty < 0
         if($this->items[$lotid]['qty'] < 1) {
-            unset($this->items[$id]);
+            unset($this->items[$lotid]);
         }
     }
 
