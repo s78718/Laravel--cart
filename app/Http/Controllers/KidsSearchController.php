@@ -12,7 +12,8 @@ class KidsSearchController extends Controller
     //兒童
     public function Kids()
     {
-        $kids=Product::where('sex','kids')
+        $kids=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','kids')
                         ->Where('status','=' ,'on')
                         ->get();
         return view('kids', compact(['kids']));
@@ -21,7 +22,8 @@ class KidsSearchController extends Controller
     //兒童Cloth
     public function KidsCloth()
     {
-        $kids=Product::where('sex','kids')
+        $kids=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','kids')
                         ->Where('categroy', 'cloth')
                         ->Where('status','=' ,'on')
                         ->get();
@@ -32,7 +34,8 @@ class KidsSearchController extends Controller
     //兒童pant
     public function KidsPant()
     {
-        $kids=Product::where('sex','kids')
+        $kids=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','kids')
                         ->Where('categroy', 'pant')
                         ->Where('status','=' ,'on')
                         ->get();
@@ -43,7 +46,8 @@ class KidsSearchController extends Controller
     //兒童coat
     public function KidsCoat()
     {
-        $kids=Product::where('sex','kids')
+        $kids=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','kids')
                         ->Where('categroy', 'coat')
                         ->Where('status','=' ,'on')
                         ->get();

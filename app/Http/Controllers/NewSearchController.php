@@ -14,7 +14,8 @@ class NewSearchController extends Controller
     //新上架
     public function New()
     {
-        $news=Product::Where('products.created_at','<=',Carbon::parse('+2 weeks'))
+        $news=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->Where('products.created_at','<=',Carbon::parse('+2 weeks'))
                         ->Where('status','=' ,'on')
                         ->get();
         return view('new', compact(['news']));

@@ -13,7 +13,8 @@ class MenSearchController extends Controller
     //男生
     public function Men()
     {
-        $men=Product::where('sex','men')
+        $men=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','men')
                         ->Where('status','=' ,'on')
                         ->get();
         return view('men', compact(['men']));
@@ -22,7 +23,8 @@ class MenSearchController extends Controller
     //男生Cloth
     public function MenCloth()
     {
-        $men=Product::where('sex','men')
+        $men=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','men')
                         ->Where('categroy', 'cloth')
                         ->Where('status','=' ,'on')
                         ->get();
@@ -33,7 +35,8 @@ class MenSearchController extends Controller
     //男生pant
     public function MenPant()
     {
-        $men=Product::where('sex','men')
+        $men=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','men')
                         ->Where('categroy', 'pant')
                         ->Where('status','=' ,'on')
                         ->get();
@@ -45,7 +48,8 @@ class MenSearchController extends Controller
     //男生coat
     public function MenCoat()
     {
-        $men=Product::where('sex','men')
+        $men=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','men')
                         ->Where('categroy', 'coat')
                         ->Where('status','=' ,'on')
                         ->get();

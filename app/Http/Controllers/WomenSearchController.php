@@ -14,7 +14,8 @@ class WomenSearchController extends Controller
     public function Women()
     {
 
-        $women=Product::where('sex','women')
+        $women=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','women')
                         ->Where('status','=' ,'on')
                         ->get();
         //dd($women);
@@ -24,7 +25,8 @@ class WomenSearchController extends Controller
     //女生Cloth
     public function WomenCloth()
     {
-        $women=Product::where('sex','women')
+        $women=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','women')
                         ->Where('categroy', 'cloth')
                         ->Where('status','=' ,'on')
                         ->get();
@@ -35,7 +37,8 @@ class WomenSearchController extends Controller
     //女生pant
     public function WomenPant()
     {
-        $women=Product::where('sex','women')
+        $women=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','women')
                         ->Where('categroy', 'pant')
                         ->Where('status','=' ,'on')
                         ->get();
@@ -46,7 +49,8 @@ class WomenSearchController extends Controller
     //女生coat
     public function WomenCoat()
     {
-        $women=Product::where('sex','women')
+        $women=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->where('sex','women')
                         ->Where('categroy', 'coat')
                         ->Where('status','=' ,'on')
                         ->get();

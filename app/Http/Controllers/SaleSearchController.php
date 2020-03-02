@@ -12,7 +12,8 @@ class SaleSearchController extends Controller
     //特價
     public function Sale()
     {
-        $sales=Product::Where('saleprice','!=',null)
+        $sales=Product::join('prices','prices.lotid','=','products.lotid')
+                        ->Where('saleprice','!=',null)
                         ->Where('status','=' ,'on')
                         ->get();
         return view('sale', compact(['sales']));
