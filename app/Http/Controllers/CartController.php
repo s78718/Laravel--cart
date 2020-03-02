@@ -12,10 +12,7 @@ use Session;
 
 class CartController extends Controller
 {
-    public function index()
-    {
-        return view('mik');
-    }
+
 
     //購物車首頁
     public function cart(Request $request)
@@ -54,28 +51,28 @@ class CartController extends Controller
 
 
     //購物車+1
-    public function increaseByOne($id)
+    public function increaseByOne($lotid)
     {
         $cart = new Cart(Session::get('cart'));
-        $cart->increaseByOne($id);
+        $cart->increaseByOne($lotid);
         session()->put('cart', $cart);
         return redirect()->action('CartController@cart');
     }
 
     //購物車-1
-    public function decreaseByOne($id)
+    public function decreaseByOne($lotid)
     {
         $cart = new Cart(Session::get('cart'));
-        $cart->decreaseByOne($id);
+        $cart->decreaseByOne($lotid);
         session()->put('cart', $cart);
         return redirect()->action('CartController@cart');
     }
 
     //購物車remove
-    public function removeItem($id)
+    public function removeItem($lotid)
     {
         $cart = new Cart(Session::get('cart'));
-        $cart->removeItem($id);
+        $cart->removeItem($lotid);
         session()->put('cart', $cart);
         return redirect()->action('CartController@cart');
     }
@@ -86,6 +83,6 @@ class CartController extends Controller
         if(session()->has('cart')){
             session()->forget('cart');
         }
-        return redirect()->action('CartController@index');
+        return view('mik');
     }
 }
