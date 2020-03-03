@@ -86,21 +86,19 @@ class OrdersController extends Controller
             $obj->EncryptType = '1';                                                       //CheckMacValue加密類型，請固定填入1，使用SHA256加密
             //基本參數(請依系統規劃自行調整)
             $MerchantTradeNo = $uuid_temp ;
-            $obj->Send['ReturnURL']         = env('ECReturnURL') ;              //付款完成通知回傳的網址
-            $obj->Send['PeriodReturnURL']   = env('ECPeriodReturnURL') ;        //付款完成通知回傳的網址
-            $obj->Send['ClientBackURL']     = env('ECClientBackURL') ;          //付款完成通知回傳的網址
-            $obj->Send['MerchantTradeNo']   = $MerchantTradeNo;                 //訂單編號
-            $obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');              //交易時間
-            $obj->Send['TotalAmount']       = $cart->totalPrice;                //交易金額
-            $obj->Send['TradeDesc']         = "mik購物" ;                       //交易描述
+            $obj->Send['ReturnURL']             = env('ECReturnURL') ;              //付款完成通知回傳的網址
+            $obj->Send['PeriodReturnURL']       = env('ECPeriodReturnURL') ;        //付款完成通知回傳的網址
+            $obj->Send['ClientBackURL']         = env('ECClientBackURL') ;          //付款完成通知回傳的網址
+            $obj->Send['MerchantTradeNo']       = $MerchantTradeNo;                 //訂單編號
+            $obj->Send['MerchantTradeDate']     = date('Y/m/d H:i:s');              //交易時間
+            $obj->Send['TotalAmount']           = $cart->totalPrice;                //交易金額
+            $obj->Send['TradeDesc']             = "mik購物" ;                       //交易描述
 
             if( $cart->pay=='信用卡付款')
-                $obj->Send['ChoosePayment']     = ECPayMethod::Credit ;              //付款方式:Credit
-            else if( $cart->pay=='超商取貨付款')
-                 $obj->Send['ChoosePayment']     = ECPayMethod::CVS ;             //付款方式:超商取貨付款
-            $obj->Send['IgnorePayment']     = ECPayMethod::GooglePay ;          //不使用付款方式:GooglePay
-
-
+                $obj->Send['ChoosePayment']     = ECPayMethod::Credit ;             //付款方式:Credit
+            else if( $cart->pay=='超商付款')
+                 $obj->Send['ChoosePayment']    = ECPayMethod::CVS ;                //付款方式:超商付款
+            $obj->Send['IgnorePayment']         = ECPayMethod::GooglePay ;          //不使用付款方式:GooglePay
 
             //訂單的商品資料
             array_push($obj->Send['Items'], array('Name' =>  $product, 'Price' => $cart->totalPrice,
@@ -116,16 +114,17 @@ class OrdersController extends Controller
         }
     }
 
-    public function callback()
+    public function callback(Request $request)
     {
         //寫入資料庫
-        $order = Order::where('uuid', '=', request('MerchantTradeNo'))->firstOrFail();
-        $order->paid = !$order->paid;
+        $order = Order::where('uuid', '=', $request('MerchantTradeNo'))->firstOrFail();
+        $order->paid = !$order->paid;//修改付款狀態
         $order->save();
     }
 
     //成功
     public function redirectFromECpay () {
+        //sesion()存放一次資訊
         session()->flash('EC', 'Order success!');
         return redirect('/');
     }
