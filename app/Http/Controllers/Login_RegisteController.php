@@ -26,7 +26,9 @@ class Login_RegisteController extends Controller
     //登出
     public function Logout()
     {
-        session()->forget('name');
+        session()->forget('buyerName');
+        session()->forget('buyerEmail');
+        session()->forget('buyerPhone');
         return view('mik');
     }
 
