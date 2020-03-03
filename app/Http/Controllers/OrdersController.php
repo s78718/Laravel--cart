@@ -5,9 +5,12 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Order;
 use \ECPay_PaymentMethod as ECPayMethod;
+use Illuminate\Support\Str;
 
 class OrdersController extends Controller
 {
+
+    //get
     public function index()
     {
         $orders = Order::all();
@@ -33,26 +36,42 @@ class OrdersController extends Controller
             'totalQty'=>$cart->totalQty]);
     }
 
-    //訂單形成
+    //訂單形成post
     public function store()
     {
         request()->validate([
-            '購買人' => 'required',
+            'name' => 'required',
             'email' => 'required',
-            '住址'
+            'phone' => 'required',
+            'pay' => 'required',
         ]);
 
         $cart = session()->get('cart');
 
+        //隨機編碼一組數字待成功寫回資料庫
         $uuid_temp = str_replace("-", "",substr(Str::uuid()->toString(), 0,18));
+
+          //品名
+          $product=null;
+          foreach ($cart->items as $c)
+          {
+              $product.=$c['item'][0]['product'].'-'
+              .$c['item'][0]['size'].'-'
+              .$c['item'][0]['color'].'-單價'
+              .$c['item'][0]['price'].'*'
+              .$c['qty'].'/';
+
+          }
 
         $order = Order::create([
             'name' => request('name'),
             'email' => request('email'),
-            'cart' => serialize($cart),
+            'phone' => request('phone'),
+            'pay' => request('pay'),
+            //'cart' => serialize($cart),
+            'cart' => $product,
             'uuid' => $uuid_temp
         ]);
-        // session()->flash('success', 'Order success!');
 
         try {
             $obj = new \ECPay_AllInOne();
@@ -65,38 +84,48 @@ class OrdersController extends Controller
             $obj->EncryptType = '1';                                                       //CheckMacValue加密類型，請固定填入1，使用SHA256加密
             //基本參數(請依系統規劃自行調整)
             $MerchantTradeNo = $uuid_temp ;
-            $obj->Send['ReturnURL']         = " https://69308166.ngrok.io/callback" ;    //付款完成通知回傳的網址
-            $obj->Send['PeriodReturnURL']   = " https://69308166.ngrok.io/callback" ;    //付款完成通知回傳的網址
-            $obj->Send['ClientBackURL']     = " https://69308166.ngrok.io/success" ;    //付款完成通知回傳的網址
-            $obj->Send['MerchantTradeNo']   = $MerchantTradeNo;                          //訂單編號
-            $obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');                       //交易時間
-            $obj->Send['TotalAmount']       = $cart->totalPrice;                         //交易金額
-            $obj->Send['TradeDesc']         = "good to drink" ;                          //交易描述
-            $obj->Send['ChoosePayment']     = ECPayMethod::Credit ;              //付款方式:Credit
-            $obj->Send['IgnorePayment']     = ECPayMethod::GooglePay ;           //不使用付款方式:GooglePay
+            $obj->Send['ReturnURL']         = env('ECReturnURL') ;              //付款完成通知回傳的網址
+            $obj->Send['PeriodReturnURL']   = env('ECPeriodReturnURL') ;        //付款完成通知回傳的網址
+            $obj->Send['ClientBackURL']     = env('ECClientBackURL') ;          //付款完成通知回傳的網址
+            $obj->Send['MerchantTradeNo']   = $MerchantTradeNo;                 //訂單編號
+            $obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');              //交易時間
+            $obj->Send['TotalAmount']       = $cart->totalPrice;                //交易金額
+            $obj->Send['TradeDesc']         = "mik購物" ;                       //交易描述
+
+            if( $cart->pay=='信用卡付款')
+                $obj->Send['ChoosePayment']     = ECPayMethod::Credit ;              //付款方式:Credit
+            else if( $cart->pay=='超商取貨付款')
+                 $obj->Send['ChoosePayment']     = ECPayMethod::CVS ;             //付款方式:超商取貨付款
+            $obj->Send['IgnorePayment']     = ECPayMethod::GooglePay ;          //不使用付款方式:GooglePay
+
+
+
             //訂單的商品資料
-            array_push($obj->Send['Items'], array('Name' => request('name'), 'Price' => $cart->totalPrice,
-            'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
+            array_push($obj->Send['Items'], array('Name' =>  $product, 'Price' => $cart->totalPrice,
+             'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
+
+            //清除cart資料
             session()->forget('cart');
+
             $obj->CheckOut();
+
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
 
-
     public function callback()
     {
-        //dd(request());
+        //寫入資料庫
+        dd(request());
         $order = Order::where('uuid', '=', request('MerchantTradeNo'))->firstOrFail();
         $order->paid = !$order->paid;
         $order->save();
     }
 
-
     //成功
     public function redirectFromECpay () {
-        session()->flash('success', 'Order success!');
+        session()->flash('EC', 'Order success!');
         return redirect('/');
     }
 }

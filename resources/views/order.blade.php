@@ -160,6 +160,9 @@
                 margin: auto;
                 width: 100% !important;
             }
+            #order-cart{
+                background-color: #ccc;
+            }
         </style>
     </head>
     <header>
@@ -202,7 +205,7 @@
 
     <body>
         <div class="container buyer">
-            <h3 class="text-left m-4">訂單資訊</h3>
+            <h3 class="text-left">訂單資訊</h3>
 
             <table class="border-collaspe">
                 <thead>
@@ -230,32 +233,41 @@
                 </body>
             </table>
 
-            <h3 class="text-left m-4">買家資訊</h3>
-
-            <form method="POST" action="/orders" class="">
-                @csrf
-                <div class="m-4">
-                    <label class="block pl-2" for="name">買家:</label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3"
-                        name="name" id="name" type="text" placeholder="name">
-                </div>
-                <div class="m-4">
-                    <label class="block pl-2" for="email">信箱:</label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3"
-                        name="email" id="email" type="email" placeholder="email">
-                </div>
-                <div class="m-4">
-                    <label class="block pl-2" for="email">電話:</label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3"
-                        name="phone" id="phone" type="email" placeholder="phone">
-                </div>
-                <div class="flex items-center justify-between">
-                    <button class="btn bg-blue-500" type="submit">送出訂單</button>
-                </div>
-            </form>
+            <div class="container buyer mt-4">
+                <h3 class="text-left m-4">買家資訊</h3>
+                <form method="POST" action="/Orders">
+                    @csrf
+                    <div class="m-4">
+                        <label class="block pl-2" for="name">買家:</label>
+                        <input
+                            class="shadow border rounded w-full py-2 px-3"
+                            name="name" id="name" type="text" placeholder="name">
+                    </div>
+                    <div class="m-4">
+                        <label class="block pl-2" for="email">信箱:</label>
+                        <input
+                            class="shadow border rounded w-full py-2 px-3"
+                            name="email" id="email" type="email" placeholder="email">
+                    </div>
+                    <div class="m-4">
+                        <label class="block pl-2" for="email">電話:</label>
+                        <input
+                            class="shadow border rounded w-full py-2 px-3"
+                            name="phone" id="phone" type="text" placeholder="phone">
+                    </div>
+                    <div class="m-4">
+                        <label class="block pl-2" for="pay">付款方式:</label>
+                        <select id="pay" name="pay" class="shadow border rounded">
+                            <option></option>
+                            <option>信用卡付款</option>
+                            <option>超商取貨付款</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button id="order-cart" class="btn" type="submit">送出訂單</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </body>
 
