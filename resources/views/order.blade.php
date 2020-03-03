@@ -176,7 +176,7 @@
                 @if(!session()->has('name'))
                     <a href="{{asset('/Login_Register')}}">登入/註冊</a>
                 @else
-                    <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
+                    <a href="{{asset('/Logout')}}">{{ session()->get('buyerName') }}-登出</a>
                 @endif
                 @if(!session()->has('cart'))
                     <a href="{{asset('/Cart')}}">購物車</span></a>
@@ -241,19 +241,19 @@
                         <label class="block pl-2" for="name">買家:</label>
                         <input
                             class="shadow border rounded w-full py-2 px-3"
-                            name="name" id="name" type="text" placeholder="name">
+                    name="name" id="name" type="text" value="{{session()->get('buyerName')}}" placeholder="name">
                     </div>
                     <div class="m-4">
                         <label class="block pl-2" for="email">信箱:</label>
                         <input
                             class="shadow border rounded w-full py-2 px-3"
-                            name="email" id="email" type="email" placeholder="email">
+                            name="email" id="email" type="email" value="{{session()->get('buyerEmail')}}" placeholder="email">
                     </div>
                     <div class="m-4">
                         <label class="block pl-2" for="email">電話:</label>
                         <input
                             class="shadow border rounded w-full py-2 px-3"
-                            name="phone" id="phone" type="text" placeholder="phone">
+                            name="phone" id="phone" type="text" value="{{session()->get('buyerPhone')}}" placeholder="phone">
                     </div>
                     <div class="m-4">
                         <label class="block pl-2" for="pay">付款方式:</label>

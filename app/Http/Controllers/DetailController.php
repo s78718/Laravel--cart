@@ -18,7 +18,6 @@ class DetailController extends Controller
 
         //價錢
         $price=Price::where('lotid','=',$lotid)->get();
-
         //顏色
         $color=Product::select('color')->where('lotid',$lotid)->distinct()->get();
         //尺吋

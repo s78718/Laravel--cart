@@ -29,11 +29,13 @@ class OrdersController extends Controller
         }
 
         $cart = new Cart($oldCart);
-        //dd($cart);
+
+
         return view('order',[
             'Carts'=> $cart->items,
             'totalPrice'=> $cart->totalPrice,
-            'totalQty'=>$cart->totalQty]);
+            'totalQty'=>$cart->totalQty
+            ]);
     }
 
     //訂單形成post

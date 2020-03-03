@@ -16,7 +16,7 @@ class LoginMiddleware
     public function handle($request, Closure $next)
     {
         //session()取值,沒有代表未登入
-        if(!session()->has('name')){
+        if(!session()->has('buyerName')){
             return redirect('Login_Register');
         }
 

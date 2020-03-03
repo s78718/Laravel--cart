@@ -63,10 +63,10 @@ class Login_RegisteController extends Controller
             return redirect()->back()->withErrors(['error'=>'密碼錯誤!']);
         }
 
-        //放入購買人相關資訊
-        session()->put('name',$user->name);
-        session()->put('name',$user->email);
-        session()->put('name',$user->phone);
+        //放入購買人相關資訊 orders會取出
+        session()->put('buyerName',$user->name);
+        session()->put('buyerEmail',$user->email);
+        session()->put('buyerPhone',$user->phone);
 
         return redirect('/');
 

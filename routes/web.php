@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('mik');
 });
 
-//ajax
+//ajax 查詢存貨
 Route::post('Detail/Inventory','AjaxController@Inventory');
 
 //訂單

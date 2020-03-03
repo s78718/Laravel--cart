@@ -163,7 +163,7 @@
                 @if(!session()->has('name'))
                     <a href="{{asset('/Login_Register')}}">登入/註冊</a>
                 @else
-                    <a href="{{asset('/Logout')}}">{{ session()->get('name') }}-登出</a>
+                    <a href="{{asset('/Logout')}}">{{ session()->get('buyerName') }}-登出</a>
                 @endif
                 @if(!session()->has('cart'))
                     <a href="{{asset('/Cart')}}">購物車</span></a>
