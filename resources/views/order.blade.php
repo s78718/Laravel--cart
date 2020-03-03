@@ -255,7 +255,7 @@
                 </label>
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3"
-                    name="email" id="email" type="email" placeholder="phone"">
+                    name="phone" id="phone" type="email" placeholder="phone"">
             </div>
             <div class="flex items-center justify-between">
                 <button
