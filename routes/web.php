@@ -12,22 +12,12 @@
 */
 
 //cart
-
 Route::get('/Cart', 'CartController@cart');
 Route::get('/Remove-item/{id}', 'CartController@removeItem');
 Route::get('/Add-to-cart/{id}', 'CartController@getAddToCart');
 Route::get('/Increase-one-item/{id}', 'CartController@increaseByOne');
 Route::get('/Decrease-one-item/{id}', 'CartController@decreaseByOne');
 Route::get('/Clear-cart', 'CartController@clearCart');
-
-
-//訂單
-Route::get('/Order/new', 'OrdersController@new');
-Route::post('/Orders', 'OrdersController@store');
-Route::get('/Orders', 'OrdersController@index');
-Route::get('/Confirm-orders/{order}', 'OrdersController@confirm');
-Route::post('/Callback', 'OrdersController@callback');
-Route::get('/Success', 'OrdersController@redirectFromECpay');
 
 
 Route::get('/', function () {
@@ -37,9 +27,16 @@ Route::get('/', function () {
 //ajax
 Route::post('Detail/Inventory','AjaxController@Inventory');
 
+//訂單
+Route::get('/Order/new', 'OrdersController@new')->middleware(['login_auth']);
+Route::post('/Orders', 'OrdersController@store')->middleware(['login_auth']);
+Route::get('/Orders', 'OrdersController@index')->middleware(['login_auth']);
+Route::get('/Confirm-orders/{order}', 'OrdersController@confirm')->middleware(['login_auth']);
+Route::post('/Callback', 'OrdersController@callback')->middleware(['login_auth']);
+Route::get('/Success', 'OrdersController@redirectFromECpay')->middleware(['login_auth']);
+
 
 //login,register
-
 Route::get('/Register', 'Login_RegisteController@Register');
 Route::get('/Login_Register', 'Login_RegisteController@Login_Register');
 Route::post('/Register/Validate', 'Login_RegisteController@Register_Validate');
@@ -47,10 +44,7 @@ Route::post('/Login_Register/Validate', 'Login_RegisteController@Login_Validate'
 Route::get('/Logout', 'Login_RegisteController@Logout');
 
 
-
-
 //detail
-
 Route::group(['prefix' => 'Detail'], function () {
 
     Route::get('/{id}', 'DetailController@Detail');

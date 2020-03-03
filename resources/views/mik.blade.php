@@ -205,6 +205,24 @@
         </div>
     </header>
 
+    <body>
+        <script>
+            $(document).ready(function(){
+                if(session()->has('EC')
+                {
+                    if(session()->get('EC')=='Order success!')
+                    {
+                        alert('恭喜您付款成功!')
+                    }
+                    else
+                    {
+                        alert('付款失敗!')
+                    }
+                })
+            })
+        </script>
+    </body>
+
     <footer>
         <div id="footer" class="container">
             <p class="">&copy; mik</p>

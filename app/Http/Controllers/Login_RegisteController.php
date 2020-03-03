@@ -63,7 +63,11 @@ class Login_RegisteController extends Controller
             return redirect()->back()->withErrors(['error'=>'密碼錯誤!']);
         }
 
+        //放入購買人相關資訊
         session()->put('name',$user->name);
+        session()->put('name',$user->email);
+        session()->put('name',$user->phone);
+
         return redirect('/');
 
     }
@@ -104,7 +108,7 @@ class Login_RegisteController extends Controller
 
         if($user!=null)
         {
-            return redirect()->back()->withErrosr(['error'=>'已經有註冊資料,請使用登入!']);
+            return redirect()->back()->withErrors(['error'=>'已經有註冊資料,請使用登入!']);
         }
 
         //密碼加密

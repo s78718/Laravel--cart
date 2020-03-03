@@ -117,7 +117,6 @@ class OrdersController extends Controller
     public function callback()
     {
         //寫入資料庫
-        dd(request());
         $order = Order::where('uuid', '=', request('MerchantTradeNo'))->firstOrFail();
         $order->paid = !$order->paid;
         $order->save();
