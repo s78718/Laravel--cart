@@ -18,6 +18,13 @@ class OrdersController extends Controller
     public function new(Request $request)
     {
         $oldCart = session()->has('cart') ? session()->get('cart') : null;
+
+        //當cart為空的時候不動作
+        if(!$oldCart)
+        {
+            return redirect()->back();
+        }
+
         $cart = new Cart($oldCart);
         //dd($cart);
         return view('order',[

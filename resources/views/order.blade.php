@@ -148,7 +148,7 @@
                 padding: 10px;
                 border: 6px double #eee;
             }
-            .cart{
+            .cart ,.buyer{
                 border: 5px double #ccc;
                 padding: 40px;
                 margin-bottom: 10px;
@@ -199,71 +199,69 @@
         </div>
 
     </header>
-    <div class="container mx-auto py-20 px-10 bg-gray-100 max-w-4xl">
-        <h1 class="text-3xl font-medium border-b-2 border-blue-700">Order Page</h1>
-        <h3 class="text-2xl font-medium my-4">訂單</h3>
 
-        <table class="border-collaspe border-collapse table-auto w-full">
-            <thead>
-                <th class="px-1 py-2">編號</th>
-                <th class="px-1 py-2">品名</th>
-                <th class="px-1 py-2">顏色</th>
-                <th class="px-1 py-2">尺寸</th>
-                <th class="px-1 py-2">單價</th>
-                <th class="px-1 py-2">數量</th>
-                <th class="px-1 py-2">總計</th>
-            </thead>
+    <body>
+        <div class="container buyer">
+            <h3 class="text-left m-4">訂單資訊</h3>
 
-            <body class="text-center">
-                @foreach ($Carts as $C)
-                <tr>
-                    <td class="border px-1 py-2">{{ $C['item'][0]['lotid'] }}</td>
-                    <td class="border px-1 py-2">{{ $C['item'][0]['product'] }}</td>
-                    <td class="border px-1 py-2">{{ $C['item'][0]['color'] }}</td>
-                    <td class="border px-1 py-2">{{ $C['item'][0]['size'] }}</td>
-                    <td class="border px-1 py-2">{{$C['item'][0]['price']}}</td>
-                    <td class="border px-1 py-2">{{$C['qty']}}</td>
-                    <td class="border px-1 py-2">NT${{$C['qty'] * $C['item'][0]['price']}}</td>
-                </tr>
-                @endforeach
-            </body>
-        </table>
+            <table class="border-collaspe">
+                <thead>
+                    <th class="px-1 py-2">編號</th>
+                    <th class="px-1 py-2">品名</th>
+                    <th class="px-1 py-2">顏色</th>
+                    <th class="px-1 py-2">尺寸</th>
+                    <th class="px-1 py-2">單價</th>
+                    <th class="px-1 py-2">數量</th>
+                    <th class="px-1 py-2">總計</th>
+                </thead>
 
-        <h3 class="text-2xl font-medium my-4">購買人資訊</h3>
+                <body class="text-center">
+                    @foreach ($Carts as $C)
+                    <tr>
+                        <td class="border px-1 py-2">{{ $C['item'][0]['lotid'] }}</td>
+                        <td class="border px-1 py-2">{{ $C['item'][0]['product'] }}</td>
+                        <td class="border px-1 py-2">{{ $C['item'][0]['color'] }}</td>
+                        <td class="border px-1 py-2">{{ $C['item'][0]['size'] }}</td>
+                        <td class="border px-1 py-2">{{$C['item'][0]['price']}}</td>
+                        <td class="border px-1 py-2">{{$C['qty']}}</td>
+                        <td class="border px-1 py-2">NT${{$C['qty'] * $C['item'][0]['price']}}</td>
+                    </tr>
+                    @endforeach
+                </body>
+            </table>
 
-        <form method="POST" action="/orders" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            @csrf
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-                    收件人
-                </label>
-                <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    name="name" id="name" type="text" placeholder="name">
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                    Email
-                </label>
-                <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    name="email" id="email" type="email" placeholder="email">
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                    電話
-                </label>
-                <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3"
-                    name="phone" id="phone" type="email" placeholder="phone"">
-            </div>
-            <div class="flex items-center justify-between">
-                <button
-                    class="btn bg-blue-500"
-                    type="submit">
-                    送出訂單
-                </button>
-            </div>
-        </form>
-    </div>
+            <h3 class="text-left m-4">買家資訊</h3>
+
+            <form method="POST" action="/orders" class="">
+                @csrf
+                <div class="m-4">
+                    <label class="block pl-2" for="name">買家:</label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3"
+                        name="name" id="name" type="text" placeholder="name">
+                </div>
+                <div class="m-4">
+                    <label class="block pl-2" for="email">信箱:</label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3"
+                        name="email" id="email" type="email" placeholder="email">
+                </div>
+                <div class="m-4">
+                    <label class="block pl-2" for="email">電話:</label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3"
+                        name="phone" id="phone" type="email" placeholder="phone">
+                </div>
+                <div class="flex items-center justify-between">
+                    <button class="btn bg-blue-500" type="submit">送出訂單</button>
+                </div>
+            </form>
+        </div>
+    </body>
+
+    <footer>
+        <div id="footer" class="container">
+            <p class="">&copy; mik</p>
+        </div>
+    </footer>
  </html>

@@ -32,7 +32,9 @@ class CartController extends Controller
     public function getAddToCart(Request $request, $lotid)
     {
         //查id
-        $product = Product::join('prices','prices.lotid','=','products.lotid')->where('products.lotid',$lotid)->get();
+        $product = Product::join('prices','prices.lotid','=','products.lotid')
+                            ->where('products.lotid',$lotid)
+                            ->get();
 
         //dd($product);
         //載入舊購物車資料
