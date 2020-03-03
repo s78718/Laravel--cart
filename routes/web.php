@@ -21,6 +21,15 @@ Route::get('/Decrease-one-item/{id}', 'CartController@decreaseByOne');
 Route::get('/Clear-cart', 'CartController@clearCart');
 
 
+//訂單
+Route::get('/Order/new', 'OrdersController@new');
+Route::post('/Orders', 'OrdersController@store');
+Route::get('/Orders', 'OrdersController@index');
+Route::get('/Confirm-orders/{order}', 'OrdersController@confirm');
+Route::post('/Callback', 'OrdersController@callback');
+Route::get('/Success', 'OrdersController@redirectFromECpay');
+
+
 Route::get('/', function () {
     return view('mik');
 });
@@ -36,6 +45,7 @@ Route::get('/Login_Register', 'Login_RegisteController@Login_Register');
 Route::post('/Register/Validate', 'Login_RegisteController@Register_Validate');
 Route::post('/Login_Register/Validate', 'Login_RegisteController@Login_Validate');
 Route::get('/Logout', 'Login_RegisteController@Logout');
+
 
 
 
@@ -92,3 +102,28 @@ Route::group(['prefix' => 'Sale'], function () {
     Route::get('/', 'SaleSearchController@Sale');
 });
 
+
+//user/auth/facebook-sign-in
+Route::group(['prefix' => 'user'], function(){
+    //使用者驗證
+    Route::group(['prefix' => 'auth'], function(){
+        //Facebook登入
+        Route::get('/facebook-sign-in', 'FbAuthController@facebookSignInProcess');
+        //Facebook登入重新導向授權資料處理
+        Route::get('/facebook-sign-in-callback', 'FbAuthController@facebookSignInCallbackProcess');
+        //google登入
+        Route::get('/google-sign-in', 'GoogleAuthController@googleSignInProcess');
+        //google登入重新導向授權資料處理
+        Route::get('/google-sign-in-callback', 'GoogleAuthController@googleSignInCallbackProcess');
+        //line登入
+        Route::get('/line-sign-in', 'LineAuthController@lineSignInProcess');
+        //line登入重新導向授權資料處理
+        Route::get('/line-sign-in-callback', 'LineAuthController@lineSignInCallbackProcess');
+         //yahoo登入
+         Route::get('/yahoo-sign-in', 'YahooAuthController@yahooSignInProcess');
+         //yahoo登入重新導向授權資料處理
+         Route::get('/yahoo-sign-in-callback', 'YahooAuthController@yahooSignInCallbackProcess');
+        //登出
+        Route::get('/logout', 'FbAuthController@logout');
+    });
+});
