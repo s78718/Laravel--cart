@@ -19,6 +19,9 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        //避開綠界csrf
+        '/Callback',
+        '/',
+
     ];
 }

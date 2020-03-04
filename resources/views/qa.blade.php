@@ -163,8 +163,9 @@
                 width: 100% !important;
             }
             .qa{
-                background-color: #ccc;
-
+               border: 5px double #ccc;
+               padding: 40px;
+               margin-bottom: 20px;
             }
         </style>
     </head>
@@ -208,18 +209,18 @@
     </header>
 
     <body>
-        <div class="container text-center p-2">
-            <a class="btn qa" data-toggle="collapse" href="#collapseBuy" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <div class="container text-center qa">
+            <a class="btn p-4 bg-info mb-3" data-toggle="collapse" href="#collapseBuy" role="button" aria-expanded="false" aria-controls="collapseExample">
                 購買流程
             </a>
-            <a class="btn qa" data-toggle="collapse" href="#collapsePay" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn p-4 bg-info mb-3" data-toggle="collapse" href="#collapsePay" role="button" aria-expanded="false" aria-controls="collapseExample">
                 付款種類
             </a>
-                <a class="btn qa" data-toggle="collapse" href="#collapseMember" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn p-4 bg-info mb-3" data-toggle="collapse" href="#collapseMember" role="button" aria-expanded="false" aria-controls="collapseExample">
                 會員登入
             </a>
-            <a class="btn qa" data-toggle="collapse" href="#collapseOther" role="button" aria-expanded="false" aria-controls="collapseExample">
-                其他
+            <a class="btn p-4 bg-info mb-3" data-toggle="collapse" href="#collapseOther" role="button" aria-expanded="false" aria-controls="collapseExample">
+                其他問題
             </a>
             <div class="collapse" id="collapseBuy">
                 <div class="card card-body text-left">
@@ -232,7 +233,7 @@
                     <p> Q1. 目前提供哪些付款方式？</p>
                     <p> 1. 『超商條碼』</p>
                     <p> 2. 『信用卡』</p>
-                    <p>3. 『WebATM』</p>
+                    <p> 3. 『WebATM』</p>
                 </div>
             </div>
             <div class="collapse" id="collapseMember">

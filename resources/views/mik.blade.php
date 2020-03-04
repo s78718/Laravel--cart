@@ -206,7 +206,6 @@
     </header>
 
     <body>
-        @if ({{ session()->get('EC') }})
 
     </body>
 

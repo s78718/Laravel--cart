@@ -20,3 +20,4 @@ ecpay金流(需修改回調網址 env )(可以使用ngrok)
 6.執行composer install  
 7.執行php artisan serve    
 8.需寄信可以到env設定寄信帳密(gmail需到官方網站設定為低安全性)(信內容請至views->mail裡修改)   
+9.使用綠界請務必避開csrf回調網址,會回報419錯誤 (middleware->verifycsrftoken->except加入避開路徑 /Callback & /)

@@ -27,7 +27,7 @@ Route::get('/', function () {
 //會員
 Route::get('/Member', 'MemberController@member');
 
-//會員
+//qa
 Route::get('/QA', 'QAController@QA');
 
 //ajax 查詢存貨
@@ -35,13 +35,11 @@ Route::post('Detail/Inventory','AjaxController@Inventory');
 
 //訂單
 Route::get('/Order/new', 'OrdersController@new')->middleware(['login_auth']);
-Route::post('/Orders', 'OrdersController@store')->middleware(['login_auth']);
-Route::get('/Orders', 'OrdersController@index')->middleware(['login_auth']);
-Route::get('/Confirm-orders/{order}', 'OrdersController@confirm')->middleware(['login_auth']);
+Route::post('/Orders', 'OrdersController@store')->middleware(['login_auth']);//送出訂單到綠界
 
 //綠界回調網址
-Route::post('/Callback', 'OrdersController@callback')->middleware(['login_auth']);
-Route::get('/Success', 'OrdersController@redirectFromECpay')->middleware(['login_auth']);
+Route::post('/Callback', 'OrdersController@callback');
+Route::get('/Success', 'OrdersController@redirectFromECpay');
 
 //login,register
 Route::get('/Register', 'Login_RegisteController@Register');
