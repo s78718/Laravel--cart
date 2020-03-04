@@ -1,5 +1,12 @@
 ![image](https://github.com/s78718/Laravel--cart/blob/master/public/png/cart.png)  
 
+整個專案是我自己一步一步完成(前後端)
+以下為記錄遇到的問題點
+目前有在找網頁後端開發工程師缺(高雄) php 
+如果有缺人的公司可以聯絡我
+我有在aws放上我個人履歷
+ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
+
 已完成:   
 購物車    
 登入    
@@ -8,8 +15,8 @@ ecpay金流(需修改回調網址 env )(可以使用ngrok)
 
 未完成:   
 會員資料修改     
-訂單資料    
-第三方登入    
+會員訂單資料    
+第三方登入移植(fb line google)    
        
 執行:  
 1.修改.env資料(env.example)  
