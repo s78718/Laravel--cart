@@ -24,6 +24,12 @@ Route::get('/', function () {
     return view('mik');
 });
 
+//會員
+Route::get('/Member', 'MemberController@member');
+
+//會員
+Route::get('/QA', 'QAController@QA');
+
 //ajax 查詢存貨
 Route::post('Detail/Inventory','AjaxController@Inventory');
 

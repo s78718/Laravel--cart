@@ -73,10 +73,10 @@ class OrdersController extends Controller
             'phone' => request('phone'),
             'payment' => request('payment'),
             'address' => request('address'),
-            //'cart' => serialize($cart),
             'bill'=>$cart->totalPrice,
             'cart' => $product,
             'uuid' => $uuid_temp
+                //'cart' => serialize($cart),
         ]);
 
         try {
@@ -110,14 +110,18 @@ class OrdersController extends Controller
                     $obj->Send['ChoosePayment'] = ECPayMethod::CVS ; //付款方式:CVS
                     $obj->Send['ExpireDate']    = 3; //用ATM付款的話，可以設定要求客戶要在幾天內完成付款
                     break;
-
             }
 
             $obj->Send['IgnorePayment']     = ECPayMethod::GooglePay ; //不使用付款方式:GooglePay
 
             //訂單的商品資料
-            array_push($obj->Send['Items'], array('Name' =>  $product, 'Price' => $cart->totalPrice,
-             'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
+            array_push($obj->Send['Items'],
+                        array('Name' =>  $product,
+                        'Price' => $cart->totalPrice,
+                        'Currency' => "元",
+                        'Quantity' => (int) "1",
+                        'URL' => "dedwed"
+            ));
 
             $obj->CheckOut();
 
@@ -129,10 +133,12 @@ class OrdersController extends Controller
     //付款成功後綠界回調
     public function callback(Request $request)
     {
-        //寫入資料庫(必須在ngrok區域試 否則找不到request)
+        //成功交易後寫入資料庫成功1(必須在ngrok區域試 否則找不到request)
         $order = Order::where('uuid', '=', $request->MerchantTradeNo)->firstOrFail();
+        console.log($order);
         $order->paid = !$order->paid;;//修改付款狀態
         $order->save();
+        console.log($order);
 
         //清除購物車資料
         session()->forget('cart');

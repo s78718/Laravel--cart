@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -6,12 +7,12 @@
 
         <title>mik</title>
 
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -83,9 +84,6 @@
                 padding: 10px;
                border: 5px double #ccc;
             }
-            #article{
-                display: none;
-            }
             #menu
             {
                 line-height: 2em;
@@ -116,22 +114,33 @@
                 margin-bottom: 50px;
                 padding: 10px;
                 width: 100%;
-                border-top-left-radius: 50%;
-                border-top-right-radius: 50%;
-                border-bottom-right-radius: 20%;
-                border-bottom-left-radius: 20%;
+                border-top-left-radius: 90%;
+                border-top-right-radius: 90%;
+                border-bottom-right-radius: 10%;
+                border-bottom-left-radius: 10%;
                 border: 5px double #ccc;
             }
             #main .card{
-
                 background-color: #fff;
                 transition: 0.8s;
                 color:#444;
                 border: 5px double #ccc;
-            }
+                height: 100%;
 
+            }
             #main .card:hover{
                 transform: scale(1.05);
+            }
+            #main .card a{
+                color: #444;
+                text-decoration: none;
+            }
+            #main .card .ori-price{
+                font-size: 12px;
+                text-decoration:line-through;
+            }
+            #main .card .sale-price {
+                padding-left: 15px;
             }
             #footer
             {
@@ -141,11 +150,22 @@
                 padding: 10px;
                 border: 6px double #eee;
             }
-
+            .cart{
+                border: 5px double #ccc;
+                padding: 40px;
+                margin-bottom: 10px;
+            }
+            .clear-cart,.buy{
+                background-color: #ccc;
+            }
+            table {
+                margin: auto;
+                width: 100% !important;
+            }
         </style>
     </head>
-    <header>
 
+    <header>
         <div class="nav container">
             <div class="logo">
                 <a href="{{asset('/')}}">
@@ -156,7 +176,7 @@
                 @if(!session()->has('buyerName'))
                     <a href="{{asset('/Login_Register')}}">登入/註冊</a>
                 @else
-                    <a href="{{asset('/Logout')}}">{{ session()->get('buyerName')}}-登出</a>
+                    <a href="{{asset('/Logout')}}">{{session()->get('buyerName')}}-登出</a>
                 @endif
                 @if(!session()->has('cart'))
                     <a href="{{asset('/Cart')}}">購物車</span></a>
@@ -173,29 +193,6 @@
         </div>
 
 
-
-        <div id="carouselExampleFade" class="carousel slide carousel-fade container" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://picsum.photos/900/320?random=1" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://picsum.photos/900/320?random=2" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://picsum.photos/900/320?random=3" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-
         <div class="nav-categroy container">
             <a href="{{asset('/Women')}}">女裝</a>
             <a href="{{asset('/Men')}}">男裝</a>
@@ -203,16 +200,16 @@
             <a href="{{asset('/New')}}">新品</a>
             <a href="{{asset('/Sale')}}">活動</a>
         </div>
+
     </header>
 
     <body>
-        @if ({{ session()->get('EC') }})
 
     </body>
-
     <footer>
         <div id="footer" class="container">
             <p class="">&copy; mik</p>
         </div>
     </footer>
 </html>
+
