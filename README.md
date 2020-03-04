@@ -1,11 +1,11 @@
 ![image](https://github.com/s78718/Laravel--cart/blob/master/public/png/cart.png)  
 
-整個專案是我自己一步一步完成(前後端)
-以下為記錄遇到的問題點
-目前有在找網頁後端開發工程師缺(高雄) php 
-如果有缺人的公司可以聯絡我
-我有在aws放上我個人履歷
-ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
+整個專案是我自己一步一步完成(前後端)  
+以下為記錄遇到的問題點  
+目前有在找網頁後端開發工程師缺(高雄) php   
+如果有缺人的公司可以聯絡我  
+我有在aws放上我個人履歷  
+ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)  
 
 已完成:   
 購物車    
