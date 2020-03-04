@@ -8,24 +8,27 @@
 ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)  
 
 不會動到部分:  
-產品圖片目前為隨機產生,正式環境應該到資料庫寫入位置並帶入讀取資料庫後帶入src  
+1.產品圖片目前為隨機產生,正式環境應該到資料庫寫入位置並帶入讀取資料庫後帶入src  
+2.前端排版
 
 
 已完成:   
-購物車    
-登入    
-ecpay金流(需修改回調網址 env )(可以使用ngrok)    
+1.購物車    
+2.登入    
+3.ecpay金流(需修改回調網址 env )(可以使用ngrok)    
       
 
 未完成:   
-會員資料修改     
-會員訂單查詢 會員資料修改 忘記密碼   
-第三方登入移植(fb line google)  
-完成後續head區另外寫個檔案include  
-
+1.會員資料修改     
+2.會員訂單查詢  
+3.會員資料修改  
+4.忘記密碼    
+5.第三方登入移植(fb line google)   
+6.head區部分使用include   
 
        
 執行:  
+0.請先安裝composer npm xampp ngrok postman
 1.修改.env資料(env.example)  回調網址可以用aws或是ngrok  
 2.創建mik資料庫  
 3.執行php artisan migrate  
@@ -44,3 +47,6 @@ ecpay金流(需修改回調網址 env )(可以使用ngrok)
 5.html  
 6.綠界  
 7.第三方登入(socialite)  
+8.ORM(Eloquent)  
+9.git版本管控  
+
