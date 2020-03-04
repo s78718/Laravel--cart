@@ -23,7 +23,7 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
 5.head區部分使用include   
        
 執行:  
-0.請先安裝composer npm xampp ngrok postman
+0.請先安裝composer npm xampp ngrok postman  
 1.修改.env資料(env.example)  回調網址可以用aws或是ngrok  
 2.創建mik資料庫  
 3.執行php artisan migrate  
@@ -32,8 +32,8 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
 6.執行composer install  
 7.執行php artisan serve    
 8.需寄信可以到env設定寄信帳密(gmail需到官方網站設定為低安全性)(信內容請至views->mail裡修改)   
-9.使用綠界請務必避開csrf回調網址,會回報419錯誤 (middleware->verifycsrftoken->except加入避開路徑 /Callback & /)
-10.第三方登入目前只寫到開發者測試,實際上線需要各自去申請,請到各地三方官網開發網站申請帳號並填入相關資訊加上此範例的回調網址  
+9.使用綠界請務必避開csrf回調網址,會回報419錯誤 (middleware->verifycsrftoken->except加入避開路徑 /Callback & /)  
+10.第三方登入目前只寫到開發者測試,實際上線需要各自去申請,請到各第三方官網開發網站申請帳號並填入相關資訊加上此範例的回調網址    
 11.Line 需要另外下載單獨的provider   
 
 使用技術:  
