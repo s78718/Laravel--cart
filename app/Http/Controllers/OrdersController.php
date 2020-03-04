@@ -54,18 +54,19 @@ class OrdersController extends Controller
         //隨機編碼一組數字待成功寫回資料庫
         $uuid_temp = str_replace("-", "",substr(Str::uuid()->toString(), 0,18));
 
-          //品名
-          $product=null;
-          foreach ($cart->items as $c)
-          {
-              $product.=$c['item'][0]['product'].'-'
-              .$c['item'][0]['size'].'-'
-              .$c['item'][0]['color'].'-單價'
-              .$c['item'][0]['price'].'*'
-              .$c['qty'].'/';
+        //品名
+        $product=null;
+        foreach ($cart->items as $c)
+        {
+            $product.=$c['item'][0]['product'].'-'
+            .$c['item'][0]['size'].'-'
+            .$c['item'][0]['color'].'-單價'
+            .$c['item'][0]['price'].'*'
+            .$c['qty'].'/';
 
-          }
+        }
 
+        //寫入資料庫
         $order = Order::create([
             'name' => request('name'),
             'email' => request('email'),
@@ -97,18 +98,26 @@ class OrdersController extends Controller
             $obj->Send['TotalAmount']           = $cart->totalPrice;                //交易金額
             $obj->Send['TradeDesc']             = "mik購物" ;                       //交易描述
 
-            if( $cart->paymet=='信用卡付款')
-                $obj->Send['ChoosePayment']     = ECPayMethod::Credit ;             //付款方式:Credit
-            else if( $cart->payment=='超商付款')
-                 $obj->Send['ChoosePayment']    = ECPayMethod::CVS ;                //付款方式:超商付款
-            $obj->Send['IgnorePayment']         = ECPayMethod::GooglePay ;          //不使用付款方式:GooglePay
+            switch(request('payment')){
+                case "信用卡":
+                    $obj->Send['ChoosePayment'] = ECPayMethod::Credit ; //付款方式:Credit
+                    break;
+                case "WebATM":
+                    $obj->Send['ChoosePayment'] = ECPayMethod::ATM ; //付款方式:ATM
+                    $obj->Send['ExpireDate']    = 3; //用ATM付款的話，可以設定要求客戶要在幾天內完成付款
+                    break;
+                case "超商條碼":
+                    $obj->Send['ChoosePayment'] = ECPayMethod::CVS ; //付款方式:CVS
+                    $obj->Send['ExpireDate']    = 3; //用ATM付款的話，可以設定要求客戶要在幾天內完成付款
+                    break;
+
+            }
+
+            $obj->Send['IgnorePayment']     = ECPayMethod::GooglePay ; //不使用付款方式:GooglePay
 
             //訂單的商品資料
             array_push($obj->Send['Items'], array('Name' =>  $product, 'Price' => $cart->totalPrice,
              'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
-
-            //清除cart資料
-            session()->forget('cart');
 
             $obj->CheckOut();
 
@@ -117,22 +126,45 @@ class OrdersController extends Controller
         }
     }
 
-    public function callback()
+    //付款成功後綠界回調
+    public function callback(Request $request)
     {
         //寫入資料庫(必須在ngrok區域試 否則找不到request)
-        $order = Order::where('uuid', '=', request('MerchantTradeNo'))->firstOrFail();
-        dd($order);
+        $order = Order::where('uuid', '=', $request->MerchantTradeNo)->firstOrFail();
         $order->paid = !$order->paid;;//修改付款狀態
         $order->save();
+
+        //清除購物車資料
+        session()->forget('cart');
+
         //sesion()存放一次資訊
         session()->flash('EC', 'OK');
     }
 
     //交易完成時
-    public function redirectFromECpay () {
+    public function redirectFromECpay() {
 
         return redirect('/');
     }
 }
 
+// {
+//     "CustomField1":null,
+//     "CustomField2":null,
+//     "CustomField3":null,
+//     "CustomField4":null,
+//     "MerchantID":"2000132",
+//     "MerchantTradeNo":"Test1576073816",
+//     "PaymentDate":"2019\/12\/11 22:17:57",
+//     "PaymentType":"Credit_CreditCard",
+//     "PaymentTypeChargeFee":"1",
+//     "RtnCode":"1",
+//     "RtnMsg":"\u4ea4\u6613\u6210\u529f",
+//     "SimulatePaid":"0",
+//     "StoreID":null,
+//     "TradeAmt":"50",
+//     "TradeDate":"2019\/12\/11 22:16:56",
+//     "TradeNo":"1912112216567583",
+//     "CheckMacValue":"6F42BE6F208E15FD08C189345D0973D0787983E3753CE670E105173A994F9AE2"
+//  }
 

@@ -210,17 +210,16 @@
             $(document).ready(function(){
                 if(session()->has('EC')
                 {
-
                     if(session()->get('EC')=='OK')
                     {
-                        alert('付款成功!')
+                        alert('付款成功!');
                     }
                     else
                     {
-                        alert('付款失敗!')
+                        alert('付款失敗!');
                     }
-                })
-            })
+                });
+            });
         </script>
     </body>
 

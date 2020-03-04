@@ -265,8 +265,9 @@
                         <label class="block pl-2" for="payment">付款方式:</label>
                         <select id="payment" name="payment" class="shadow border rounded">
                             <option></option>
-                            <option>信用卡付款</option>
-                            <option>超商取貨付款</option>
+                            <option>信用卡</option>
+                            <option>超商條碼</option>
+                            <option>WebATM</option>
                         </select>
                     </div>
                     <div>
