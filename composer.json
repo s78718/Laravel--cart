@@ -14,6 +14,7 @@
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "nesbot/carbon": "^2.30",
+        "socialiteproviders/line": "^2.1",
         "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {

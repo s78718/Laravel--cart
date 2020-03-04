@@ -9,13 +9,13 @@
 ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)  
 
 不會動到部分:  
-1.產品圖片目前為隨機產生,正式環境應該到資料庫寫入位置並帶入讀取資料庫後帶入img->src  
+1.產品圖片目前為隨機產生,正式環境應該到資料庫寫入並帶入img->src  
 2.第三方登入只開發到開發者模式,不做申請為正式模式
 
 已完成:   
 1.購物車    
 2.登入,第三方登入移植(fb line google)  
-3.ecpay金流(需修改回調網址 env )(可以使用ngrok)    
+3.ecpay金流(需修改回調網址.env)(可以使用ngrok)    
       
 未完成:   
 1.會員資料修改     
@@ -26,7 +26,7 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
        
 執行:  
 0.請先安裝composer npm xampp ngrok postman  
-1.修改.env資料(env.example)  回調網址可以用aws或是ngrok  
+1.修改.env資料(env.example),回調網址可以用aws或是ngrok,修改後記得重開sever    
 2.創建mik資料庫  
 3.執行php artisan migrate  
 4.執行php artisan db:seed --class=ProductSeeder  
@@ -34,9 +34,10 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
 6.執行composer install  
 7.執行php artisan serve    
 8.需寄信可以到env設定寄信帳密(gmail需到官方網站設定為低安全性)(信內容請至views->mail裡修改)   
-9.使用綠界請務必避開csrf回調網址,會回報419錯誤 (middleware->verifycsrftoken->except加入避開路徑 /Callback & /)  
+9.使用綠界請務必避開csrf回調網址,會回報419錯誤,(middleware->verifycsrftoken->except加入避開路徑 /Callback & /)  
 10.第三方登入目前只寫到開發者測試,實際上線需要各自去申請,請到各第三方官網開發網站申請帳號並填入相關資訊加上此範例的回調網址    
-11.Line 需要另外下載單獨的provider   
+11.Line socilaite 需要另外下載單獨的provider   
+
 
 使用技術:  
 1.laravel(php)   
