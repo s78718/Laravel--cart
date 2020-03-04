@@ -46,7 +46,7 @@ Route::get('/Register', 'Login_RegisteController@Register');
 Route::get('/Login_Register', 'Login_RegisteController@Login_Register');
 Route::post('/Register/Validate', 'Login_RegisteController@Register_Validate');
 Route::post('/Login_Register/Validate', 'Login_RegisteController@Login_Validate');
-Route::get('/Logout', 'Login_RegisteController@Logout');
+Route::get('/Logout', 'Login_RegisteController@Logout');//登出
 
 //detail
 Route::group(['prefix' => 'Detail'], function () {
@@ -104,26 +104,21 @@ Route::group(['prefix' => 'Sale'], function () {
 });
 
 //user/auth/third-sign-in
-Route::group(['prefix' => 'user'], function(){
+Route::group(['prefix' => 'User'], function(){
     //使用者驗證
-    Route::group(['prefix' => 'auth'], function(){
+    Route::group(['prefix' => 'Auth'], function(){
         //Facebook登入
-        Route::get('/facebook-sign-in', 'FbAuthController@facebookSignInProcess');
+        Route::get('/Facebook-sign-in', 'FbAuthController@facebookSignInProcess');
         //Facebook登入重新導向授權資料處理
-        Route::get('/facebook-sign-in-callback', 'FbAuthController@facebookSignInCallbackProcess');
+        Route::get('/Facebook-sign-in-callback', 'FbAuthController@facebookSignInCallbackProcess');
         //google登入
-        Route::get('/google-sign-in', 'GoogleAuthController@googleSignInProcess');
+        Route::get('/Google-sign-in', 'GoogleAuthController@googleSignInProcess');
         //google登入重新導向授權資料處理
-        Route::get('/google-sign-in-callback', 'GoogleAuthController@googleSignInCallbackProcess');
+        Route::get('/Google-sign-in-callback', 'GoogleAuthController@googleSignInCallbackProcess');
         //line登入
-        Route::get('/line-sign-in', 'LineAuthController@lineSignInProcess');
+        Route::get('/Line-sign-in', 'LineAuthController@lineSignInProcess');
         //line登入重新導向授權資料處理
-        Route::get('/line-sign-in-callback', 'LineAuthController@lineSignInCallbackProcess');
-         //yahoo登入
-         Route::get('/yahoo-sign-in', 'YahooAuthController@yahooSignInProcess');
-         //yahoo登入重新導向授權資料處理
-         Route::get('/yahoo-sign-in-callback', 'YahooAuthController@yahooSignInCallbackProcess');
-        //登出
-        Route::get('/logout', 'LogoutAuthController@logout');
+        Route::get('/Line-sign-in-callback', 'LineAuthController@lineSignInCallbackProcess');
+
     });
 });

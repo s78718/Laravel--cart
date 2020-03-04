@@ -145,7 +145,6 @@
         </style>
     </head>
     <header>
-
         <div class="nav container">
             <div class="logo">
                 <a href="{{asset('/')}}">

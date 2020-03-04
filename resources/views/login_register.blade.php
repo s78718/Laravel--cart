@@ -210,13 +210,13 @@
                 <div id="third-login" class="col-md-12 col-12">
                     <h4 class="pb-2">快速登入/註冊</h4>
                     <hr>
-                    <a href="#">
+                    <a href="User/Auth/Facebook-sign-in">
                         <img  src="/png/fb_icon.png">
                     </a>
-                    <a href="#">
+                    <a href="User/Auth/Google-sign-in">
                         <img  src="/png/google_icon.png">
                     </a>
-                    <a href="#">
+                    <a href="User/Auth/Line-sign-in">
                         <img  src="/png/line_icon.png">
                     </a>
                 </div>

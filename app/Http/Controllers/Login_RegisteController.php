@@ -8,6 +8,7 @@ use Session;
 use Validator;
 use Hash;
 use Mail;
+use Auth;
 
 class Login_RegisteController extends Controller
 {
@@ -26,10 +27,14 @@ class Login_RegisteController extends Controller
     //登出
     public function Logout()
     {
-        session()->forget('buyerName');
-        session()->forget('buyerEmail');
-        session()->forget('buyerPhone');
-        session()->forget('buyerAddress');
+        Auth::logout();//清空第三方登入
+
+        //session()->forget('buyerName');
+        //session()->forget('buyerEmail');
+        //session()->forget('buyerPhone');
+        //session()->forget('buyerAddress');
+        //清空session
+        session()->flush();
         return view('mik');
     }
 
