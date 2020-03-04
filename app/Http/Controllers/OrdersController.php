@@ -45,7 +45,8 @@ class OrdersController extends Controller
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'pay' => 'required',
+            'address' => 'required',
+            'payment' => 'required',
         ]);
 
         $cart = session()->get('cart');
@@ -69,8 +70,10 @@ class OrdersController extends Controller
             'name' => request('name'),
             'email' => request('email'),
             'phone' => request('phone'),
-            'pay' => request('pay'),
+            'payment' => request('payment'),
+            'address' => request('address'),
             //'cart' => serialize($cart),
+            'bill'=>$cart->totalPrice,
             'cart' => $product,
             'uuid' => $uuid_temp
         ]);
@@ -94,9 +97,9 @@ class OrdersController extends Controller
             $obj->Send['TotalAmount']           = $cart->totalPrice;                //交易金額
             $obj->Send['TradeDesc']             = "mik購物" ;                       //交易描述
 
-            if( $cart->pay=='信用卡付款')
+            if( $cart->paymet=='信用卡付款')
                 $obj->Send['ChoosePayment']     = ECPayMethod::Credit ;             //付款方式:Credit
-            else if( $cart->pay=='超商付款')
+            else if( $cart->payment=='超商付款')
                  $obj->Send['ChoosePayment']    = ECPayMethod::CVS ;                //付款方式:超商付款
             $obj->Send['IgnorePayment']         = ECPayMethod::GooglePay ;          //不使用付款方式:GooglePay
 
@@ -114,18 +117,20 @@ class OrdersController extends Controller
         }
     }
 
-    public function callback(Request $request)
+    public function callback()
     {
-        //寫入資料庫
-        $order = Order::where('uuid', '=', $request('MerchantTradeNo'))->firstOrFail();
-        $order->paid = !$order->paid;//修改付款狀態
+        //寫入資料庫(必須在ngrok區域試 否則找不到request)
+        $order = Order::where('uuid', '=', request('MerchantTradeNo'))->firstOrFail();
+        dd($order);
+        $order->paid = !$order->paid;;//修改付款狀態
         $order->save();
+        //sesion()存放一次資訊
+        session()->flash('EC', 'OK');
     }
 
-    //成功
+    //交易完成時
     public function redirectFromECpay () {
-        //sesion()存放一次資訊
-        session()->flash('EC', 'Order success!');
+
         return redirect('/');
     }
 }

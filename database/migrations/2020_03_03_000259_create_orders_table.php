@@ -18,8 +18,10 @@ class CreateOrdersTable extends Migration
             $table->string('uuid');
             $table->string('name');
             $table->string('email');
+            $table->string('address');
             $table->string('phone');
-            $table->string('pay');
+            $table->string('payment');
+            $table->integer('bill');
             $table->text('cart');
             $table->boolean('paid')->default(0);
             $table->timestamps();

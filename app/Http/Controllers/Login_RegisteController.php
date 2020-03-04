@@ -29,6 +29,7 @@ class Login_RegisteController extends Controller
         session()->forget('buyerName');
         session()->forget('buyerEmail');
         session()->forget('buyerPhone');
+        session()->forget('buyerAddress');
         return view('mik');
     }
 
@@ -69,6 +70,7 @@ class Login_RegisteController extends Controller
         session()->put('buyerName',$user->name);
         session()->put('buyerEmail',$user->email);
         session()->put('buyerPhone',$user->phone);
+        session()->put('buyerAddress',$user->address);
 
         return redirect('/');
 

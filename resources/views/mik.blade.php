@@ -210,9 +210,10 @@
             $(document).ready(function(){
                 if(session()->has('EC')
                 {
-                    if(session()->get('EC')=='Order success!')
+
+                    if(session()->get('EC')=='OK')
                     {
-                        alert('恭喜您付款成功!')
+                        alert('付款成功!')
                     }
                     else
                     {

@@ -32,9 +32,10 @@ Route::get('/Order/new', 'OrdersController@new')->middleware(['login_auth']);
 Route::post('/Orders', 'OrdersController@store')->middleware(['login_auth']);
 Route::get('/Orders', 'OrdersController@index')->middleware(['login_auth']);
 Route::get('/Confirm-orders/{order}', 'OrdersController@confirm')->middleware(['login_auth']);
+
+//綠界回調網址
 Route::post('/Callback', 'OrdersController@callback')->middleware(['login_auth']);
 Route::get('/Success', 'OrdersController@redirectFromECpay')->middleware(['login_auth']);
-
 
 //login,register
 Route::get('/Register', 'Login_RegisteController@Register');
@@ -43,7 +44,6 @@ Route::post('/Register/Validate', 'Login_RegisteController@Register_Validate');
 Route::post('/Login_Register/Validate', 'Login_RegisteController@Login_Validate');
 Route::get('/Logout', 'Login_RegisteController@Logout');
 
-
 //detail
 Route::group(['prefix' => 'Detail'], function () {
 
@@ -51,8 +51,7 @@ Route::group(['prefix' => 'Detail'], function () {
 
 });
 
-
-//product
+//product Women
 Route::group(['prefix' => 'Women'], function () {
 
     Route::get('/', 'WomenSearchController@Women');
@@ -64,6 +63,7 @@ Route::group(['prefix' => 'Women'], function () {
 
 });
 
+//product men
 Route::group(['prefix' => 'Men'], function () {
 
     Route::get('/', 'MenSearchController@Men');
@@ -75,6 +75,7 @@ Route::group(['prefix' => 'Men'], function () {
 
 });
 
+//product kids
 Route::group(['prefix' => 'Kids'], function () {
 
     Route::get('/', 'KidsSearchController@Kids');
@@ -86,18 +87,19 @@ Route::group(['prefix' => 'Kids'], function () {
 
 });
 
+//product new
 Route::group(['prefix' => 'New'], function () {
 
     Route::get('/', 'NewSearchController@New');
 });
 
+//product sale
 Route::group(['prefix' => 'Sale'], function () {
 
     Route::get('/', 'SaleSearchController@Sale');
 });
 
-
-//user/auth/facebook-sign-in
+//user/auth/third-sign-in
 Route::group(['prefix' => 'user'], function(){
     //使用者驗證
     Route::group(['prefix' => 'auth'], function(){
@@ -118,6 +120,6 @@ Route::group(['prefix' => 'user'], function(){
          //yahoo登入重新導向授權資料處理
          Route::get('/yahoo-sign-in-callback', 'YahooAuthController@yahooSignInCallbackProcess');
         //登出
-        Route::get('/logout', 'FbAuthController@logout');
+        Route::get('/logout', 'LogoutAuthController@logout');
     });
 });

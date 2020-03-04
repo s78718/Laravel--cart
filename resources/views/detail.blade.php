@@ -271,8 +271,6 @@
                 //放大鏡
                 $("#img").blowup({
                     "scale": 1.8,
-                    "width": 350,
-                    "height":350,
                 });
             });
 
@@ -379,7 +377,6 @@
             <p class="">&copy; mik</p>
         </div>
     </footer>
-
 
 </html>
 
