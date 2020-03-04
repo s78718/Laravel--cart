@@ -29,12 +29,12 @@ class Login_RegisteController extends Controller
     {
         Auth::logout();//清空第三方登入
 
-        //session()->forget('buyerName');
-        //session()->forget('buyerEmail');
-        //session()->forget('buyerPhone');
-        //session()->forget('buyerAddress');
+        session()->forget('buyerName');
+        session()->forget('buyerEmail');
+        session()->forget('buyerPhone');
+        session()->forget('buyerAddress');
         //清空session
-        session()->flush();
+        //session()->flush();
         return view('mik');
     }
 
