@@ -304,6 +304,7 @@
 <style type="text/css">
     .css-table{
         display: table;
+        font-size: 15px;
     }
     .css-table .thead{
         display:table-header-group;

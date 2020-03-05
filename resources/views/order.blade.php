@@ -7,7 +7,6 @@
         <section>
             <div class="container buyer">
                 <h3 class="text-left">訂單資訊</h3>
-
                 <div id="css-table" class="css-table">
                     <div  class="thead">
                         <div class="tr">
@@ -40,7 +39,6 @@
                         @endforeach
                     </div>
                 </div>
-
                 <div class="container buyer mt-4 text-center">
                     <h3 class="m-4">買家資訊</h3>
                     <form method="POST" action="/Orders">

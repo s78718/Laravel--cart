@@ -63,6 +63,7 @@ https://blog.25sprout.com/%E8%AE%93%E4%BD%A0%E7%9A%84-html-table-responsive-%E5%
 <style type="text/css">  
     .css-table{  
         display: table;  
+        font-size: 15px;  
     }  
     .css-table .thead{  
         display:table-header-group;  
