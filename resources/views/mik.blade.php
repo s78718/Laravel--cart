@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     @include('layouts._head');
+    @include('layouts._style');
     <body>
         <header>
             <div class="nav container">

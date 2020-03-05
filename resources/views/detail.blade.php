@@ -4,7 +4,7 @@
     @include('layouts._head');
     <body>
         @include('layouts._header');
-
+        @include('layouts._style');
         <section>
             @if(isset($detail))
                 <div id="detail" class="container">

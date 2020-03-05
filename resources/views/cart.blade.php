@@ -3,7 +3,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     @include('layouts._head');
-
+    @include('layouts._style');
     <body>
         @include('layouts._header');
         <section>
