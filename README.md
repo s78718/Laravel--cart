@@ -22,7 +22,6 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
 2.會員訂單查詢  
 3.會員資料修改  
 4.忘記密碼      
-5.head區部分使用include   
        
 執行:  
 0.請先安裝composer npm xampp ngrok postman  

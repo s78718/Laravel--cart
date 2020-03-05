@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    @include('layouts._head');
+    @include('layouts._head')
     <body>
-        @include('layouts._header');
-        @include('layouts._style');
+        @include('layouts._header')
+        @include('layouts._style')
         <section>
             @if(isset($detail))
                 <div id="detail" class="container">
@@ -62,7 +62,7 @@
             @endif
         </section>
 
-        @include('layouts._footer');
+        @include('layouts._footer')
 
         <script type="text/javascript">
             //更換顏色照片

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    @include('layouts._head');
-    @include('layouts._style');
-    <body>
+    @include('layouts._head')
+    @include('layouts._style')
+    <body></body>
         <header>
             <div class="nav container">
                 <div class="logo">
@@ -61,6 +61,6 @@
             </div>
         </header>
 
-        @include('layouts._footer');
+        @include('layouts._footer')
     </body>
 </html>

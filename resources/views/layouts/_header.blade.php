@@ -25,7 +25,6 @@
         </form>
     </div>
 
-
     <div class="nav-categroy container">
         <a href="{{asset('/Women')}}">女裝</a>
         <a href="{{asset('/Men')}}">男裝</a>
