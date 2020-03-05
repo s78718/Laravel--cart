@@ -9,12 +9,7 @@
         <section>
         </section>
 
-        <footer>
-            <div id="footer" class="container">
-                <p class="">&copy; mik</p>
-            </div>
-        </footer>
-
+        @include('layouts._footer');
     </body>
 </html>
 

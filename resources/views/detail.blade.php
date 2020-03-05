@@ -62,11 +62,7 @@
             @endif
         </section>
 
-        <footer>
-            <div id="footer" class="container">
-                <p class="">&copy; mik</p>
-            </div>
-        </footer>
+        @include('layouts._footer');
 
         <script type="text/javascript">
             //更換顏色照片
