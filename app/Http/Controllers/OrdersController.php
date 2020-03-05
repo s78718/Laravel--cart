@@ -54,9 +54,15 @@ class OrdersController extends Controller
         {
             $product.=$c['item'][0]['product'].'_'
             .$c['item'][0]['size'].'_'
-            .$c['item'][0]['color'].'_單價'
-            .$c['item'][0]['price'].'*'
-            .$c['qty'].'#';
+            .$c['item'][0]['color'].'_單價';
+
+            if(!$c['item'][0]['saleprice']){
+                $product.=$c['item'][0]['price'].'*';
+            }
+            else{
+                $product.=$c['item'][0]['saleprice'].'*';
+            }
+            $product.=$c['qty'].'#';
 
         }
         //$product='1112222';

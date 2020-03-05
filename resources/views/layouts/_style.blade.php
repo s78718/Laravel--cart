@@ -144,7 +144,7 @@
 
     .add-cart{
         background-color: #ccc;
-        margin-left: 50px;
+        /*margin-left: 50px;*/
     }
 
     .color ,.size{

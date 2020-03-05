@@ -14,7 +14,8 @@
 //cart
 Route::get('/Cart', 'CartController@cart');
 Route::get('/Remove-item/{id}', 'CartController@removeItem');
-Route::get('/Add-to-cart/{id}', 'CartController@getAddToCart');
+//Route::get('/Add-to-cart/{id}', 'CartController@getAddToCart');
+Route::get('/Add-to-cart/{id}/{color}/{size}', 'CartController@getAddToCart');
 Route::get('/Increase-one-item/{id}', 'CartController@increaseByOne');
 Route::get('/Decrease-one-item/{id}', 'CartController@decreaseByOne');
 Route::get('/Clear-cart', 'CartController@clearCart');

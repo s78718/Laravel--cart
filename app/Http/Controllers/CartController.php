@@ -25,15 +25,18 @@ class CartController extends Controller
         return view('cart',[
                             'Carts'=> $cart->items,
                             'totalPrice'=> $cart->totalPrice,
-                            'totalQty'=>$cart->totalQty]);
+                            'totalQty'=>$cart->totalQty,
+                            'color'=>$cart->color,
+                            'size'=>$cart->size,
+                            ]);
     }
 
     //添加到購物車
-    public function getAddToCart(Request $request, $lotid)
+    public function getAddToCart(Request $request, $id, $color, $size)
     {
         //查id
-        $product = Product::join('prices','prices.lotid','=','products.lotid')
-                            ->where('products.lotid',$lotid)
+        $item = Product::join('prices','prices.lotid','=','products.lotid')
+                            ->where('products.lotid',$id)
                             ->get();
 
         //dd($product);
@@ -43,7 +46,7 @@ class CartController extends Controller
         $cart = new Cart($oldCart);
 
         //加入必需的元素呼叫cart model
-        $cart->add($product, $lotid);
+        $cart->add($item, $id, $color, $size);
 
         //資料帶在session裡
         Session::put('cart', $cart);

@@ -38,17 +38,22 @@
                                 @endif
                             </div>
                             <div class="container m-2">
-                                <p class="pt-1">數量</p>
-                                <select id="qty" name="qty">
+                                <!--p class="pt-1">數量</!--p>
+                                <select-- id="qty" name="qty">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
-                                </select>
+                                </select-->
                                 <!--傳回lotid-->
-                                <a  id="add-cart" class="btn add-cart" href="/Add-to-cart/{{$detail[0]->lotid}}">加入購物車</a>
-                                <p  class="inventory pt-1 ">庫存:</p>
+
+                                <p  class="inventory pt-1 ">庫存
+
+                                </p>
+                                <p>
+                                    <a  id="add-cart" class="btn add-cart" href="/Add-to-cart/{{$detail[0]->lotid}}">加入購物車</a>
+                                </p>
                             </div>
                             <hr>
                             ※享有7天鑑賞期,退貨須包裝完整.貼身衣物不接受退貨!
@@ -67,8 +72,9 @@
         <script type="text/javascript">
             //更換顏色照片
             var random=0;
-            var color;
-            var size;
+            var color=0;
+            var size=0;
+            var id={{ $detail[0]->lotid }};
 
             $(document).ready(function(){
                 //初始化加入購物車連結
@@ -83,7 +89,6 @@
 
             $('.color').click(function(){
                 $('.inventory').html('庫存:');
-
                 $('.color').css({"background-color": "#ccc"});
                 //模擬換顏色
                 $('#img').attr('src','https://picsum.photos/600/600?random='+random);
@@ -94,6 +99,7 @@
                 });
                 //選擇顏色
                 color=$(this).val();
+
                 $(this).css({"background-color": "#0d0"});
                 //須選顏色與尺寸
                 if(size!=null && color!=null)
@@ -113,6 +119,7 @@
                                 $('#qty').attr('disabled', false);
                                 $('#add-cart').removeClass('disabled');
                                 $('#add-cart').html("加入購物車");
+                                $('#add-cart').attr('href','/Add-to-cart/'+id+'/'+color+'/'+size);
                             }
                             else{
                                 $('#qty').attr('disabled', 'true');
@@ -125,6 +132,7 @@
             });
 
             $('.size').click(function(){
+
                 $('.inventory').html('庫存:');
 
                 $('.size').css({"background-color": "#ccc"});
@@ -151,6 +159,7 @@
                                 $('#qty').attr('disabled', false);
                                 $('#add-cart').removeClass('disabled');
                                 $('#add-cart').html("加入購物車");
+                                $('#add-cart').attr('href','/Add-to-cart/'+id+'/'+color+'/'+size);
                             }
                             else{
                                 $('#qty').attr('disabled', 'true');

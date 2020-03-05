@@ -19,6 +19,7 @@
                                 <th class="px-1 py-2">尺寸</th>
                                 <th class="px-1 py-2">單價</th>
                                 <th class="px-1 py-2">數量</th>
+                                <th class="px-1 py-2">活動價</th>
                                 <th class="px-1 py-2">增減</th>
                                 <th class="px-1 py-2">刪除</th>
                             </thead>
@@ -32,6 +33,7 @@
                                         <td class="border px-1 py-2">{{$c['item'][0]['price']}}</td>
                                         <!-- Remove Items / Increase +1 / Decrease By 1 -->
                                         <td class="border px-1 py-2">{{$c['qty']}}</td>
+                                        <td class="border px-1 py-2">{{$c['item'][0]['saleprice']}}</td>
                                         <td class="border px-1 py-2">
                                             <a class="py-1 px-1"
                                                 href="/Increase-one-item/{{ $c['item'][0]['lotid'] }}"><i class="fas fa-plus-square"></i></a>

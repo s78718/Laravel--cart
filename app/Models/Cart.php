@@ -22,18 +22,24 @@ class Cart extends Model
     }
 
     //帶入顏色尺寸id
-    public function add($item, $lotid)
+    public function add($item, $id, $color, $size)
     {
         //因為新增qty先設為0
         // empty state of storedItem (qty(0), price(item.price), item(object))
-        $storedItem = ['qty'=>0, 'price'=>$item[0]->price, 'item'=>$item];
+        $storedItem;
+        if(!$item[0]->saleprice){
+            $storedItem = ['qty'=>0, 'price'=>$item[0]->price, 'item'=>$item ,'color'=>$color,'size'=>$size];
+        }
+        else{
+            $storedItem = ['qty'=>0, 'price'=>$item[0]->saleprice, 'item'=>$item ,'color'=>$color,'size'=>$size];
+        }
 
         // check if cart has items 判別有沒有重複
         if($this->items) {
             // check if cart has existing product
             // if yes let storedItem = Cart Item
-            if (array_key_exists($lotid, $this->items)) {
-                $storedItem = $this->items[$lotid];
+            if (array_key_exists($id, $this->items)) {
+                $storedItem = $this->items[$id];
             }
         }
 
@@ -41,18 +47,23 @@ class Cart extends Model
         // storedItem qty increase by one
         $storedItem['qty']++;
 
-        // storedItem price = current book [price] * storedItem qty
-        $storedItem['price'] = $item[0]->price * $storedItem['qty'];
-
         // update current items with storedItem
-        $this->items[$lotid] = $storedItem;
+        $this->items[$id] = $storedItem;
 
         // update total Qty
         $this->totalQty++;
 
-        // update total Price
-        $this->totalPrice += $item[0]->price;
-
+        // storedItem price = current book [price] * storedItem qty
+        if(!$item[0]->saleprice){
+            $storedItem['price'] = $item[0]->price * $storedItem['qty'];
+            // update total Price
+            $this->totalPrice += $item[0]->price;
+        }
+        else{
+            $storedItem['price'] = $item[0]->saleprice * $storedItem['qty'];
+            // update total Price
+            $this->totalPrice += $item[0]->saleprice;
+        }
 
     }
 
