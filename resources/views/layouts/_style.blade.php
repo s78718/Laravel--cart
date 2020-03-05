@@ -7,12 +7,14 @@
         font-family: 'Noto Sans TC' ;
         list-style:none;
     }
+
     <!--關閉超連結-->
     a.disabled {
         pointer-events: none;
         background-color: #eee;
         color: white;
     }
+
     .nav-categroy a{
         text-decoration: none;
         color: #444;
@@ -22,12 +24,14 @@
         transition: 0.8s;
         transform: translateY(0px);
     }
+
     .nav-categroy{
         display:block;
         justify-content:center;
         margin-bottom: 20px;
         padding: 0 80px 0;
     }
+
     .nav a
     {
         text-decoration: none;
@@ -38,16 +42,19 @@
         transition: 0.3s;
         transform: translateY(0px);
     }
+
     .nav a:hover,
     .nav-categroy a:hover{
         border-bottom: 1px solid #ddd;
         transform: translateY(-5px);
     }
+
     .nav-top,
     .nav-categroy{
         display: flex;
         padding:15px 0 15px;
     }
+
     .nav-search input{
         width:100px;
     }
@@ -72,10 +79,12 @@
         padding: 10px;
        border: 5px double #ccc;
     }
+
     #menu
     {
         line-height: 2em;
     }
+
     #menu a{
         text-decoration: none;
         color: #444;
@@ -89,12 +98,15 @@
     #menu li:hover{
         transform: scale(1.05);
     }
+
     .aside{
         font-size: 20px;
     }
+
     .aside-sub{
         font-size: 15px;
     }
+
     .aside-sub li::before{
         content: "-";
     }
@@ -118,19 +130,23 @@
         hight:100%;
         border: 8px double #ccc;
     }
+
     #detail-ori-price{
         text-decoration:line-through;
         font-size: 15px;
     }
+
     #qty{
         margin: 5px;
         width:5em;
         height:2em;
     }
+
     .add-cart{
         background-color: #ccc;
         margin-left: 50px;
     }
+
     .color ,.size{
         border-radius: 50%;
         background-color: #ccc;
@@ -138,21 +154,20 @@
         hight:50px;
     }
 
-
     .cart{
         border: 5px double #ccc;
         padding: 40px;
         margin-bottom: 10px;
     }
+
     .clear-cart,.buy{
         background-color: #ccc;
     }
+
     table {
         margin: auto;
         width: 100% !important;
     }
-
-
 
     #main #main-img img{
         margin-bottom: 50px;
@@ -164,6 +179,7 @@
         border-bottom-left-radius: 10%;
         border: 5px double #ccc;
     }
+
     #main .card{
         background-color: #fff;
         transition: 0.8s;
@@ -172,32 +188,37 @@
         height: 100%;
 
     }
+
     #main .card:hover{
         transform: scale(1.05);
     }
+
     #main .card a{
         color: #444;
         text-decoration: none;
     }
+
     #main .card .ori-price{
         font-size: 12px;
         text-decoration:line-through;
     }
+
     #main .card .sale-price {
         padding-left: 15px;
     }
-
 
     #login-form{
         margin-bottom: 10px;
         padding: 30px;
         border: 8px double #ccc;
     }
+
     #third-login{
         margin-bottom: 10px;
         padding: 30px;
         border: 8px double #ccc;
     }
+
     #third-login a{
         text-decoration: none;
         padding-right: 40px;
@@ -208,9 +229,11 @@
         width:40px;
         height: 40px;
     }
+
     #login-form button{
         background-color: #ccc;
     }
+
     #login-form a{
         text-decoration: none;
         color: #444;
@@ -222,21 +245,26 @@
         padding: 40px;
         margin-bottom: 10px;
     }
+
     .clear-cart,.buy{
         background-color: #ccc;
     }
+
     table {
         margin: auto;
         width: 100% !important;
     }
+
     #order-cart{
         background-color: #ccc;
     }
+
     .qa{
         border: 5px double #ccc;
         padding: 40px;
         margin-bottom: 10px;
     }
+
 </style>
 
 

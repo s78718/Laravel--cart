@@ -9,6 +9,7 @@ use Validator;
 use Hash;
 use Mail;
 use Auth;
+use Crypt;
 
 class Login_RegisteController extends Controller
 {
@@ -65,8 +66,12 @@ class Login_RegisteController extends Controller
         }
 
         //驗證密碼
-        $hashpassword=Hash::check($password, $user->password);
-        if(!$hashpassword)
+        //$hashpassword=Hash::check($password, $user->password);
+
+        $cryptpassword=Crypt::decrypt($user->password);
+
+        //if(!$cryptpassword)
+        if($password!= $cryptpassword)
         {
             return redirect()->back()->withErrors(['error'=>'密碼錯誤!']);
         }
@@ -120,8 +125,11 @@ class Login_RegisteController extends Controller
             return redirect()->back()->withErrors(['error'=>'已經有註冊資料,請使用登入!']);
         }
 
-        //密碼加密
-        $input['password'] = Hash::make($input['password']);
+        //密碼加密hash 因為hash表不可逆 所以忘記密碼會有問題
+        //$input['password'] = Hash::make($input['password']);
+
+        //encypt加密
+        $input['password'] =Crypt::encrypt($input['password']);
 
         //創建資料
         $create_new = User::create($input);
@@ -135,6 +143,44 @@ class Login_RegisteController extends Controller
 
         return redirect('/');
 
+    }
+
+    //忘記密碼
+    public function Sendpassword(Request $request)
+    {
+         //驗證
+         $rules = [
+            'email' => 'email',
+        ];
+        $messages = [
+            'email.required' => '帳號不得為空!',
+        ];
+        $validator=request()->validate( $rules, $messages);
+        //查詢是否有帳號
+        $email=$request->forgetemail;
+        $user=User::where('email','=',$email)->firstOrFail();
+        //解出密碼
+        $userdata=$user;
+        $name=$userdata->name;
+        $password= Crypt::decrypt($userdata->password);
+
+        $data=[
+            'name'=>$name,
+            'password'=>$password,
+            ];
+
+        if($user!=null)
+        {
+            //寄送註冊通知信
+            //寄信需要去google設定低安全性
+            Mail::send('email.forgetEmailNotification', $data, function($message) use ($email)
+            {
+
+                $message->to($email,' mik 購物')->subject('忘記密碼通知');
+            });
+
+        }
+        return redirect('/');
     }
 
 }

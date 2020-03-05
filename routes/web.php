@@ -42,6 +42,7 @@ Route::post('/Callback', 'OrdersController@callback');
 Route::get('/Success', 'OrdersController@redirectFromECpay');
 
 //login,register
+Route::post('/Sendpassword', 'Login_RegisteController@Sendpassword');
 Route::get('/Register', 'Login_RegisteController@Register');
 Route::get('/Login_Register', 'Login_RegisteController@Login_Register');
 Route::post('/Register/Validate', 'Login_RegisteController@Register_Validate');

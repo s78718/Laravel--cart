@@ -5,10 +5,8 @@
     @include('layouts._style')
     <body>
         @include('layouts._header')
-
         <section>
         </section>
-
         @include('layouts._footer')
     </body>
 </html>

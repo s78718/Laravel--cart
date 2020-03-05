@@ -47,22 +47,33 @@
                             </div>
 
                             <button type="submit" class="btn">登入</button>
-                            <span class="pl-5">
-                                <a  href="#">忘記密碼</span>
-                                <a  href="/Register">本站註冊</a>
-                            </span>
                             @if ($errors->first('error'))
-                                <span class="error" role="alert">
-                                    <strong class="text-danger bg-warning">{{$errors->first('error')}}</strong>
-                                </span>
+                            <span class="error" role="alert">
+                                <strong class="text-danger bg-warning">{{$errors->first('error')}}</strong>
+                            </span>
                             @endif
-
                         </form>
+
+                        <div class="container text-right">
+                            <a  href="/Register">本站註冊
+                            <a  data-toggle="collapse" href="#forgetpass" role="button" aria-controls="forgetpass">忘記密碼</a>
+
+                            <div class="collapse text-left" id="forgetpass">
+                                <div class="card card-body">
+
+                                    <form method="POST" action="/Sendpassword">
+                                        @csrf
+                                        <label for="forgetpassinput">信箱(忘記密碼)</label>
+                                        <input name="forgetemail" id="forgetpassinput" type="email" placeholder="填入你的Email" required>
+                                        <button class="btn ml-2" type="submit">寄出</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
         @include('layouts._footer')
     </body>
 </html>
