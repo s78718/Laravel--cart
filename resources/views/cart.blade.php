@@ -7,7 +7,7 @@
         @include('layouts._header')
         <section>
             <div class="container cart">
-                <h3 class="m-3">購物車 </h3>
+                <h3>購物車 </h3>
                 <!--判斷有沒有購物車-->
                 @if(session()->has('cart'))
                     <div id="css-table" class="css-table">

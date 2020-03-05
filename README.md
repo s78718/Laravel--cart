@@ -55,9 +55,7 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
 https://blog.25sprout.com/%E8%AE%93%E4%BD%A0%E7%9A%84-html-table-responsive-%E5%90%A7-a2d4336a1f60  
 解決表格rwd問題  
 最後使用div格式  
-  
-</style>   
-   
+ 
 <!--專解決表格問題使用div-->   
   
 <style type="text/css">  
