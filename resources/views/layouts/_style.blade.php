@@ -265,9 +265,61 @@
         margin-bottom: 10px;
     }
 
+    @media (max-width: 736px) {
+    .table-rwd{min-width: 100%;}
+    /*針對tr去做隱藏*/
+    tr.tr-only-hide {display: none !important;}
+    /*讓tr變成區塊主要讓他有個區塊*/
+    .table-rwd tr{
+        display: block;
+        border: 1px solid #ddd;
+        margin-top: 5px;
+    }
+    .table-rwd td {
+        text-align: left;
+        font-size: 15px;
+        overflow: hidden;
+        width: 100%;
+        display: block;
+        }
+        .table-rwd td:before {
+        /*最重要的就是這串*/
+        content: attr(data-th) " : ";
+        /*最重要的就是這串*/
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-right: 10px;
+        color: #D20B2A;
+    }
+    /*當RWD縮小的時候.table-bordered 會有兩條線，所以針對.table-bordered去做修正*/
+    .table-rwd.table-bordered td,.table-rwd.table-bordered th,.table-rwd.table-bordered{border:0;}
+
+}
+
 </style>
 
+<!--專解決表格問題使用div-->
 
+<style type="text/css">
+    .css-table{
+        display: table;
+    }
+    .css-table .thead{
+        display:table-header-group;
+        background-color: #ccc;
+    }
+    .css-table .tbody{
+        display:table-row-group;
+    }
+    .css-table .tr{
+        display:table-row;
+    }
+    .css-table .th, .css-table .td{
+        display:table-cell;
+        border: 1px solid #ccc;
+        width:10em;
+    }
 
-
+</style>
 

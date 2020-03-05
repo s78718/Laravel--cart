@@ -49,3 +49,35 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
 8.ORM(Eloquent)  
 9.git版本管控  
 
+
+
+引用:  
+https://blog.25sprout.com/%E8%AE%93%E4%BD%A0%E7%9A%84-html-table-responsive-%E5%90%A7-a2d4336a1f60  
+解決表格rwd問題  
+最後使用div格式  
+  
+</style>   
+   
+<!--專解決表格問題使用div-->   
+  
+<style type="text/css">  
+    .css-table{  
+        display: table;  
+    }  
+    .css-table .thead{  
+        display:table-header-group;  
+        background-color: #ccc;  
+    }  
+    .css-table .tbody{  
+        display:table-row-group;  
+    }  
+    .css-table .tr{  
+        display:table-row;  
+    }  
+    .css-table .th, .css-table .td{  
+        display:table-cell;  
+        border: 1px solid #ccc;  
+        width:10em;  
+    }  
+  
+</style>  

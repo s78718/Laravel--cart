@@ -8,40 +8,41 @@
             <div class="container buyer">
                 <h3 class="text-left">訂單資訊</h3>
 
-                <table class="border-collaspe">
-                    <thead>
-                        <th class="px-1 py-2">編號</th>
-                        <th class="px-1 py-2">品名</th>
-                        <th class="px-1 py-2">顏色</th>
-                        <th class="px-1 py-2">尺寸</th>
-                        <th class="px-1 py-2">單價</th>
-                        <th class="px-1 py-2">數量</th>
-                        <th class="px-1 py-2">活動價</th>
-                        <th class="px-1 py-2">總計</th>
-                    </thead>
-
-                    <body class="text-center">
-                        @foreach ($Carts as $C)
-                        <tr>
-                            <td class="border px-1 py-2">{{ $C['item'][0]['lotid'] }}</td>
-                            <td class="border px-1 py-2">{{ $C['item'][0]['product'] }}</td>
-                            <td class="border px-1 py-2">{{ $C['item'][0]['color'] }}</td>
-                            <td class="border px-1 py-2">{{ $C['item'][0]['size'] }}</td>
-                            <td class="border px-1 py-2">{{$C['item'][0]['price']}}</td>
-                            <td class="border px-1 py-2">{{$C['qty']}}</td>
-                            <td class="border px-1 py-2">{{$C['item'][0]['saleprice']}}</td>
-                            @if(!$C['item'][0]['saleprice'])
-                                <td class="border px-1 py-2">NT${{$C['qty'] * $C['item'][0]['price']}}</td>
-                            @else
-                                <td class="border px-1 py-2">NT${{$C['qty'] * $C['item'][0]['saleprice']}}</td>
-                            @endif
-                            </tr>
+                <div id="css-table" class="css-table">
+                    <div  class="thead">
+                        <div class="tr">
+                            <div class="th">編號</div>
+                            <div class="th">品名</div>
+                            <div class="th">顏色</div>
+                            <div class="th">尺寸</div>
+                            <div class="th">原價</div>
+                            <div class="th">數量</div>
+                            <div class="th">活動價</div>
+                            <div class="th">總計</div>
+                        </div>
+                    </div>
+                    <div class="tbody">
+                        @foreach ($Carts as $c)
+                            <div class="tr">
+                                <div class="td">{{ $c['item'][0]['lotid'] }}</div>
+                                <div class="td">{{ $c['item'][0]['product'] }}</div>
+                                <div class="td">{{ $c['item'][0]['color'] }}</div>
+                                <div class="td">{{ $c['item'][0]['size'] }}</div>
+                                <div class="td">{{$c['item'][0]['price']}}</div>
+                                <div class="td">{{ $c['qty']}}</div>
+                                <div class="td">{{$c['item'][0]['saleprice']}}</div>
+                                @if(!$c['item'][0]['saleprice'])
+                                    <div class="td">NT${{$c['qty'] * $c['item'][0]['price']}}</div>
+                                @else
+                                    <div class="td">NT${{$c['qty'] * $c['item'][0]['saleprice']}}</div>
+                                @endif
+                            </div>
                         @endforeach
-                    </body>
-                </table>
+                    </div>
+                </div>
 
-                <div class="container buyer mt-4">
-                    <h3 class="text-left m-4">買家資訊</h3>
+                <div class="container buyer mt-4 text-center">
+                    <h3 class="m-4">買家資訊</h3>
                     <form method="POST" action="/Orders">
                         @csrf
                         <div class="m-4">
