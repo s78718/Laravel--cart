@@ -47,6 +47,18 @@ class ProductSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
         DB::table('products')->insert([
+            'lotid'=>'2100102001',
+            'categroy' => 'cloth',
+            'product' => 'Keith Haring印花T恤-03-女',
+            'sex' => 'women',
+            'size' => 'M',
+            'color' => '白',
+            'inventory' => '125',
+            'status'=>'on',
+            'created_at' => Carbon::now(),
+        ]);
+
+        DB::table('products')->insert([
             'lotid'=>'2010230001',
             'categroy' => 'pant',
             'product' => 'billboard印花褲子-02-男',
@@ -64,7 +76,7 @@ class ProductSeeder extends Seeder
             'sex' => 'women',
             'size' => '32',
             'color' => '紫',
-            'inventory' => '195',
+            'inventory' => '1775',
             'status'=>'on',
             'created_at' => Carbon::now(),
         ]);
@@ -82,7 +94,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
             'lotid'=>'2100226001',
-            'categroy' => 'pant',
+            'categroy' => 'coat',
             'product' => 'billboard印花外套-02-女',
             'sex' => 'women',
             'size' => '26',
@@ -107,6 +119,17 @@ class ProductSeeder extends Seeder
             'categroy' => 'coat',
             'product' => 'Keith Haring印花外套-03-男',
             'sex' => 'men',
+            'size' => 'L',
+            'color' => '白',
+            'inventory' => '0',
+            'status'=>'on',
+            'created_at' => Carbon::now(),
+        ]);
+        DB::table('products')->insert([
+            'lotid'=>'2010203001',
+            'categroy' => 'coat',
+            'product' => 'Keith Haring印花外套-03-女',
+            'sex' => 'women',
             'size' => 'L',
             'color' => '白',
             'inventory' => '0',

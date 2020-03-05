@@ -69,5 +69,12 @@ class PriceSeeder extends Seeder
             'salecode' =>'01399',
             'created_at' => Carbon::now(),
         ]);
+        DB::table('prices')->insert([
+            'lotid'=>'1010203001',
+            'price' => '845',
+            'saleprice' => '299',
+            'salecode' =>'01399',
+            'created_at' => Carbon::now(),
+        ]);
     }
 }
