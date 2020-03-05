@@ -65,7 +65,6 @@ class OrdersController extends Controller
             $product.=$c['qty'].'#';
 
         }
-        //$product='1112222';
 
         //寫入資料庫
         $order = Order::create([
@@ -84,11 +83,11 @@ class OrdersController extends Controller
             $obj = new \ECPay_AllInOne();
 
             //服務參數
-            $obj->ServiceURL  = "https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5";//服務位置
+            $obj->ServiceURL  = env('ServiceURL');                                          //服務位置
             $obj->HashKey     = env('HashKey') ;                                            //測試用Hashkey，請自行帶入ECPay提供的HashKey
-            $obj->HashIV      = env('HashIV') ;                                            //測試用HashIV，請自行帶入ECPay提供的HashIV
-            $obj->MerchantID  = env('MerchantID') ;                                        //測試用MerchantID，請自行帶入ECPay提供的MerchantID
-            $obj->EncryptType = '1';                                                       //CheckMacValue加密類型，請固定填入1，使用SHA256加密
+            $obj->HashIV      = env('HashIV') ;                                             //測試用HashIV，請自行帶入ECPay提供的HashIV
+            $obj->MerchantID  = env('MerchantID') ;                                         //測試用MerchantID，請自行帶入ECPay提供的MerchantID
+            $obj->EncryptType = '1';                                                        //CheckMacValue加密類型，請固定填入1，使用SHA256加密
             //基本參數(請依系統規劃自行調整)
             $MerchantTradeNo = $uuid_temp ;
             $obj->Send['ReturnURL']             = env('ReturnURL') ;              //付款完成通知回傳的網址
@@ -97,7 +96,7 @@ class OrdersController extends Controller
             $obj->Send['MerchantTradeNo']       = $MerchantTradeNo;                 //訂單編號
             $obj->Send['MerchantTradeDate']     = date('Y/m/d H:i:s');              //交易時間
             $obj->Send['TotalAmount']           = $cart->totalPrice;                //交易金額
-            $obj->Send['TradeDesc']             = "mik shop" ;                       //交易描述
+            $obj->Send['TradeDesc']             = "mik shop" ;                      //交易描述
 
             switch(request('payment')){
                 case "信用卡":
