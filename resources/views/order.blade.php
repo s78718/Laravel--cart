@@ -16,6 +16,7 @@
                         <th class="px-1 py-2">尺寸</th>
                         <th class="px-1 py-2">單價</th>
                         <th class="px-1 py-2">數量</th>
+                        <th class="px-1 py-2">活動價</th>
                         <th class="px-1 py-2">總計</th>
                     </thead>
 
@@ -28,8 +29,13 @@
                             <td class="border px-1 py-2">{{ $C['item'][0]['size'] }}</td>
                             <td class="border px-1 py-2">{{$C['item'][0]['price']}}</td>
                             <td class="border px-1 py-2">{{$C['qty']}}</td>
-                            <td class="border px-1 py-2">NT${{$C['qty'] * $C['item'][0]['price']}}</td>
-                        </tr>
+                            <td class="border px-1 py-2">{{$C['item'][0]['saleprice']}}</td>
+                            @if(!$C['item'][0]['saleprice'])
+                                <td class="border px-1 py-2">NT${{$C['qty'] * $C['item'][0]['price']}}</td>
+                            @else
+                                <td class="border px-1 py-2">NT${{$C['qty'] * $C['item'][0]['saleprice']}}</td>
+                            @endif
+                            </tr>
                         @endforeach
                     </body>
                 </table>
