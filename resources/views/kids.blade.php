@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    @include('layouts._head')
-    @include('layouts._style')
-    <body></body>
-        @include('layouts._header')
-
+    <head>
+        @include('layouts._head')
+        @include('layouts._style')
+    </head>
+    <body>
+        <header>
+            @include('layouts._header')
+        </header>
         <section>
             <div id="article" class="container">
                 <div class="row">
@@ -85,7 +88,8 @@
                 </div>
             </div>
         </section>
-
-        @include('layouts._footer')
+        <footer>
+            @include('layouts._footer')
+        </footer>
     </body>
 </html>

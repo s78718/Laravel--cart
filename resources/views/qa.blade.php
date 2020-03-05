@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    @include('layouts._head')
-    @include('layouts._style')
+    <head>
+        @include('layouts._head')
+        @include('layouts._style')
+    </head>
     <body>
-        @include('layouts._header')
+        <header>
+            @include('layouts._header')
+        </header>
         <section>
             <div class="container text-center qa">
                 <a class="btn p-4 bg-info mb-3" data-toggle="collapse" href="#collapseBuy" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -48,8 +52,9 @@
                 </div>
             </div>
         </section>
-
-        @include('layouts._footer')
+        <footer>
+            @include('layouts._footer')
+        </footer>
     </body>
 </html>
 

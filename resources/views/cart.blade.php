@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    @include('layouts._head')
-    @include('layouts._style')
+    <head>
+        @include('layouts._head')
+        @include('layouts._style')
+    </head>
     <body>
-        @include('layouts._header')
+        <header>
+            @include('layouts._header')
+        </header>
         <section>
             <div class="container cart">
                 <h3>購物車 </h3>
@@ -63,7 +67,9 @@
                 </div>
             </div>
         </section>
-        @include('layouts._footer')
+        <footer>
+            @include('layouts._footer')
+        </footer>
     </body>
 </html>
 

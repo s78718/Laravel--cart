@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    @include('layouts._head')
-    @include('layouts._style')
+    <head>
+        @include('layouts._head')
+        @include('layouts._style')
+    </head>
     <body>
-        @include('layouts._header')
+        <header>
+            @include('layouts._header')
+        </header>
         <section>
             <div class="container buyer">
                 <h3 class="text-left">訂單資訊</h3>
@@ -83,7 +87,8 @@
                 </div>
             </div>
         </section>
-
-        @include('layouts._footer')
+        <footer>
+            @include('layouts._footer')
+        </footer>
     </body>
  </html>

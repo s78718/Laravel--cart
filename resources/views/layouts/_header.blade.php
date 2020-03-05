@@ -1,4 +1,4 @@
-<header>
+@section('header-nav1')
     <div class="nav container">
         <div class="logo">
             <a href="{{asset('/')}}">
@@ -24,7 +24,8 @@
             <button><i class="fas fa-search"></i></button>
         </form>
     </div>
-
+@show
+@section('header-nav2')
     <div class="nav-categroy container">
         <a href="{{asset('/Women')}}">女裝</a>
         <a href="{{asset('/Men')}}">男裝</a>
@@ -32,7 +33,8 @@
         <a href="{{asset('/New')}}">新品</a>
         <a href="{{asset('/Sale')}}">活動</a>
     </div>
-</header>
+@show
+
 
 
 

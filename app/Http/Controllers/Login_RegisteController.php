@@ -82,7 +82,7 @@ class Login_RegisteController extends Controller
         session()->put('buyerPhone',$user->phone);
         session()->put('buyerAddress',$user->address);
 
-        return redirect('/');
+        return redirect('/Member');
 
     }
 
