@@ -4,7 +4,6 @@
 
     <body>
         @include('layouts._header');
-
         <section>
             <div id="article" class="container">
                 <div class="row">

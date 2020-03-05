@@ -232,6 +232,27 @@
         color: #444;
         padding-right: 10px;
     }
+
+    .cart ,.buyer{
+        border: 5px double #ccc;
+        padding: 40px;
+        margin-bottom: 10px;
+    }
+    .clear-cart,.buy{
+        background-color: #ccc;
+    }
+    table {
+        margin: auto;
+        width: 100% !important;
+    }
+    #order-cart{
+        background-color: #ccc;
+    }
+    .qa{
+        border: 5px double #ccc;
+        padding: 40px;
+        margin-bottom: 10px;
+    }
 </style>
 
 
