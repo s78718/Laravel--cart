@@ -67,56 +67,76 @@ class Cart extends Model
 
     }
 
-    public function increaseByOne($lotid)
+    public function increaseByOne($id)
     {
         // Get item from items based on $id
         // Increase item qty by one
-        $this->items[$lotid]['qty']++;
+        $this->items[$id]['qty']++;
 
-        // Update item price
-        $this->items[$lotid]['price'] += $this->items[$lotid]['item'][0]['price'];
+        if(!$this->items[$id]['item'][0]['saleprice'])
+        {
+            // Update item price
+            $this->items[$id]['price'] += $this->items[$id]['item'][0]['price'];
+            // update total price
+            $this->totalPrice += $this->items[$id]['item'][0]['price'];
+        }
+        else
+        {
+            // Update item price
+            $this->items[$id]['price'] += $this->items[$id]['item'][0]['saleprice'];
+            // update total price
+            $this->totalPrice += $this->items[$id]['item'][0]['saleprice'];
+        }
 
         // Update totalqty
         $this->totalQty++;
 
-        // update total price
-        $this->totalPrice += $this->items[$lotid]['item'][0]['price'];
+
     }
 
 
-    public function decreaseByOne($lotid)
+    public function decreaseByOne($id)
     {
         // Get item from items based on $id
         // Increase item qty by one
-        $this->items[$lotid]['qty']--;
+        $this->items[$id]['qty']--;
 
-        // Update item price
-        $this->items[$lotid]['price'] -= $this->items[$lotid]['item'][0]['price'];
+        if(!$this->items[$id]['item'][0]['saleprice'])
+        {
+            // Update item price
+            $this->items[$id]['price'] -= $this->items[$id]['item'][0]['price'];
+            // update total price
+            $this->totalPrice -= $this->items[$id]['item'][0]['price'];
+        }
+        else
+        {
+            // Update item price
+            $this->items[$id]['price'] -= $this->items[$id]['item'][0]['saleprice'];
+            // update total price
+            $this->totalPrice -= $this->items[$id]['item'][0]['saleprice'];
+        }
 
         // Update totalqty
         $this->totalQty--;
 
-        // update total price
-        $this->totalPrice -= $this->items[$lotid]['item'][0]['price'];
-
         // unset item if qty < 0
-        if($this->items[$lotid]['qty'] < 1) {
-            unset($this->items[$lotid]);
+        if($this->items[$id]['qty'] < 1) {
+            unset($this->items[$id]);
         }
     }
 
-    public function removeItem($lotid)
+    public function removeItem($id)
     {
 
         // Get item from items based on $id
         //dd($this->totalPrice);
         // Update totalqty
-        $this->totalQty -= $this->items[$lotid]['qty'];
+        $this->totalQty -= $this->items[$id]['qty'];
 
         // update total price
-        $this->totalPrice = $this->totalPrice-($this->items[$lotid]['qty']*$this->items[$lotid]['item'][0]['price']);
+        $this->totalPrice = $this->totalPrice-($this->items[$id]['qty']*$this->items[$id]['item'][0]['price']);
 
         // unset item消除
-        unset($this->items[$lotid]);
+        unset($this->items[$id]);
     }
 }

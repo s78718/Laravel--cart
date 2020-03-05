@@ -56,28 +56,28 @@ class CartController extends Controller
 
 
     //購物車+1
-    public function increaseByOne($lotid)
+    public function increaseByOne($id)
     {
         $cart = new Cart(Session::get('cart'));
-        $cart->increaseByOne($lotid);
+        $cart->increaseByOne($id);
         session()->put('cart', $cart);
         return redirect()->action('CartController@cart');
     }
 
     //購物車-1
-    public function decreaseByOne($lotid)
+    public function decreaseByOne($id)
     {
         $cart = new Cart(Session::get('cart'));
-        $cart->decreaseByOne($lotid);
+        $cart->decreaseByOne($id);
         session()->put('cart', $cart);
         return redirect()->action('CartController@cart');
     }
 
     //購物車remove
-    public function removeItem($lotid)
+    public function removeItem($id)
     {
         $cart = new Cart(Session::get('cart'));
-        $cart->removeItem($lotid);
+        $cart->removeItem($id);
         session()->put('cart', $cart);
         return redirect()->action('CartController@cart');
     }
