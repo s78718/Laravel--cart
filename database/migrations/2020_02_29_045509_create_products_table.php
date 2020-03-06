@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('lotid');//顏色品名編號 不重複
+            $table->integer('lotid')->uniqid();//顏色品名編號 不重複
             $table->string('sex');
             $table->string('categroy');
             $table->string('product');
@@ -24,6 +24,8 @@ class CreateProductsTable extends Migration
             $table->integer('inventory');//存貨
             $table->string('status');//是否上架
             $table->timestamps();
+            $table->index('lotid');
+
         });
     }
 

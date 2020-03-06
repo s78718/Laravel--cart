@@ -10,16 +10,16 @@
         </header>
         <section>
             <div class="container text-center qa">
-                <a class="btn p-4 bg-info mb-3" data-toggle="collapse" href="#collapseBuy" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn p-3 mb-3 qabtn" data-toggle="collapse" href="#collapseBuy" role="button" aria-expanded="false" aria-controls="collapseExample">
                     購買流程
                 </a>
-                <a class="btn p-4 bg-info mb-3" data-toggle="collapse" href="#collapsePay" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn p-3 mb-3 qabtn" data-toggle="collapse" href="#collapsePay" role="button" aria-expanded="false" aria-controls="collapseExample">
                     付款種類
                 </a>
-                    <a class="btn p-4 bg-info mb-3" data-toggle="collapse" href="#collapseMember" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn p-3 mb-3 qabtn" data-toggle="collapse" href="#collapseMember" role="button" aria-expanded="false" aria-controls="collapseExample">
                     會員登入
                 </a>
-                <a class="btn p-4 bg-info mb-3" data-toggle="collapse" href="#collapseOther" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn p-3 mb-3 qabtn" data-toggle="collapse" href="#collapseOther" role="button" aria-expanded="false" aria-controls="collapseExample">
                     其他問題
                 </a>
                 <div class="collapse" id="collapseBuy">

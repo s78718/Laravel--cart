@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
     {
 
         DB::table('products')->insert([
-            'lotid'=>'2001110101',
+            'lotid'=>'2011',
             'categroy' => 'cloth',
             'product' => 'billboard印花T恤-02-兒童',
             'sex' => 'kids',
@@ -25,32 +25,32 @@ class ProductSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
         DB::table('products')->insert([
-            'lotid'=>'2001110202',
-            'categroy' => 'cloth',
-            'product' => 'billboard印花T恤-02-兒童',
+            'lotid'=>'2012',
+            'categroy' => 'pant',
+            'product' => 'bill短褲-02-兒童',
             'sex' => 'kids',
-            'size' => 'M',
+            'size' => '22',
             'color' => '黑',
             'inventory' => '15',
             'status'=>'on',
             'created_at' => Carbon::now(),
         ]);
         DB::table('products')->insert([
-            'lotid'=>'2100102001',
-            'categroy' => 'cloth',
-            'product' => 'Keith Haring印花T恤-03-女',
-            'sex' => 'women',
-            'size' => 'M',
-            'color' => '白',
-            'inventory' => '125',
+            'lotid'=>'2013',
+            'categroy' => 'coat',
+            'product' => 'Keit外套-05--兒童',
+            'sex' => 'kids',
+            'size' => 'XL',
+            'color' => '青',
+            'inventory' => '925',
             'status'=>'on',
             'created_at' => Carbon::now(),
         ]);
         DB::table('products')->insert([
-            'lotid'=>'2100102001',
+            'lotid'=>'2014',
             'categroy' => 'cloth',
-            'product' => 'Keith Haring印花T恤-03-女',
-            'sex' => 'women',
+            'product' => 'Keith Haring襯衫-03-兒童',
+            'sex' => 'kids',
             'size' => 'M',
             'color' => '白',
             'inventory' => '125',
@@ -58,19 +58,20 @@ class ProductSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
 
+
         DB::table('products')->insert([
-            'lotid'=>'2010230001',
-            'categroy' => 'pant',
-            'product' => 'billboard印花褲子-02-男',
-            'sex' => 'men',
-            'size' => '30',
+            'lotid'=>'2111',
+            'categroy' => 'cloth',
+            'product' => 'billboard印花襯衫-02-女',
+            'sex' => 'women',
+            'size' => 'S',
             'color' => '白',
             'inventory' => '122',
             'status'=>'on',
             'created_at' => Carbon::now(),
         ]);
         DB::table('products')->insert([
-            'lotid'=>'2100232003',
+            'lotid'=>'2112',
             'categroy' => 'pant',
             'product' => 'Polar Bear Benjamin印花褲子-女',
             'sex' => 'women',
@@ -81,10 +82,10 @@ class ProductSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
         DB::table('products')->insert([
-            'lotid'=>'2001238004',
+            'lotid'=>'2113',
             'categroy' => 'pant',
-            'product' => 'Keith Haring印花褲子-03-兒童',
-            'sex' => 'kids',
+            'product' => 'Keith Haring印花褲子-03-女',
+            'sex' => 'women',
             'size' => '38',
             'color' => '綠',
             'inventory' => '155',
@@ -93,29 +94,32 @@ class ProductSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
-            'lotid'=>'2100226001',
+            'lotid'=>'2114',
             'categroy' => 'coat',
             'product' => 'billboard印花外套-02-女',
             'sex' => 'women',
-            'size' => '26',
+            'size' => 'XL',
             'color' => '白',
             'inventory' => '444',
             'status'=>'on',
             'created_at' => Carbon::now(),
         ]);
+
+
+
         DB::table('products')->insert([
-            'lotid'=>'2001202001',
-            'categroy' => 'coat',
-            'product' => 'Polar Bear Benjamin印花外套-兒童',
-            'sex' => 'kids',
+            'lotid'=>'2211',
+            'categroy' => 'cloth',
+            'product' => 'Polar Bear Benjamin印花襯衫-男',
+            'sex' => 'men',
             'size' => 'M',
             'color' => '白',
-            'inventory' => '20',
+            'inventory' => '120',
             'status'=>'on',
             'created_at' => Carbon::now(),
         ]);
         DB::table('products')->insert([
-            'lotid'=>'2010203001',
+            'lotid'=>'2212',
             'categroy' => 'coat',
             'product' => 'Keith Haring印花外套-03-男',
             'sex' => 'men',
@@ -126,12 +130,23 @@ class ProductSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
         DB::table('products')->insert([
-            'lotid'=>'2010203001',
-            'categroy' => 'coat',
-            'product' => 'Keith Haring印花外套-03-女',
-            'sex' => 'women',
-            'size' => 'L',
+            'lotid'=>'2213',
+            'categroy' => 'pant',
+            'product' => 'Keith Haring印花褲子-03-男',
+            'sex' => 'men',
+            'size' => '32',
             'color' => '白',
+            'inventory' => '0',
+            'status'=>'on',
+            'created_at' => Carbon::now(),
+        ]);
+        DB::table('products')->insert([
+            'lotid'=>'2214',
+            'categroy' => 'pant',
+            'product' => 'Keith褲子-03-男',
+            'sex' => 'men',
+            'size' => '34',
+            'color' => '黃',
             'inventory' => '0',
             'status'=>'on',
             'created_at' => Carbon::now(),

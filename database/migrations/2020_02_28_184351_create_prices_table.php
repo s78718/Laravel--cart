@@ -15,11 +15,12 @@ class CreatePricesTable extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('lotid');//顏色品名編號 不重複
+            $table->integer('lotid')->uniqid();//顏色品名編號 不重複
             $table->integer('price');
             $table->integer('saleprice')->nullable();//特價價錢
             $table->string('salecode')->nullable();//特價碼
             $table->timestamps();
+            $table->index('lotid');
         });
     }
 

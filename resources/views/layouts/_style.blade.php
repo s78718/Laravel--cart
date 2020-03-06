@@ -264,6 +264,9 @@
         padding: 40px;
         margin-bottom: 10px;
     }
+    .qabtn{
+        background-color: #ccc;
+    }
 </style>
 
 <!--專解決表格問題使用div-->
