@@ -16,7 +16,7 @@
                         <div class="col-4 col-md-3">
                             訂單日期
                         </div>
-                        <div class="col-4 col-md-3">
+                        <div class="col-4 col-md-2">
                             訂單號碼
                         </div>
                         <div class="col-1 col-md-1">
@@ -38,7 +38,7 @@
                         <div class="col-4 col-md-3">
                             {{$o->created_at}}
                         </div>
-                        <div class="col-4 col-md-3">
+                        <div class="col-4 col-md-2">
                             {{$o->uuid}}
                         </div>
                         <div class="col-1 col-md-1">
@@ -52,12 +52,12 @@
                         </div>
                         <div class="col-1 col-md-2">
                             @if($o->paid)
-                                <a href="#">查詢匯款</a>
+                                已經付款成功
                             @else
-                                <a href="#">付款</a>
+                                <a href="/Payorder/{{ $o->uuid }}">付款</a>
+                                <span>|</span>
+                                <a href="/Cancelorder/{{ $o->uuid }}">取消</a>
                             @endif
-                            <span> | </span>
-                            <a href="#">取消</a>
                         </div>
                     @endforeach
                 </div>

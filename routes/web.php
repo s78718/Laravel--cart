@@ -11,6 +11,10 @@
 |
 */
 
+//member
+Route::get('/Cancelorder/{id}', 'MemberController@cancelorder');
+Route::get('/Payorder/{id}', 'MemberController@payorder');
+
 //cart
 Route::get('/Cart', 'CartController@cart');
 Route::get('/Remove-item/{id}', 'CartController@removeItem');

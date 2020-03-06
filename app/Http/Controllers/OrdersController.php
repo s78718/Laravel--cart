@@ -97,6 +97,11 @@ class OrdersController extends Controller
             //'cart' => serialize($cart),
         ]);
 
+        //克服綠界重複碼
+        $add= str_replace("-", "",substr(Str::uuid()->toString(), 0,3));
+        $MerchantTradeNo = $uuid_temp.$add;
+
+
         try {
             $obj = new \ECPay_AllInOne();
 
@@ -107,7 +112,6 @@ class OrdersController extends Controller
             $obj->MerchantID  = env('MerchantID') ;                                         //測試用MerchantID，請自行帶入ECPay提供的MerchantID
             $obj->EncryptType = '1';                                                        //CheckMacValue加密類型，請固定填入1，使用SHA256加密
             //基本參數(請依系統規劃自行調整)
-            $MerchantTradeNo = $uuid_temp ;
             $obj->Send['ReturnURL']             = env('ReturnURL') ;              //付款完成通知回傳的網址
             $obj->Send['PeriodReturnURL']       = env('PeriodReturnURL') ;        //付款完成通知回傳的網址
             $obj->Send['ClientBackURL']         = env('ClientBackURL') ;          //付款完成通知回傳的網址

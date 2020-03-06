@@ -84,7 +84,6 @@ class Login_RegisteController extends Controller
         session()->put('buyerEmail',$user->email);
         session()->put('buyerPhone',$user->phone);
         session()->put('buyerAddress',$user->address);
-
         return redirect('/Member');
 
     }
