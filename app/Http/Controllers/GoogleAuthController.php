@@ -45,8 +45,6 @@ class GoogleAuthController extends Controller
         $googleUser = Socialite::driver('google')
             ->redirectUrl($redirect_url)->stateless()->user();
 
-
-
         $google_email = $googleUser->email;
         if(is_null($google_email))
         {
@@ -55,7 +53,6 @@ class GoogleAuthController extends Controller
         //取得 google 資料
         $google_id = $googleUser->id;
         $google_name = $googleUser->name;
-
 
         //取得使用者資料是否有此google_id資料
         $User = GoogleUser::where('google_id', $google_id)->first();
@@ -70,10 +67,9 @@ class GoogleAuthController extends Controller
                 'email' => $google_email, //E-mail
                 'name' => $google_name, //暱稱
                 'password' => uniqid(), //隨機產生密碼
-                'github_id' => $google_id, //google ID
+                'google_id' => $google_id, //google ID
                 'type' => 'G', //一般使用者
             ];
-
 
             //密碼加密
             $input['password'] = Hash::make($input['password']);
@@ -85,7 +81,6 @@ class GoogleAuthController extends Controller
             $mail_binding = [
                 'name' => $input['name']
             ];
-
 
             //寄送註冊通知信
             //寄信需要去google設定低安全性
@@ -100,6 +95,7 @@ class GoogleAuthController extends Controller
         //重新導向到登入頁
         //把名稱放入session
         $User = GoogleUser::where('google_id', $google_id)->first();
+
         session()->put('member_no',$User->member_no);
         session()->put('buyerName',$google_name);
         session()->put('buyerEmail',$google_email);

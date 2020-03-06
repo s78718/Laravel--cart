@@ -16,8 +16,8 @@
             @else
                 <a href="{{asset('/Cart')}}">購物車<span class="badge badge-secondary">{{session()->get('cart')->totalQty}}</span></a>
             @endif
-            <a href="{{asset('/QA')}}">Q&A</a>
             <a href="{{asset('/Member')}}">會員中心</a>
+            <a href="{{asset('/QA')}}">Q&A</a>
         </div>
         <form class="nav-search">
             <input type="search" name="" placeholder="輸入關鍵字">

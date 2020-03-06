@@ -76,10 +76,11 @@
 
         <script type="text/javascript">
             //更換顏色照片
+            var id="{{ $detail[0]->lotid }}";
             var random=0;
             var color=0;
             var size=0;
-            var id={{ $detail[0]->lotid }};
+
 
             $(document).ready(function(){
                 //初始化加入購物車連結

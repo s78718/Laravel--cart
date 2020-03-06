@@ -32,7 +32,9 @@
                             @foreach ($Carts as $c)
                                 <div class="tr">
                                     <div class="td">{{ $c['item'][0]['lotid'] }}</div>
-                                    <div class="td">{{ $c['item'][0]['product'] }}</div>
+                                    <div class="td">
+                                        <a href="/Detail/{{$c['item'][0]['lotid'] }}">{{ $c['item'][0]['product'] }}</a>
+                                    </div>
                                     <div class="td">{{ $c['item'][0]['color'] }}</div>
                                     <div class="td">{{ $c['item'][0]['size'] }}</div>
                                     <div class="td">{{$c['item'][0]['price']}}</div>
