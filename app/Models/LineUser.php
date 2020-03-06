@@ -18,7 +18,7 @@ class LineUser extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','line_id',
+        'name', 'email', 'password','line_id','member_no',
     ];
 
     /**

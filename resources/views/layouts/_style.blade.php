@@ -240,7 +240,7 @@
         padding-right: 10px;
     }
 
-    .cart ,.buyer{
+    .cart ,.buyer,.member{
         border: 5px double #ccc;
         padding: 40px;
         margin-bottom: 10px;
@@ -248,11 +248,6 @@
 
     .clear-cart,.buy{
         background-color: #ccc;
-    }
-
-    table {
-        margin: auto;
-        width: 100% !important;
     }
 
     #order-cart{
@@ -264,17 +259,27 @@
         padding: 40px;
         margin-bottom: 10px;
     }
+
     .qabtn{
         background-color: #ccc;
     }
+    .member-th{
+        background-color: #ccc;
+        font-size: 18px;
+    }
+    .member-td{
+        border: 1px solid #ccc;
+        font-size: 15px;
+    }
+
 </style>
 
 <!--專解決表格問題使用div-->
 <style type="text/css">
     .css-table{
         display: table;
-        font-size: 15px;
-
+        font-size: 16px;
+        text-align:center;
     }
     .css-table .thead{
         display:table-header-group;
@@ -282,18 +287,21 @@
     }
     .css-table .tbody{
         display:table-row-group;
-
     }
     .css-table .tr{
         display:table-row;
-
+        transition: 0.5s;
+    }
+    .css-table .tr:hover{
+        background-color: #eee;
     }
     .css-table .th, .css-table .td{
         display:table-cell;
         width:15em;
-        height:5em;
+        height:3em;
         border: 1px solid #ccc;
 
     }
+
 </style>
 

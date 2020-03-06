@@ -11,6 +11,8 @@ use Mail; //寄信
 use Socialite;
 use Auth;
 use App\Models\LineUser; //使用者 Eloquent ORM Model
+use Illuminate\Support\Str;
+
 
 class LineAuthController extends Controller
 {
@@ -58,22 +60,14 @@ class LineAuthController extends Controller
         //取得使用者資料是否有此Line_id資料
         $User =  LineUser::where('line_id', $line_id)->first();
 
-        if(is_null($User))
-        {
-            //沒有綁定Line Id的帳號，透過Email尋找是否有此帳號
-            $User = LineUser::where('email', $line_email)->first();
-            if(!is_null($User))
-            {
-                //有此帳號，綁定Line Id
-                $User->line_id = $line_id;
-                $User->save();
-            }
-        }
 
         if(is_null($User))
         {
+            //隨機編碼一組數字當唯一會員編號
+            $member_no = str_replace("-", "",substr(Str::uuid()->toString(), 0,18));
             //尚未註冊
             $input = [
+                'member_no'=>$member_no ,
                 'email' => $line_email, //E-mail
                 'name' => $line_name, //暱稱
                 'password' => uniqid(), //隨機產生密碼
@@ -105,6 +99,8 @@ class LineAuthController extends Controller
         //echo "登入成功!";
         //重新導向到登入頁
         //把名稱放入session
+        $User = LineUser::where('line_id', $line_id)->first();
+        session()->put('member_no',$User->member_no);
         session()->put('buyerName',$line_name);
         session()->put('buyerEmail',$line_email);
         return redirect('/');

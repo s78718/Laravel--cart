@@ -16,6 +16,7 @@ class CreateGoogleUsersTable extends Migration
         Schema::create('google_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('google_id', 30)->nullable();
+            $table->string('member_no');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

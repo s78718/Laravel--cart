@@ -16,8 +16,9 @@ class CreateLineUsersTable extends Migration
         Schema::create('line_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('line_id', 50)->nullable();
+            $table->string('member_no')->unique();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -16,6 +16,7 @@ class CreateFbUsersTable extends Migration
         Schema::create('fb_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('facebook_id', 30)->nullable();
+            $table->string('member_no');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

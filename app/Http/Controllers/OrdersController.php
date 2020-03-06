@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Support\Str;
 
+
 use \ECPay_PaymentMethod as ECPayMethod;
 
 class OrdersController extends Controller
@@ -82,6 +83,7 @@ class OrdersController extends Controller
 
         //寫入資料庫
         $order = Order::create([
+            'member_no' => session()->get('member_no'),
             'name' => request('name'),
             'email' => request('email'),
             'phone' => request('phone'),
@@ -138,7 +140,10 @@ class OrdersController extends Controller
                         'URL' => "dedwed"
             ));
 
+            //清除購物車資料
+            session()->forget('cart');
             $obj->CheckOut();
+
 
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -148,8 +153,7 @@ class OrdersController extends Controller
     //付款成功後綠界回調
     public function callback()
     {
-        //清除購物車資料
-        session()->forget('cart');
+
         //sesion()存放一次資訊
         session()->flash('EC', '綠界付款OK');
         //成功交易後寫入資料庫成功

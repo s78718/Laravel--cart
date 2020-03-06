@@ -18,7 +18,7 @@ class GoogleUser extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','google_id',
+        'name', 'email', 'password','google_id','member_no',
     ];
 
     /**

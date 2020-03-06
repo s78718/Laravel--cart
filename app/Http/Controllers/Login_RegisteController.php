@@ -10,6 +10,8 @@ use Hash;
 use Mail;
 use Auth;
 use Crypt;
+use Illuminate\Support\Str;
+
 
 class Login_RegisteController extends Controller
 {
@@ -77,6 +79,7 @@ class Login_RegisteController extends Controller
         }
 
         //放入購買人相關資訊 orders會取出
+        session()->put('buyerName',$user->member_no);//識別id
         session()->put('buyerName',$user->name);
         session()->put('buyerEmail',$user->email);
         session()->put('buyerPhone',$user->phone);
@@ -109,14 +112,16 @@ class Login_RegisteController extends Controller
 
         $validator=request()->validate( $rules, $messages);
 
+         //隨機編碼一組數字當唯一會員編號
+        $member_no = str_replace("-", "",substr(Str::uuid()->toString(), 0,18));
         $input=[
+            'member_no'=>$member_no,
             'name'=>$request->name,
             'phone'=>$request->phone,
             'address'=>$request->address,
             'email'=>$request->email,
             'password'=>$request->password,
         ];
-
 
         $user=User::where('email',$input['email'])->first();
 

@@ -11,6 +11,8 @@ use Mail; //寄信
 use Socialite;
 use Auth;
 use App\Models\GoogleUser; //使用者 Eloquent ORM Model
+use Illuminate\Support\Str;
+
 
 class GoogleAuthController extends Controller
 {
@@ -58,23 +60,13 @@ class GoogleAuthController extends Controller
         //取得使用者資料是否有此google_id資料
         $User = GoogleUser::where('google_id', $google_id)->first();
 
-
         if(is_null($User))
         {
-            //沒有綁定google Id的帳號，透過Email尋找是否有此帳號
-            $User = GoogleUser::where('email', $google_email)->first();
-            if(!is_null($User))
-            {
-                //有此帳號，綁定google Id
-                $User->google_id = $google_id;
-                $User->save();
-            }
-        }
-
-        if(is_null($User))
-        {
-            //尚未註冊
-            $input = [
+             //隨機編碼一組數字當唯一會員編號
+             $member_no = str_replace("-", "",substr(Str::uuid()->toString(), 0,18));
+             //尚未註冊
+             $input = [
+                'member_no'=>$member_no ,
                 'email' => $google_email, //E-mail
                 'name' => $google_name, //暱稱
                 'password' => uniqid(), //隨機產生密碼
@@ -107,6 +99,8 @@ class GoogleAuthController extends Controller
         //echo "登入成功!";
         //重新導向到登入頁
         //把名稱放入session
+        $User = GoogleUser::where('google_id', $google_id)->first();
+        session()->put('member_no',$User->member_no);
         session()->put('buyerName',$google_name);
         session()->put('buyerEmail',$google_email);
         return redirect('/');
