@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Support\Str;
+use Session;
 
 
 use \ECPay_PaymentMethod as ECPayMethod;
@@ -141,7 +142,7 @@ class OrdersController extends Controller
             ));
 
             //清除購物車資料
-            session()->forget('cart');
+            Session::forget('cart');
             $obj->CheckOut();
 
 

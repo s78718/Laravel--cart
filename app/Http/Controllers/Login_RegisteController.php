@@ -79,7 +79,7 @@ class Login_RegisteController extends Controller
         }
 
         //放入購買人相關資訊 orders會取出
-        session()->put('buyerName',$user->member_no);//識別id
+        session()->put('member_no',$user->member_no);//識別id
         session()->put('buyerName',$user->name);
         session()->put('buyerEmail',$user->email);
         session()->put('buyerPhone',$user->phone);
