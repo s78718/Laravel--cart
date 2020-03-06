@@ -14,14 +14,13 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
 
 已完成:   
 1.購物車    
-2.登入,第三方登入移植(fb line google),忘記密碼    
+2.登入,第三方登入移植(fb line google),忘記密碼,會員訂單查詢       
 3.ecpay金流(需修改回調網址.env)(可以使用ngrok)
     
       
 未完成:   
-1.會員資料修改     
-2.會員訂單查詢  
-     
+1.會員資料修改       
+    
        
 執行:  
 0.請先安裝composer npm xampp ngrok postman   
