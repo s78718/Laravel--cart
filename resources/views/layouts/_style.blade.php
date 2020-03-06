@@ -274,7 +274,6 @@
     .css-table{
         display: table;
         font-size: 15px;
-        text-align: center;
 
     }
     .css-table .thead{
@@ -283,14 +282,18 @@
     }
     .css-table .tbody{
         display:table-row-group;
+
     }
     .css-table .tr{
         display:table-row;
+
     }
     .css-table .th, .css-table .td{
         display:table-cell;
         width:15em;
-        border-bottom:3px;
+        height:5em;
+        border: 1px solid #ccc;
+
     }
 </style>
 

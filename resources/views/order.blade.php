@@ -60,7 +60,7 @@
                                 name="email" id="email" type="email" value="{{session()->get('buyerEmail')}}" placeholder="email">
                         </div>
                         <div class="m-4">
-                            <label class="block pl-2" for="email">電話:</label>
+                            <label class="block pl-2" for="email">手機:</label>
                             <input
                                 class="shadow border rounded w-full  py-2 px-3"
                                 name="phone" id="phone" type="text" value="{{session()->get('buyerPhone')}}" placeholder="phone">
