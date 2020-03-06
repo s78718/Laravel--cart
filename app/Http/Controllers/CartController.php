@@ -17,9 +17,11 @@ class CartController extends Controller
     //購物車首頁
     public function cart(Request $request)
     {
-        //刪除指令
+
+        //刪除指令整個session()
         //$request->session()->flush();
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
+
         $cart = new Cart($oldCart);
         //dd($cart);
         return view('cart',[
@@ -85,6 +87,7 @@ class CartController extends Controller
     //清除購物車
     public function clearCart()
     {
+        //真正可以清除session->cart
         if(session()->has('cart')){
             session()->forget('cart');
         }

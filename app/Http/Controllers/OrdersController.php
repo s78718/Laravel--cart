@@ -15,15 +15,20 @@ class OrdersController extends Controller
     public function new(Request $request)
     {
         $oldCart = session()->has('cart') ? session()->get('cart') : null;
-
+        //dd(session()->has('cart'));
         //當cart為空的時候不動作
-        if(!$oldCart)
+        if(!session()->has('cart'))
+        {
+            return redirect()->back();
+        }
+        //當購買數量為0禁止進入到付款畫面
+        if($oldCart->totalQty==0)
         {
             return redirect()->back();
         }
 
-        $cart = new Cart($oldCart);
 
+        $cart = new Cart($oldCart);
 
         return view('order',[
             'Carts'=> $cart->items,
@@ -35,13 +40,22 @@ class OrdersController extends Controller
     //訂單形成post
     public function store()
     {
-        request()->validate([
+        //驗證
+        $rules = [
             'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|regex:/(09)[0-9]{8}/',
             'address' => 'required',
             'payment' => 'required',
-        ]);
+        ];
+        $messages = [
+            'email.required' => 'email格式錯誤!',
+            'phone.required' => '手機格式錯誤!',
+            'address.required' => '地址未填!',
+            'name.required' => '名字未填!',
+            'payment.required' => '付款方式未選擇!',
+        ];
+        request()->validate($rules, $messages);
 
         $cart = session()->get('cart');
 
@@ -75,7 +89,8 @@ class OrdersController extends Controller
             'address' => request('address'),
             'bill'=>$cart->totalPrice,
             'cart' => $product,
-            'uuid' => $uuid_temp
+            'uuid' => $uuid_temp,
+            'state'=> '未付款',
             //'cart' => serialize($cart),
         ]);
 
@@ -140,6 +155,7 @@ class OrdersController extends Controller
         //成功交易後寫入資料庫成功
         $order = Order::where('uuid', '=', request('MerchantTradeNo'))->firstOrFail();
         $order->paid = !$order->paid;//修改付款狀態
+        $order->state ='已付款待處理';
         $order->save();
     }
 

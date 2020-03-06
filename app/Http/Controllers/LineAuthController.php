@@ -26,9 +26,6 @@ class LineAuthController extends Controller
        ->redirect();
    }
 
-
-
-
     //Line登入重新導向授權資料處理
     public function lineSignInCallbackProcess()
     {
