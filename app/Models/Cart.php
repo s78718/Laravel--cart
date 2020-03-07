@@ -133,8 +133,14 @@ class Cart extends Model
         // Update totalqty
         $this->totalQty -= $this->items[$id]['qty'];
 
-        // update total price
-        $this->totalPrice = $this->totalPrice-($this->items[$id]['qty']*$this->items[$id]['item'][0]['price']);
+        if(!$this->items[$id]['item'][0]['saleprice']){
+            // update total price
+            $this->totalPrice = $this->totalPrice-($this->items[$id]['qty']*$this->items[$id]['item'][0]['price']);
+        }
+        else{
+            // update total price
+            $this->totalPrice = $this->totalPrice-($this->items[$id]['qty']*$this->items[$id]['item'][0]['saleprice']);
+        }
 
         // unset item消除
         unset($this->items[$id]);
