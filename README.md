@@ -3,7 +3,7 @@
 整個專案是我自己一步一步完成(前後端)  
 以下為記錄遇到的問題點  
 目前有在找網頁後端開發工程師工作(高雄) php  
-補充:整個專案是我自己花3個多月學習,2個禮拜撰寫,如果有非專業地方,可以告知我,作為我改善部分    
+補充:整個專案是我自己花3個多月自己學習,9天撰寫,如果有非專業地方,可以告知我,作為我改善部分    
 
 +我有在aws放上我個人履歷  
 ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)  
@@ -18,7 +18,7 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
 3.ecpay金流(需修改回調網址.env)(可以使用ngrok)
     
        
-執行:  
+執行(注意點):  
 0.請先安裝composer npm xampp ngrok postman   
 1.修改.env資料(env.example),回調網址可以用aws或是ngrok,修改後記得重開sever     
 2.創建mik資料庫   
@@ -37,7 +37,7 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
 (已安裝)  
 12.綠界再次付款會造成重複碼問題  
 (在訂單後面補上隨機三碼)    
-
+13.MODEL部分限制白黑名單會造成資料庫寫入異常  
 
 
 使用技術:  
@@ -50,7 +50,6 @@ ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)
 7.第三方登入(socialite)  
 8.ORM(Eloquent)  
 9.git版本管控  
-
 
 
 引用:  

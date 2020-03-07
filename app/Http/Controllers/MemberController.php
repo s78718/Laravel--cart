@@ -153,7 +153,4 @@ class MemberController extends Controller
             echo $e->getMessage();
         }
     }
-
-
-
 }
