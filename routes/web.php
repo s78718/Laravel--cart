@@ -31,7 +31,7 @@ Route::get('/', function () {
 });
 
 //會員
-Route::get('/Member', 'MemberController@member');
+Route::get('/Member', 'MemberController@member')->middleware(['login_auth']);
 
 //qa
 Route::get('/QA', 'QAController@QA');
