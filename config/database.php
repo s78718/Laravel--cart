@@ -3,10 +3,10 @@
 use Illuminate\Support\Str;
 
 $url = parse_url(getenv("DATABASE_URL"));
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+$host = $DATABASE_URL["host"];
+$username = $DATABASE_URL["user"];
+$password = $DATABASE_URL["pass"];
+$database = ltrim($DATABASE_URL["path"], "/");
 return [
 
     /*
@@ -19,7 +19,7 @@ return [
     | you may use many connections at once using the Database library.
     |
     */
-    'default' => 'pgsql',
+    'default' => env('DB_CONNECTION','pgsql'),
     //'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
@@ -69,7 +69,7 @@ return [
             ]) : [],
         ],
 
-        'pgsql' => array(
+        'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => $host,
             'database' => $database,
@@ -77,8 +77,10 @@ return [
             'password' => $password,
             'charset'  => 'utf8',
             'prefix'   => '',
+            'prefix_indexes'   => true,
             'schema'   => 'public',
-        ),
+            'sslmode'  => 'perfer',
+        ],
 
         /*'pgsql' => [
             'driver' => 'pgsql',
