@@ -272,6 +272,9 @@
         font-size: 15px;
     }
 
+
+
+
 </style>
 
 <!--專解決表格問題使用div-->
@@ -300,7 +303,6 @@
         width:15em;
         height:3em;
         border: 1px solid #ccc;
-
     }
 
 </style>

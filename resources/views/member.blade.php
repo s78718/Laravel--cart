@@ -10,6 +10,16 @@
             @include('layouts._header')
         </header>
         <section>
+            <div class="container member-list">
+                <div class="row text-center w-auto">
+                    <div class="col">
+                        <button class="btn" id="searchorders">訂單查詢</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn"  id="persondata">個人資料修改</button>
+                    </div>
+                </div>
+            </div>
             @if(isset($order))
                 <div class="container member">
                     <div class="row member-th">
@@ -66,6 +76,22 @@
         <footer>
             @include('layouts._footer')
         </footer>
+
+        <script>
+            $(document).ready(function(){
+                $('#searchorders').css('background-color','#ccc');
+            });
+            $('#searchorders').click(function(){
+                $(this).css('background-color','#ccc');
+                $('#persondata').css('background-color','#fff');
+                $('.member').css('opacity','1');
+            })
+            $('#persondata').click(function(){
+                $(this).css('background-color','#ccc');
+                $('#searchorders').css('background-color','#fff');
+                $('.member').css('opacity','0');
+            })
+        </script>
     </body>
 </html>
 

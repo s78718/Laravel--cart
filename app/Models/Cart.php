@@ -25,7 +25,7 @@ class Cart extends Model
     public function add($item, $id, $color, $size)
     {
         //因為新增qty先設為0
-        // empty state of storedItem (qty(0), price(item.price), item(object))
+        //empty state of storedItem (qty(0), price(item.price), item(object))
         $storedItem;
         if(!$item[0]->saleprice){
             $storedItem = ['qty'=>0, 'price'=>$item[0]->price, 'item'=>$item ,'color'=>$color,'size'=>$size];
