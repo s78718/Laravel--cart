@@ -263,17 +263,24 @@
     .qabtn{
         background-color: #ccc;
     }
+
     .member-th{
         background-color: #ccc;
         font-size: 18px;
     }
+
     .member-td{
         border: 1px solid #ccc;
         font-size: 15px;
 
     }
+
     .person{
         display: none;
+    }
+
+    .modifybtn{
+        background-color: #ccc;
     }
 
 </style>

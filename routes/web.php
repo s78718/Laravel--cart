@@ -14,6 +14,7 @@
 //member
 Route::get('/Cancelorder/{id}', 'MemberController@cancelorder');
 Route::get('/Payorder/{id}', 'MemberController@payorder');
+Route::post('/Person/Modify','MemberController@personmodify');
 
 //cart
 Route::get('/Cart', 'CartController@cart');

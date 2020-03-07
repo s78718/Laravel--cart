@@ -91,4 +91,10 @@ class MemberController extends Controller
         }
     }
 
+    //修改這人資料
+    public function personmodify()
+    {
+
+    }
+
 }
