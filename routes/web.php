@@ -12,9 +12,9 @@
 */
 
 //member
-Route::get('/Cancelorder/{id}', 'MemberController@cancelorder');
-Route::get('/Payorder/{id}', 'MemberController@payorder');
-Route::post('/Person/Modify','MemberController@personmodify');
+Route::get('/Cancelorder/{id}', 'MemberController@cancelorder')->middleware(['login_auth']);
+Route::get('/Payorder/{id}', 'MemberController@payorder')->middleware(['login_auth']);
+Route::post('/Person/Modify','MemberController@personmodify')->middleware(['login_auth']);
 
 //cart
 Route::get('/Cart', 'CartController@cart');
