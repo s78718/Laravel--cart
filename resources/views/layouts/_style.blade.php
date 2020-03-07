@@ -240,7 +240,7 @@
         padding-right: 10px;
     }
 
-    .cart ,.buyer,.member{
+    .cart ,.buyer,.member,.person{
         border: 5px double #ccc;
         padding: 40px;
         margin-bottom: 10px;
@@ -270,10 +270,11 @@
     .member-td{
         border: 1px solid #ccc;
         font-size: 15px;
+
     }
-
-
-
+    .person{
+        display: none;
+    }
 
 </style>
 
