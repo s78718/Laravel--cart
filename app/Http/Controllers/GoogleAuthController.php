@@ -95,7 +95,7 @@ class GoogleAuthController extends Controller
         //重新導向到登入頁
         //把名稱放入session
         $User = GoogleUser::where('google_id', $google_id)->first();
-
+        session()->put('logintype','google');
         session()->put('member_no',$User->member_no);
         session()->put('buyerName',$google_name);
         session()->put('buyerEmail',$google_email);

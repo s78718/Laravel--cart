@@ -20,8 +20,8 @@
                     </div>
                 </div>
             </div>
-            @if(isset($order))
             <div class="container member">
+                @if(isset($order))
                 <div class="row member-th">
                     <div class="col-4 col-md-3">
                         訂單日期
@@ -70,54 +70,53 @@
                         @endif
                     </div>
                 @endforeach
+                @endif
             </div>
-            @endif
         </section>
         <section>
             <div class="container person">
+                @if(isset($person))
                 <div class="col-md-12 col-12">
                     <form  method="POST" action="/Person/Modify">
                         @csrf
                         <h4 class="pb-2">修改</h4>
                         <hr>
                         <div class="form-group">
-                            <label for="InputEmail1">名字</label>
-                            <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" required>
-                                @if ($errors->first('email'))
+                            <label for="InputName">名字</label>
+                        <input type="text" name="name" class="form-control" id="InputName" value="{{ $person[0]->name }}"  required>
+                                @if ($errors->first('name'))
                                     <span class="error" role="alert">
-                                        <strong class="text-danger bg-warning">{{ $errors->first('email') }}</strong>
+                                        <strong class="text-danger bg-warning">{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                         </div>
                         <div class="form-group">
-                        <label for="InputEmail1">Email</label>
-                        <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" required>
-                            @if ($errors->first('email'))
+                        <label for="InputPhone">手機</label>
+                        <input type="text" name="phone" class="form-control" id="InputPhone" value="{{ $person[0]->phone }}" required>
+                            @if ($errors->first('phone'))
                                 <span class="error" role="alert">
-                                    <strong class="text-danger bg-warning">{{ $errors->first('email') }}</strong>
+                                    <strong class="text-danger bg-warning">{{ $errors->first('phone') }}</strong>
                                 </span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="InputPassword1">地址</label>
-                            <input type="password" name="password" class="form-control" id="InputPassword1" required>
-                                @if ($errors->first('password'))
-                                    <span class="error" role="alert">
-                                        <strong class="text-danger bg-warning">{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <label for="InputAddress">地址</label>
+                            <input type="text"" name="address" class="form-control" id="InputAddress" value="{{ $person[0]->address }}" required>
+                            @if ($errors->first('address'))
+                                <span class="error" role="alert">
+                                    <strong class="text-danger bg-warning">{{ $errors->first('address') }}</strong>
+                                </span>
+                            @endif
                         </div>
-
                         <button class=" btn modifybtn" type="submit" class="btn">修改</button>
-
                         @if ($errors->first('error'))
                         <span class="error" role="alert">
                             <strong class="text-danger bg-warning">{{$errors->first('error')}}</strong>
                         </span>
                         @endif
-
                     </form>
                 </div>
+                @endif
             </div>
         </section>
         <footer>

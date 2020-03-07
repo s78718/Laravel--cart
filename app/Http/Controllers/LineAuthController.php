@@ -100,6 +100,7 @@ class LineAuthController extends Controller
         //重新導向到登入頁
         //把名稱放入session
         $User = LineUser::where('line_id', $line_id)->first();
+        session()->put('logintype','line');
         session()->put('member_no',$User->member_no);
         session()->put('buyerName',$line_name);
         session()->put('buyerEmail',$line_email);

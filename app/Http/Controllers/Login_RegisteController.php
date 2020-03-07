@@ -31,7 +31,7 @@ class Login_RegisteController extends Controller
     public function Logout()
     {
         Auth::logout();//清空第三方登入
-
+        //session()>forget('logintype');
         //session()->forget('buyerName');
         //session()->forget('buyerEmail');
         //session()->forget('buyerPhone');
@@ -80,12 +80,12 @@ class Login_RegisteController extends Controller
 
         //放入購買人相關資訊 orders會取出
         session()->put('member_no',$user->member_no);//識別id
+        session()->put('logintype','mik');
         session()->put('buyerName',$user->name);
         session()->put('buyerEmail',$user->email);
         session()->put('buyerPhone',$user->phone);
         session()->put('buyerAddress',$user->address);
         return redirect('/Member');
-
     }
 
     //註冊驗證

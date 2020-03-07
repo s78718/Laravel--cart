@@ -3,21 +3,50 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order; //Model
+use App\Models\FbUser; //Model
+use App\Models\GoogleUser; //Model
+use App\Models\LineUser; //Model
+use App\User; //Model
 use Illuminate\Support\Str;
 use Session;
-
+use Validator;
 use \ECPay_PaymentMethod as ECPayMethod;
 
 class MemberController extends Controller
 {
-    //
+
     public function member()
     {
+        //撈取個人訂單
         $member_no=session()->get('member_no');
         $order=Order::where('member_no','=',$member_no)
                         ->get();
-                        //dd($order);
-        return view('member',compact('order'));
+
+
+        /*取得登入形式取帳號資料
+        撈取個人資料(修改)*/
+        $person=null;
+        if(session()->has('logintype')){
+            $type=session()->get('logintype');
+            $member_no=session()->get('member_no');
+            switch($type){
+                case 'mik':
+                    $person=User::where('member_no','=',$member_no)->get();
+                    break;
+                case 'fb':
+                    $person=FbUser::where('member_no','=',$member_no)->get();
+                    break;
+                case 'google':
+                    $person=GoogleUser::where('member_no','=',$member_no)->get();
+                    break;
+                case 'line':
+                    $person=LineUser::where('member_no','=',$member_no)->get();
+                    break;
+             }
+
+        }
+
+        return view('member',compact(['order','person']));
     }
 
     //取消訂單
@@ -91,9 +120,10 @@ class MemberController extends Controller
         }
     }
 
-    //修改這人資料
+    //修改個人資料
     public function personmodify()
     {
+
 
     }
 

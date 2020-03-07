@@ -40,7 +40,7 @@
                                     @endif
                             </div>
                             <div class="form-group">
-                            <label for="InputPassword1">Password</label>
+                            <label for="InputPassword1">密碼</label>
                             <input type="password" name="password" class="form-control" id="InputPassword1" required>
                                     @if ($errors->first('password'))
                                         <span class="error" role="alert">
