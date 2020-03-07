@@ -2,11 +2,7 @@
 
 use Illuminate\Support\Str;
 
-$url = parse_url(getenv("DATABASE_URL"));
-$host = $DATABASE_URL["host"];
-$username = $DATABASE_URL["user"];
-$password = $DATABASE_URL["pass"];
-$database = ltrim($DATABASE_URL["path"], "/");
+
 return [
 
     /*
@@ -71,13 +67,13 @@ return [
 
         'pgsql' => [
             'driver'   => 'pgsql',
-            'host'     => $host,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
+            'host'     => $url["host"],
+            'database' => ltrim($url["path"], "/"),
+            'username' => $url["user"],
+            'password' => $url["pass"],
             'charset'  => 'utf8',
             'prefix'   => '',
-            'prefix_indexes'   => true,
+            'prefix_indexes' => true,
             'schema'   => 'public',
             'sslmode'  => 'perfer',
         ],
