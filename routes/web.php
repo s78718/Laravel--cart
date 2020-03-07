@@ -11,7 +11,8 @@
 |
 */
 
-//member
+//會員
+Route::get('/Member', 'MemberController@member')->middleware(['login_auth']);
 Route::get('/Cancelorder/{id}', 'MemberController@cancelorder')->middleware(['login_auth']);
 Route::get('/Payorder/{id}', 'MemberController@payorder')->middleware(['login_auth']);
 Route::post('/Person/Modify','MemberController@personmodify')->middleware(['login_auth']);
@@ -19,19 +20,15 @@ Route::post('/Person/Modify','MemberController@personmodify')->middleware(['logi
 //cart
 Route::get('/Cart', 'CartController@cart');
 Route::get('/Remove-item/{id}', 'CartController@removeItem');
-//Route::get('/Add-to-cart/{id}', 'CartController@getAddToCart');
 Route::get('/Add-to-cart/{id}/{color}/{size}', 'CartController@getAddToCart');
 Route::get('/Increase-one-item/{id}', 'CartController@increaseByOne');
 Route::get('/Decrease-one-item/{id}', 'CartController@decreaseByOne');
 Route::get('/Clear-cart', 'CartController@clearCart');
 
-
+//首頁
 Route::get('/', function () {
     return view('mik');
 });
-
-//會員
-Route::get('/Member', 'MemberController@member')->middleware(['login_auth']);
 
 //qa
 Route::get('/QA', 'QAController@QA');
