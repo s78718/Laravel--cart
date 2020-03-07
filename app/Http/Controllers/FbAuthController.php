@@ -110,6 +110,8 @@ class FbAuthController extends Controller
         session()->put('member_no',$User->member_no);
         session()->put('buyerName',$facebook_name);
         session()->put('buyerEmail',$facebook_email);
+        session()->put('buyerPhone',$User->phone);
+        session()->put('buyerAddress',$User->address);
         return redirect('/');
     }
 

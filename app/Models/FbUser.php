@@ -18,7 +18,7 @@ class FbUser extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','facebook_id','member_no',
+        'name', 'email', 'password','facebook_id','member_no','address','phone',
     ];
 
     /**

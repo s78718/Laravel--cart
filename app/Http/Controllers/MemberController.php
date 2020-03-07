@@ -49,6 +49,40 @@ class MemberController extends Controller
         return view('member',compact(['order','person']));
     }
 
+    //修改個人資料
+    public function personmodify(Request $requuest)
+    {
+        /*取得登入形式取帳號資料
+        撈取個人資料(修改)*/
+        $person=null;
+        if(session()->has('logintype')){
+            $type=session()->get('logintype');
+            $member_no=session()->get('member_no');
+            switch($type){
+                case 'mik':
+                    $person=User::where('member_no','=',$member_no)
+                                ->update(['name' => request()->name,'phone' =>request()->phone,'address' => request()->address]);
+                    break;
+                case 'fb':
+                    $person=FbUser::where('member_no','=',$member_no)
+                                ->update(['name' => request()->name,'phone' =>request()->phone,'address' => request()->address]);
+                    break;
+                case 'google':
+                    $person=GoogleUser::where('member_no','=',$member_no)
+                                ->update(['name' => request()->name,'phone' =>request()->phone,'address' => request()->address]);
+                    break;
+                case 'line':
+                    $person=LineUser::where('member_no','=',$member_no)
+                                ->update(['name' => request()->name,'phone' =>request()->phone,'address' => request()->address]);
+                    break;
+            }
+            session()->put('buyerName',request()->name);
+            session()->put('buyerPhone',request()->phone);
+            session()->put('buyerAddress',request()->address);
+        }
+        return redirect('/');
+    }
+
     //取消訂單
     public function cancelorder($id)
     {
@@ -120,11 +154,6 @@ class MemberController extends Controller
         }
     }
 
-    //修改個人資料
-    public function personmodify()
-    {
 
-
-    }
 
 }

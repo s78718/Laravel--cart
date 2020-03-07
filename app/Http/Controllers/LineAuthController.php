@@ -104,6 +104,8 @@ class LineAuthController extends Controller
         session()->put('member_no',$User->member_no);
         session()->put('buyerName',$line_name);
         session()->put('buyerEmail',$line_email);
+        session()->put('buyerPhone',$User->phone);
+        session()->put('buyerAddress',$User->address);
         return redirect('/');
     }
 
