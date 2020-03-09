@@ -8,6 +8,9 @@
 +我有在aws放上我個人履歷  
 ec2-18-180-25-206.ap-northeast-1.compute.amazonaws.com (18.180.25.206)  
 
+放在heroku  
+https://protected-reef-39614.herokuapp.com/  
+
 不會動到部分:  
 1.產品圖片目前為隨機產生,正式環境應該到資料庫寫入並帶入img->src  
 2.第三方登入只開發到開發者模式,不做申請為正式模式
