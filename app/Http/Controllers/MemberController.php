@@ -52,6 +52,22 @@ class MemberController extends Controller
     //修改個人資料
     public function personmodify(Request $requuest)
     {
+
+         //驗證
+         $rules = [
+            'name' => 'required',
+            'phone' => 'required|regex:/(09)[0-9]{8}/',
+            'address' => 'required',
+
+        ];
+        $messages = [
+            'phone.required' => '手機格式錯誤!',
+            'address.required' => '地址未填!',
+            'name.required' => '名字未填!',
+        ];
+
+        request()->validate($rules, $messages);
+
         /*取得登入形式取帳號資料
         撈取個人資料(修改)*/
         $person=null;
